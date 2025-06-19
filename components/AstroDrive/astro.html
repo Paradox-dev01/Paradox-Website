@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paradox</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="astro.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -44,26 +47,68 @@
       <!-- Core -->
 
       <!-- Lab -->
+
       <!-- AstroDrive -->
       <section id="astro" class="section">
-        <div class="container">
-          <div class="content">
-            <div class="logo">
-              <span class="telescope-icon">🔭</span>
-              <h1 class="animate-title">AstroDrive</h1>
-            </div>
-            <p class="text-line">A cosmic magazine and news portal</p>
-            <p class="text-line">built to hijack your curiosity.</p>
-            <p class="text-line">Astronomy, space secrets, and challenges</p>
-            <p class="text-line">that reward your wonder.</p>
-            <a href="#projects" class="projects-link">Projects in the works</a>
-          </div>
-          <div class="background">
-            <div class="stars" id="stars"></div>
+        <div class="stars"></div>
+        <div class="twinkling"></div>
 
-        <script src="astro.js"></script>
+        <div class="logo-container">
+          <img src="Astrodrive.jpg" alt="AstroDrive Logo" class="Astrologo" />
+          <p class="tagline">Unleash the Cosmos!</p>
+        </div>
+
+        <div class="content">
+          <h1>AstroDrive</h1>
+
+          <p class="intro-line">Your launchpad into the cosmos!</p>
+
+          <p>
+            From breaking space news and epic celestial events to mind-blowing
+            discoveries, space tech, and stargazing guides — we bring the entire
+            universe to your screen.
+          </p>
+
+          <p>
+            Whether you're a curious beginner or a hardcore space nerd,
+            AstroDrive fuels your cosmic curiosity with fun, facts, and fiery
+            enthusiasm.
+          </p>
+        </div>
+
+        <div class="social-links">
+          <a
+            href="https://www.facebook.com/share/1RMNsbTsMg/?mibextid=qi2Omg"
+            class="social-link facebook"
+            target="_blank"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/company/astrodrive-fun/"
+            class="social-link linkedin"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a
+            href="https://discord.gg/MqdA4SX7"
+            class="social-link discord"
+            target="_blank"
+            ><i class="fab fa-discord"></i
+          ></a>
+          <a
+            href="https://astrodrive.fun/"
+            class="social-link google"
+            target="_blank"
+            ><i class="fab fa-google"></i
+          ></a>
+          <a
+            href="https://youtube.com/@astrodrive-l5g6i?si=voF6mSaJAKEOncik"
+            class="social-link youtube"
+            target="_blank"
+            ><i class="fab fa-youtube"></i
+          ></a>
+        </div>
       </section>
-
       <!-- Logs -->
 
       <!-- Connect -->
@@ -74,5 +119,6 @@
     <div class="nav-arrow" onclick="scrollToNextSection()">&#8595;</div>
 
     <script src="scripts.js"></script>
+    <script src="astro.js"></script>
   </body>
 </html>

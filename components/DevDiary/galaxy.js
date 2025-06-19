@@ -113,49 +113,66 @@ if (canvas) {
   drawStars();
 }
 //DevDiary
-gsap.registerPlugin(ScrollTrigger);
+document.addEventListener("DOMContentLoaded", function () {
+  // Create stars
+  const galaxyGrid = document.querySelector(".galaxy-grid");
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.width = `${Math.random() * 3 + 1}px`;
+    star.style.height = star.style.width;
+    star.style.animationDelay = `${Math.random() * 5}s`;
+    galaxyGrid.appendChild(star);
+  }
 
-// Header animations
-gsap.to(".header h1", {
-  opacity: 1,
-  y: 0,
-  duration: 1,
-  ease: "power3.out",
-});
-
-gsap.to(".header p", {
-  opacity: 1,
-  y: 0,
-  duration: 1,
-  delay: 0.3,
-  ease: "power3.out",
-});
-
-// Section title animation
-gsap.to(".section-title", {
-  scrollTrigger: {
-    trigger: ".section-title",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 1,
-  y: 0,
-  duration: 1,
-  ease: "power3.out",
-});
-
-// Project cards animation
-gsap.utils.toArray(".project-card").forEach((card, i) => {
-  gsap.to(card, {
-    scrollTrigger: {
-      trigger: card,
-      start: "top 80%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    delay: i * 0.2,
-    ease: "power3.out",
+  // Animation for elements - now with bounce effect
+  gsap.from(".robot-image", {
+    duration: 1.5,
+    opacity: 0,
+    x: -100,
+    ease: "bounce.out", // Changed to bounce easing
   });
+
+  // Rest of the JavaScript remains the same
+  gsap.from(".title", {
+    duration: 1,
+    opacity: 0,
+    y: 50,
+    delay: 0.5,
+    ease: "back.out",
+  });
+
+  gsap.from(".subtitle", {
+    duration: 1,
+    opacity: 0,
+    y: 50,
+    delay: 0.8,
+    ease: "back.out",
+  });
+
+  gsap.from(".cta-button", {
+    duration: 1,
+    opacity: 0,
+    y: 50,
+
+    ease: "back.out",
+  });
+
+  // Handle button click
+  const letsGoBtn = document.getElementById("letsGoBtn");
+  if (letsGoBtn) {
+    letsGoBtn.addEventListener("click", function () {
+      gsap.to(this, {
+        scale: 0.9,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        onComplete: function () {
+          window.location.href = "next-page.html";
+        },
+      });
+    });
+  }
 });
