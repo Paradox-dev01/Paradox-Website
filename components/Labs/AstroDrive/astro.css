@@ -301,7 +301,7 @@ body {
 
 .social-link:hover {
     transform: translateY(-5px);
-    text-shadow: 0 0 15px rgba(100, 149, 237, 0.8));
+    text-shadow: 0 0 15px rgba(100, 149, 237, 0.8);
 }
 
 .facebook { color: #3b5998; }

@@ -349,167 +349,118 @@ document.addEventListener("mousemove", (e) => {
 
 // --- ASTRO DRIVE
 document.addEventListener("DOMContentLoaded", function () {
-  // Create stars (fewer on mobile)
-  const starsContainer = document.getElementById("astro-stars");
-  const isMobile = window.innerWidth < 768;
-  const numStars = isMobile ? 100 : 200;
-
-  for (let i = 0; i < numStars; i++) {
-    const star = document.createElement("div");
-    star.className = "astro-star";
-    const size = Math.random() * (isMobile ? 2 : 3) + 1;
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.top = `${Math.random() * 100}%`;
-    starsContainer.appendChild(astro-star);
-  }
-
-  // Title Animation (character by character)
-  const titleElement = document.querySelector(".animate-title");
-  const titleText = titleElement.textContent;
-  titleElement.textContent = "";
-
-  const titleTl = gsap.timeline();
-  titleTl.to(titleElement, {
-    opacity: 1,
-    duration: 0.1,
-  });
-
-  // Animate each character of the title
-  for (let i = 0; i < titleText.length; i++) {
-    const char = document.createElement("span");
-    char.textContent = titleText[i];
-    char.style.opacity = "0";
-    char.style.display = "inline-block";
-    titleElement.appendChild(char);
-
-    titleTl.to(char, {
-      opacity: 1,
-      duration: 0.05,
-      ease: "none",
-    });
-  }
-
-  // Text Lines Animation (sliding)
-  const textLines = document.querySelectorAll(".text-line");
-
-  gsap
-    .timeline({
-      delay: 1, // Start after title animation
-    })
-    .to(textLines, {
-      opacity: 1,
-      x: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power2.out",
-    })
-    .to(
-      ".projects-link",
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "back.out",
-      },
-      "-=0.4"
-    );
-
-  // Animate stars
-  gsap.to(".astro-star", {
-    duration: "random(2, 4)",
-    opacity: "random(0.2, 1)",
-    repeat: -1,
-    yoyo: true,
-    ease: "power1.inOut",
-    stagger: {
-      amount: 4,
-      from: "random",
+  // Add animation classes with delays
+  const elementsToAnimate = [
+    { element: document.querySelector(".content h1"), delay: 0 },
+    { element: document.querySelector(".intro-line"), delay: 0.3 },
+    {
+      element: document.querySelectorAll(".content p:not(.intro-line)")[0],
+      delay: 0.6,
     },
+    {
+      element: document.querySelectorAll(".content p:not(.intro-line)")[1],
+      delay: 0.9,
+    },
+    { element: document.querySelector(".social-links"), delay: 1.2 },
+  ];
+
+  elementsToAnimate.forEach((item) => {
+    if (item.element) {
+      item.element.classList.add("fade-in");
+      item.element.style.animationDelay = `${item.delay}s`;
+    }
   });
 
-  // Parallax effect - only on desktop
-  if (!isMobile) {
-    window.addEventListener("mousemove", (e) => {
-      const mouseX = e.clientX / window.innerWidth - 0.5;
-      const mouseY = e.clientY / window.innerHeight - 0.5;
-
-      gsap.to(".astro-stars", {
-        duration: 1,
-        x: mouseX * 50,
-        y: mouseY * 50,
-        ease: "power1.out",
-      });
+  // Add hover effects for social links
+  const socialLinks = document.querySelectorAll(".social-link");
+  socialLinks.forEach((link) => {
+    link.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-5px)";
+      this.style.textShadow = "0 0 15px rgba(100, 149, 237, 0.8)";
     });
-  }
+
+    link.addEventListener("mouseleave", function () {
+      this.style.transform = "";
+      this.style.textShadow = "";
+    });
+  });
 
   // Handle window resize
-  window.addEventListener("resize", function () {
-    const newIsMobile = window.innerWidth < 768;
-    if (isMobile !== newIsMobile) {
-      // Recreate stars if mobile state changed
-      starsContainer.innerHTML = "";
-      const newNumStars = newIsMobile ? 100 : 200;
+  function handleResize() {
+    // Any responsive JS adjustments would go here
+  }
 
-      for (let i = 0; i < newNumStars; i++) {
-        const star = document.createElement("div");
-        star.className = "astro-star";
-        const size = Math.random() * (newIsMobile ? 2 : 3) + 1;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        starsContainer.appendChild(astro-star);
-      }
-    }
+  // Debounce resize events
+  let resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleResize, 250);
   });
 });
 
 // --- DevDiary
-// Header animations
-gsap.to(".header h1", {
-  opacity: 1,
-  y: 0,
-  duration: 1,
-  ease: "power3.out",
-});
+document.addEventListener("DOMContentLoaded", function () {
+  // Create stars
+  const galaxyGrid = document.querySelector(".galaxy-grid");
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.width = `${Math.random() * 3 + 1}px`;
+    star.style.height = star.style.width;
+    star.style.animationDelay = `${Math.random() * 5}s`;
+    galaxyGrid.appendChild(star);
+  }
 
-gsap.to(".header p", {
-  opacity: 1,
-  y: 0,
-  duration: 1,
-  delay: 0.3,
-  ease: "power3.out",
-});
-
-// Section title animation
-gsap.to(".section-title", {
-  scrollTrigger: {
-    trigger: ".section-title",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 1,
-  y: 0,
-  duration: 1,
-  ease: "power3.out",
-});
-
-// Project cards animation
-gsap.utils.toArray(".project-card").forEach((card, i) => {
-  gsap.to(card, {
-    scrollTrigger: {
-      trigger: card,
-      start: "top 80%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    delay: i * 0.2,
-    ease: "power3.out",
+  // Animation for elements - now with bounce effect
+  gsap.from(".robot-image", {
+    duration: 1.5,
+    opacity: 0,
+    x: -100,
+    ease: "bounce.out", // Changed to bounce easing
   });
+
+  // Rest of the JavaScript remains the same
+  gsap.from(".title", {
+    duration: 1,
+    opacity: 0,
+    y: 50,
+    delay: 0.5,
+    ease: "back.out",
+  });
+
+  gsap.from(".subtitle", {
+    duration: 1,
+    opacity: 0,
+    y: 50,
+    delay: 0.8,
+    ease: "back.out",
+  });
+
+  gsap.from(".cta-button", {
+    duration: 1,
+    opacity: 0,
+    y: 50,
+
+    ease: "back.out",
+  });
+
+  // Handle button click
+  const letsGoBtn = document.getElementById("letsGoBtn");
+  if (letsGoBtn) {
+    letsGoBtn.addEventListener("click", function () {
+      gsap.to(this, {
+        scale: 0.9,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        onComplete: function () {
+          window.location.href = "next-page.html";
+        },
+      });
+    });
+  }
 });
 
 
