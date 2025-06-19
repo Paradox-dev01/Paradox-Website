@@ -1,12 +1,12 @@
 * {
-  cursor: none !important;
+    cursor: none !important;
 }
 
 /* Remove all margin/padding from main layout */
 body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #000; /* fallback if canvas is removed */
   overflow-x: hidden;
 }
@@ -25,17 +25,17 @@ body {
   z-index: 9999;
   transition: background 0.2s ease, transform 0.15s ease-out;
 }
-/* Idle State */
+    /* Idle State */
 .custom-cursor.idle {
   animation: pulse 1.5s infinite;
   background: #008f7a;
 }
-/* Clicked State */
+    /* Clicked State */
 .custom-cursor.clicked {
   transform: translate(-50%, -50%) scale(1.5);
   background: #00ffee;
 }
-/* Hover on clickable */
+    /* Hover on clickable */
 .custom-cursor.hover {
   width: 24px;
   height: 24px;
@@ -43,20 +43,11 @@ body {
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   transition: all 0.2s ease;
 }
-/* Idle pulse animation */
+    /* Idle pulse animation */
 @keyframes pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.3);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
 
 /* Optional Background Canvas */
@@ -114,6 +105,7 @@ body {
   transform: translateY(0);
 }
 
+
 /* Example content styling - y9ou can replace it with your section's css (entirely or partially) */
 .intro {
   text-align: center;
@@ -137,8 +129,8 @@ body {
 /* Navigation Arrow */
 .nav-arrow {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 30px; 
+  right: 30px;  
   font-size: 3rem;
   color: #00ffe7;
   z-index: 999;
@@ -147,20 +139,20 @@ body {
 }
 
 .nav-arrow:hover {
-  text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7, 0 0 30px #00ffe7,
+  text-shadow: 
+    0 0 10px #00ffe7,
+    0 0 20px #00ffe7,
+    0 0 30px #00ffe7,
     0 0 40px #00ffe7;
 }
 
 /* Bounce Animation */
 @keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
+
+
 
 /* Responsive Base */
 @media (max-width: 768px) {
@@ -188,162 +180,189 @@ body {
 }
 @media (max-width: 480px) {
   .nav-arrow {
-    font-size: 1.5rem;
-    bottom: 20px;
+    font-size: 1.5rem;  
+    bottom: 20px;      
     right: 20px;
   }
 }
-/* AstoDrive */
-/* Base Styles */
+/* AstroDrive */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+
+
 #astro {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: "Arial", sans-serif;
-  background: linear-gradient(to bottom, #0b1026 0%, #1b2735 50%, #432555 100%);
-  color: white;
-  overflow: hidden;
+    font-family: 'Space Mono', monospace;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
 }
 
-.container {
-  position: relative;
-  height: 100vh;
-  padding: 2rem;
-}
-
-.content {
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
-  padding-top: 4rem;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.telescope-icon {
-  font-size: 2rem;
-}
-
-.container.h1 {
-  font-size: clamp(2rem, 8vw, 3.5rem);
-  margin: 0;
-  font-weight: bold;
-  opacity: 0;
-}
-
-.text-line {
-  font-size: clamp(1rem, 3vw, 1.2rem);
-  line-height: 1.8;
-  margin: 1rem 0;
-  opacity: 0;
-  transform: translateX(-50px);
-}
-
-.projects-link {
-  display: inline-block;
-  margin-top: 1.5rem;
-  font-size: clamp(1rem, 3vw, 1.2rem);
-  color: #8a2be2;
-  text-decoration: none;
-  border-bottom: 1px solid #8a2be2;
-  padding-bottom: 3px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-}
-
-.projects-link:hover {
-  color: #9370db;
-  border-bottom-color: #9370db;
-  transform: translateY(-3px);
-}
-
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+.stars, .twinkling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
 }
 
 .stars {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
 }
 
-.star {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
+.twinkling {
+    background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
+    animation: twinkling 200s linear infinite;
+    z-index: -1;
 }
 
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  cursor: pointer;
-  animation: bounce 2s infinite;
-  display: none; /* Hidden by default, shown on desktop */
+@keyframes twinkling {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
 }
 
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-20px);
-  }
-  60% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Responsive Styles */
-@media (min-width: 768px) {
-  .scroll-indicator {
-    display: block;
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .content {
-    padding-top: 2rem;
-  }
-
-  .logo {
-    margin-bottom: 1.5rem;
-  }
-
-  .text-line {
-    margin: 0.8rem 0;
-  }
-}
-
-@media (max-width: 400px) {
-  .logo {
+.logo-container {
+    margin-bottom: 2rem;
+    text-align: center;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .telescope-icon {
-    font-size: 1.5rem;
-  }
+    align-items: center;
 }
+
+.Astrologo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 10px rgba(100, 149, 237, 0.8));
+}
+
+.tagline {
+    font-size: 0.75rem;
+    color: #4facfe;
+    letter-spacing: 1px;
+}
+
+.content.h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 8vw, 3rem);
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.content {
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.content.p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.intro-line {
+    font-weight: bold;
+    color: #00f2fe;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    color: #fff;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+    text-shadow: 0 0 15px rgba(100, 149, 237, 0.8));
+}
+
+.facebook { color: #3b5998; }
+.linkedin { color: #0077b5; }
+.discord { color: #7289da; }
+.google { color: #db4437; }
+.youtube { color: #ff0000; }
+
+/* Animation classes */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .content {
+        padding: 1rem;
+    }
+    
+    .Astrologo {
+        width: 100px;
+        text-align: center;
+    }
+    
+    .social-links {
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+    
+    .Astrologo {
+        width: 80px;
+        text-align: center;
+        
+    }
+    
+    .content {
+        padding: 0.5rem;
+    }
+    
+    content.p {
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+    
+    .social-links {
+        gap: 0.75rem;
+    }
+}
+/* astro finish
