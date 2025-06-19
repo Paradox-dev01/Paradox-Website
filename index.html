@@ -6,12 +6,19 @@
   <title>Paradox</title>
 
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Lora&family=Merriweather&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Lora&family=Merriweather&display=swap" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
 </head>
 <body>
 
   <!-- Optional Starfield Background -->
-  <canvas id="starfield"></canvas>
+  <!-- <canvas id="starfield"></canvas> -->
 
   <!-- Sticky Logo (top-left) -->
   <div class="logo">
@@ -21,34 +28,200 @@
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress-bar"></div>
 
-  <!-- Main Sections -->
   <main>
-    <!-- Sections will be merged here by lead -->
-    
-    <!-- Landing (example section code goes here) -->
-    <section id="landing1" class="section">
-      <div class="intro">
-        <h1>Welcome to Paradox.</h1>
-        <p>Think beyond the unthinkable, build beyond boundaries.</p>
-        <button class="enter-button">ENTER</button>
-      </div>
+
+    <!-- Landing -->
+    <section id="landing" class="section fade-scroll">
+        <div id="landing-background">
+            <!-- Top background layer -->
+            <div class="bg-layer bg-top"></div>
+
+            <!-- Bottom background layer (moves with scroll) -->
+            <div class="bg-layer bg-bottom"></div>
+
+            <nav class="nav-buttons">
+                <button onclick="scrollToSection('core')">The Core</button>
+                <button onclick="scrollToSection('lab')">The Lab</button>
+                <button onclick="scrollToSection('logs')">The Logs</button>
+                <button onclick="scrollToSection('connect')">Connect</button>
+            </nav>
+
+            <div class="intro">
+                <h1>Welcome to Paradox</h1>
+                <h2>Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
+                <div class="astronaut-wrapper" onclick="scrollToSection('core')">
+                    <img src="assets/astroGIF.gif" id="astronaut" alt="Click here to...">
+                    <h3>Dive with me</h3>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Core -->
+    <section id="core1" class="section core-sec">
+        <div class="core1-content">
+            <h2 class="core1-title">
+                What Is <span class="highlight-pink">Paradox</span>?
+            </h2>
+            <p class="core1-text">
+            Paradox is where innovation defies limits! <br />
+            We build powerful, game-changing applications<br />
+            that disrupt the ordinary and set new standards. <br />
+            Think beyond the unthinkable <br />
+            —because at Paradox, boundaries don’t exist!
+            </p>
+        </div>
+    </section>
 
+    <section id="core2" class="section core-sec">
+        <div class="core2-container">
+            
+            <div class="core-card" id="card-curiosity">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="assets/core-curiosity.png" alt="Curiosity icon" class="card-image">
+                    </div>
+                    <div class="card-back">
+                        <div class="core2-title">Curiosity</div>
+                        <p class="core2-text">We question the norm.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="core-card" id="card-creation">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="assets/core-creation.png" alt="Creation icon" class="card-image">
+                    </div>
+                    <div class="card-back">
+                        <div class="core2-title">Creation</div>
+                        <p class="core2-text">We design for both<br />logic and chaos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="core-card" id="card-connection">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="assets/core-connection.png" alt="Connection icon" class="card-image">
+                    </div>
+                    <div class="card-back">
+                        <div class="card-content">
+                            <div class="core2-title">Connection</div>
+                            <p class="core2-text">We make things<br />people feel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Lab -->
+      <section id="lab" class="section">
+        <div class="lab-stars" id="lab-star"></div>
+        <div class="grid"></div>
+        <div class="neon-circle"></div>
 
-    <!-- Logs -->
+        <div class="content">
+          <h1>Welcome to <span>The Lab</span></h1>
+          <p>A place for paradoxes, prototypes, and projects with a pulse.</p>
+          <p>Some call them "ideas."</p>
+          <p>We call them previews of the future</p>
+          <a href="#projects" class="cta">Projects in the works</a>
+        </div>
+      </section>
+
+        <!-- AstroDrive -->
+        <section id="astro" class="section">
+          <div class="container">
+            <div class="content">
+              <div class="astro-logo">
+                <span class="telescope-icon">🔭</span>
+                <h1 class="animate-title">AstroDrive</h1>
+              </div>
+              <p class="text-line">A cosmic magazine and news portal</p>
+              <p class="text-line">built to hijack your curiosity.</p>
+              <p class="text-line">Astronomy, space secrets, and challenges</p>
+              <p class="text-line">that reward your wonder.</p>
+              <a href="#projects" class="projects-link">Projects in the works</a>
+            </div>
+            <div class="background">
+              <div class="astro-stars" id="astro-star"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DevDiary -->
+        <section id="dev" class="section">
+          <header class="header">
+            <h1>Dev Diary</h1>
+            <p>Showcasing our journey through code and creativity</p>
+          </header>
+
+          <section class="projects">
+            <h2 class="section-title">Our Projects</h2>
+            <div class="project-grid">
+              <div class="project-card">
+                <div class="project-image">
+                  <img
+                    src="https://img.icons8.com/ios/452/worldwide-location.png"
+                    alt="Mirror Icon"
+                  />
+                </div>
+                <div class="project-content">
+                  <h3 class="project-title">Mirror</h3>
+                  <p class="project-description">
+                    A social media platform connecting friends and family through
+                    shared moments.
+                  </p>
+                  <a href="#" class="project-link">View Project</a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="project-image">
+                  <img
+                    src="https://img.icons8.com/ios/452/astronaut.png"
+                    alt="AstroDrive Icon"
+                  />
+                </div>
+                <div class="project-content">
+                  <h3 class="project-title">AstroDrive</h3>
+                  <p class="project-description">
+                    Real-time messaging app with a beautiful, space-themed
+                    interface.
+                  </p>
+                  <a href="#" class="project-link">View Project</a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="project-image">
+                  <img
+                    src="https://img.icons8.com/ios/452/controller.png"
+                    alt="GameVault Icon"
+                  />
+                </div>
+                <div class="project-content">
+                  <h3 class="project-title">GameVault</h3>
+                  <p class="project-description">
+                    Cloud gaming platform with seamless multiplayer integration.
+                  </p>
+                  <a href="#" class="project-link">View Project</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
 
     <!-- Connect -->
      
   </main>
 
   <div class="custom-cursor"></div>
-
+  
   <!-- Navigation Cue (bottom-right arrow) -->
   <div class="nav-arrow" onclick="scrollToNextSection()">&#8595;</div>
 
+  
   <script src="scripts.js"></script>
 </body>
 </html>
