@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paradox</title>
+
+  <link rel="stylesheet" href="landing.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Lora&family=Merriweather&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Optional Starfield Background -->
+  <!-- <canvas id="starfield"></canvas> -->
+
+  <!-- Sticky Logo (top-left) -->
+  <div class="logo">
+    <img src="assets/paradox-logo.png" alt="Paradox" />
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar"></div>
+
+  <!-- Main Sections -->
+  <main>
+    <!-- Sections will be merged here by lead -->
+    
+    <!-- Landing -->
+    <section id="landing" class="section fade-scroll">
+        <div id="landing-background">
+            <!-- Top background layer -->
+            <div class="bg-layer bg-top"></div>
+
+            <!-- Bottom background layer (moves with scroll) -->
+            <div class="bg-layer bg-bottom"></div>
+            
+            <!-- optional fallback bg -->
+            <canvas id="starfield"></canvas>
+
+            <div class="nav-buttons">
+                <button onclick="scrollToSection('core')">The Core</button>
+                <button onclick="scrollToSection('lab')">The Lab</button>
+                <button onclick="scrollToSection('logs')">The Logs</button>
+                <button onclick="scrollToSection('connect')">Connect</button>
+            </div>
+
+            <div class="intro">
+                <h1>Welcome to Paradox</h1>
+                <h2>Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
+                <div class="astronaut-wrapper" onclick="scrollToSection('core')">
+                    <img src="astroGIF.gif" id="astronaut" alt="Click here to...">
+                    <h3>Dive with me</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core -->
+    <section id="core" class="section">
+        <div id="landing-background">
+            <!-- <canvas id="starfield"></canvas> -->
+            <div class="corner-blob blob-left"></div>
+            <div class="corner-blob blob-right"></div>
+
+            <div class="intro">
+                <h1>CORE</h1>
+                <h2>Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
+                <div class="astronaut-wrapper" onclick="scrollToSection('core')">
+                    <img src="./rocket.png" id="astronaut" alt="Click here to...">
+                    <h3>Dive with me!</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab -->
+    <section id="lab" class="section">
+        <div id="landing-background">
+            <!-- <canvas id="starfield"></canvas> -->
+            <div class="corner-blob blob-left"></div>
+            <div class="corner-blob blob-right"></div>
+
+            <div class="intro">
+                <h1>LAB</h1>
+                <h2>Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
+                <div class="astronaut-wrapper" onclick="scrollToSection('core')">
+                    <img src="astronaut-baby.svg" id="astronaut" alt="Click here to...">
+                    <h3>Dive with me</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logs -->
+    <section id="logs" class="section">
+        <div id="landing-background">
+            <!-- <canvas id="starfield"></canvas> -->
+            <div class="corner-blob blob-left"></div>
+            <div class="corner-blob blob-right"></div>
+
+            <div class="intro">
+                <h1>LOGS</h1>
+                <h2>Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
+                <div class="astronaut-wrapper" onclick="scrollToSection('core')">
+                    <img src="astronaut-baby.svg" id="astronaut" alt="Click here to...">
+                    <h3>Dive with me</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect -->
+     
+  </main>
+
+  <div class="custom-cursor"></div>
+  
+  <!-- Navigation Cue (bottom-right arrow) -->
+  <div class="nav-arrow" onclick="scrollToNextSection()">&#8595;</div>
+
+  <script src="landing.js"></script>
+</body>
+</html>
