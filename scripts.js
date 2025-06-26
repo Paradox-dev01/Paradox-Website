@@ -1,8 +1,8 @@
 // Cursor
-const cursor = document.querySelector('.custom-cursor');
+const cursor = document.querySelector(".custom-cursor");
 let isMoving = false;
 
-  // Move cursor with mouse
+// Move cursor with mouse
 let mouseX = 0;
 let mouseY = 0;
 let rafRequested = false;
@@ -18,8 +18,8 @@ document.addEventListener("mousemove", (e) => {
 
   if (!isMoving) {
     isMoving = true;
-    cursor.classList.remove('idle');
-    setTimeout(() => isMoving = false, 100);
+    cursor.classList.remove("idle");
+    setTimeout(() => (isMoving = false), 100);
   }
 });
 
@@ -29,72 +29,77 @@ function updateCursor() {
   rafRequested = false;
 }
 
-  // Idle animation trigger after no movement for 1.5s
+// Idle animation trigger after no movement for 1.5s
 let idleTimeout;
-document.addEventListener('mousemove', () => {
+document.addEventListener("mousemove", () => {
   clearTimeout(idleTimeout);
   idleTimeout = setTimeout(() => {
-    cursor.classList.add('idle');
+    cursor.classList.add("idle");
   }, 1500);
 });
 
-  // Click animation
-document.addEventListener('mousedown', () => {
-  cursor.classList.add('clicked');
+// Click animation
+document.addEventListener("mousedown", () => {
+  cursor.classList.add("clicked");
 });
-document.addEventListener('mouseup', () => {
-  cursor.classList.remove('clicked');
-});
-
-  // Hovering clickable items
-document.querySelectorAll('a, button, .enter-button, .nav-arrow').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('hover');
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.classList.remove('hover');
-  });
+document.addEventListener("mouseup", () => {
+  cursor.classList.remove("clicked");
 });
 
+// Hovering clickable items
+document
+  .querySelectorAll("a, button, .enter-button, .nav-arrow")
+  .forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("hover");
+    });
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("hover");
+    });
+  });
 
 // Scroll Animation Observer
-const sections = document.querySelectorAll('.section');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    } else {
-      entry.target.classList.remove('visible');
-    }
-  });
-}, {
-  threshold: 0.3
-});
+const sections = document.querySelectorAll(".section");
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      } else {
+        entry.target.classList.remove("visible");
+      }
+    });
+  },
+  {
+    threshold: 0.3,
+  }
+);
 
-sections.forEach(section => observer.observe(section));
-
+sections.forEach((section) => observer.observe(section));
 
 // Scroll Progress Bar
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
   const scrollPercent = (scrollTop / docHeight) * 100;
-  document.querySelector('.scroll-progress-bar').style.width = `${scrollPercent}%`;
+  document.querySelector(
+    ".scroll-progress-bar"
+  ).style.width = `${scrollPercent}%`;
 });
 
 // Navigation Arrow Scroll
 function scrollToNextSection() {
-  const visibleSections = Array.from(sections).filter(section =>
-    section.getBoundingClientRect().top >= 0
+  const visibleSections = Array.from(sections).filter(
+    (section) => section.getBoundingClientRect().top >= 0
   );
   const next = visibleSections[0] || sections[0];
-  next.scrollIntoView({ behavior: 'smooth' });
+  next.scrollIntoView({ behavior: "smooth" });
 }
 
 // Optional Starfield Canvas (can remove if not needed)
-const canvas = document.getElementById('starfield');
+const canvas = document.getElementById("starfield");
 if (canvas) {
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
   let stars = [];
 
   function resizeCanvas() {
@@ -103,14 +108,14 @@ if (canvas) {
     stars = Array.from({ length: 200 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.5
+      r: Math.random() * 1.5 + 0.5,
     }));
   }
 
   function drawStars() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#fff';
-    stars.forEach(star => {
+    ctx.fillStyle = "#fff";
+    stars.forEach((star) => {
       ctx.beginPath();
       ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
       ctx.fill();
@@ -118,30 +123,27 @@ if (canvas) {
     requestAnimationFrame(drawStars);
   }
 
-  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener("resize", resizeCanvas);
   resizeCanvas();
   drawStars();
 }
 
-
-
 gsap.registerPlugin(ScrollTrigger);
 
+//  --- LANDING PAGE ---
 
+const bgBottom = document.querySelector(".bg-bottom");
+const astronaut = document.getElementById("astronaut");
+const landingSection = document.getElementById("landing");
+const landingBg = document.getElementById("landing-background");
 
-//  --- LANDING PAGE --- 
-
-const bgBottom = document.querySelector('.bg-bottom');
-const astronaut = document.getElementById('astronaut');
-const landingSection = document.getElementById('landing');
-const landingBg = document.getElementById('landing-background');
-
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const rect = landingSection.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
   // Calculate how much of landing section is out of view (0 to 1)
-  const scrollProgress = 1 - Math.max(0, Math.min(1, rect.bottom / windowHeight));
+  const scrollProgress =
+    1 - Math.max(0, Math.min(1, rect.bottom / windowHeight));
 
   // Apply downward translation to bg-bottom (max ~50px)
   const translateY = Math.min(scrollProgress * 50, 50); // Max 50px movement
@@ -153,10 +155,10 @@ window.addEventListener('scroll', () => {
 
 // Scroll navigation
 function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const rect = landingSection.getBoundingClientRect();
   const windowHeight = window.innerHeight;
   // Fade based on scroll progress (0 = top of screen, 1 = fully out of view)
@@ -164,93 +166,96 @@ window.addEventListener('scroll', () => {
   landingBg.style.opacity = 1 - fadeProgress;
   // Trigger fly-away if scrolled past halfway
   if (fadeProgress > 0.1) {
-    astronaut.classList.add('fly-away');
+    astronaut.classList.add("fly-away");
   } else {
-    astronaut.classList.remove('fly-away');
+    astronaut.classList.remove("fly-away");
   }
 });
 
 function triggerFlyAway() {
-  astronaut.classList.add('fly-away');
+  astronaut.classList.add("fly-away");
 }
 // Add click listeners to trigger it manually
 const landingClickableItems = [
   astronaut,
-  ...document.querySelectorAll('#landing button'),
-  ...document.querySelectorAll('#landing .scroll-down-arrow')
+  ...document.querySelectorAll("#landing button"),
+  ...document.querySelectorAll("#landing .scroll-down-arrow"),
 ];
-landingClickableItems.forEach(item => {
-  item?.addEventListener('click', () => {
+landingClickableItems.forEach((item) => {
+  item?.addEventListener("click", () => {
     triggerFlyAway();
   });
 });
 
 // Show nav arrow only after scrolling 60%
-const navArrow = document.querySelector('.nav-arrow');
-window.addEventListener('scroll', () => {
+const navArrow = document.querySelector(".nav-arrow");
+window.addEventListener("scroll", () => {
   const pct = window.scrollY / window.innerHeight;
-  navArrow.style.display = pct > 0.6 ? 'block' : 'none';
+  navArrow.style.display = pct > 0.6 ? "block" : "none";
 });
-
 
 //  --- CORE ---
 
 //1
-const core1 = document.getElementById('core1');
-const coreObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      core1.classList.add('fade-in');
-      // optional: remove after first load
-      // coreObserver.unobserve(core1); 
-    }
-  });
-}, { threshold: 0.3 });
+const core1 = document.getElementById("core1");
+const coreObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        core1.classList.add("fade-in");
+        // optional: remove after first load
+        // coreObserver.unobserve(core1);
+      }
+    });
+  },
+  { threshold: 0.3 }
+);
 
 coreObserver.observe(core1);
 
 //2
-gsap.utils.toArray('.core-card').forEach((card, index) => {
-    gsap.fromTo(card,
-        {
-            y: index === 1 ? 20 : 60,
-            opacity: 0,
-            rotateY: 30,
-            scale: 0.8
-        },
-        {
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 85%',
-                toggleActions: 'play none none reset'
-            },
-            y: 0,
-            opacity: 1,
-            rotateY: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: 'power3.out',
-            delay: index * 0.1
-        }
-    );
+gsap.utils.toArray(".core-card").forEach((card, index) => {
+  gsap.fromTo(
+    card,
+    {
+      y: index === 1 ? 20 : 60,
+      opacity: 0,
+      rotateY: 30,
+      scale: 0.8,
+    },
+    {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%",
+        toggleActions: "play none none reset",
+      },
+      y: 0,
+      opacity: 1,
+      rotateY: 0,
+      scale: 1,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: index * 0.1,
+    }
+  );
 });
 
 ScrollTrigger.create({
-  trigger: '#core2',
-  start: 'bottom bottom',
-  end: 'bottom top',
-  toggleClass: { targets: '.card-inner', className: 'flipped' },
+  trigger: "#core2",
+  start: "bottom bottom",
+  end: "bottom top",
+  toggleClass: { targets: ".card-inner", className: "flipped" },
   scrub: true,
 });
 
 ScrollTrigger.create({
-  trigger: '#core2',
-  start: 'bottom bottom',
-  end: 'bottom top',
-  onLeave: () => document.querySelector('#core2').classList.add('blurred'),
-  onLeaveBack: () => document.querySelector('#core2').classList.remove('blurred'),
+  trigger: "#core2",
+  start: "bottom bottom",
+  end: "bottom top",
+  onLeave: () => document.querySelector("#core2").classList.add("blurred"),
+  onLeaveBack: () =>
+    document.querySelector("#core2").classList.remove("blurred"),
 });
-
 
 //  --- THE LABS ---
 
@@ -271,7 +276,7 @@ for (let i = 0; i < starCount; i++) {
   star.style.top = `${Math.random() * 100}%`;
   star.style.left = `${Math.random() * 100}%`;
 
-  starsContainer.appendChild(lab-star);
+  starsContainer.appendChild(lab - star);
 }
 
 // GSAP Animations
@@ -284,7 +289,7 @@ gsap.utils.toArray(".lab-star").forEach((labStar) => {
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut",
-  })
+  });
 });
 
 // Animate grid
@@ -306,7 +311,7 @@ gsap.to(".neon-circle", {
 });
 
 // Animate content
-// gsap.from("h1", {
+//gsap.from("h1", {
 //   y: -50,
 //   opacity: 0,
 //   duration: 1.5,
@@ -463,12 +468,137 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
 //  --- THE LOGS ---
 
+//  --- THE SERVICES ---
+document.addEventListener("DOMContentLoaded", function () {
+  const spaceBg = document.getElementById("spaceBg");
 
+  // Create stars
+  for (let i = 0; i < 200; i++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
 
+    // Random size between 1px and 3px
+    const size = Math.random() * 2 + 1;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+
+    // Random position
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+
+    // Random opacity
+    star.style.opacity = Math.random() * 0.8 + 0.2;
+
+    spaceBg.appendChild(star);
+
+    // Animate twinkling
+    gsap.to(star, {
+      duration: Math.random() * 3 + 1,
+      opacity: Math.random() * 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+  }
+
+  // Create shooting stars occasionally
+  function createShootingStar() {
+    const shootingStar = document.createElement("div");
+    shootingStar.classList.add("shooting-star");
+
+    // Start position (off screen to top-left)
+    shootingStar.style.left = `${Math.random() * 20}%`;
+    shootingStar.style.top = `${Math.random() * 20}%`;
+
+    spaceBg.appendChild(shootingStar);
+
+    // Animate shooting star
+    gsap.fromTo(
+      shootingStar,
+      {
+        opacity: 0,
+        x: 0,
+        y: 0,
+      },
+      {
+        opacity: 1,
+        x: "100vw",
+        y: "100vh",
+        duration: 1.5,
+        ease: "power1.out",
+        onComplete: () => {
+          spaceBg.removeChild(shootingStar);
+        },
+      }
+    );
+
+    // Schedule next shooting star
+    setTimeout(createShootingStar, Math.random() * 5000 + 3000);
+  }
+
+  // Start shooting stars
+  setTimeout(createShootingStar, 2000);
+
+  // Create some planets in the background
+  for (let i = 0; i < 3; i++) {
+    const planet = document.createElement("div");
+    planet.classList.add("planet");
+
+    // Random size between 100px and 300px
+    const size = Math.random() * 200 + 100;
+    planet.style.width = `${size}px`;
+    planet.style.height = `${size}px`;
+
+    // Random position (off to sides)
+    planet.style.left = `${Math.random() > 0.5 ? -size / 2 : 100 - size / 2}%`;
+    planet.style.top = `${Math.random() * 70 + 15}%`;
+
+    // Random color
+    const colors = ["#4facfe", "#00f2fe", "#7928ca", "#ff0080"];
+    planet.style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    spaceBg.appendChild(planet);
+
+    // Make them visible
+    gsap.to(planet, {
+      duration: 2,
+      opacity: 0.1,
+      ease: "power1.out",
+    });
+  }
+
+  // Animate service cards on scroll into view
+  const serviceCards = document.querySelectorAll(".service-card");
+
+  serviceCards.forEach((card, index) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      delay: index * 0.1,
+      ease: "back.out(1.7)",
+    });
+  });
+
+  // Animate contact button
+  gsap.from(".contact-btn", {
+    scrollTrigger: {
+      trigger: ".contact-btn",
+      start: "top 80%",
+      toggleActions: "play none none none",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out",
+  });
+});
 //  --- CONNECT ---
-
-
-

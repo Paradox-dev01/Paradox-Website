@@ -1,121 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paradox</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paradox</title>
 
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Lora&family=Merriweather&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua&family=Lora&family=Merriweather&display=swap"
+      rel="stylesheet"
+    />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  
-</head>
-<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-  <!-- Optional Starfield Background -->
-  <!-- <canvas id="starfield"></canvas> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Optional Starfield Background -->
+    <!-- <canvas id="starfield"></canvas> -->
 
-  <!-- Sticky Logo (top-left) -->
-  <div class="logo">
-    <img src="assets/paradox-logo.png" alt="Paradox" />
-  </div>
+    <!-- Sticky Logo (top-left) -->
+    <div class="logo">
+      <img src="assets/paradox-logo.png" alt="Paradox" />
+    </div>
 
-  <!-- Scroll Progress Bar -->
-  <div class="scroll-progress-bar"></div>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-bar"></div>
 
-  <main>
-
-    <!-- Landing -->
-    <section id="landing" class="section fade-scroll">
+    <main>
+      <!-- Landing -->
+      <section id="landing" class="section fade-scroll">
         <div id="landing-background">
-            <!-- Top background layer -->
-            <div class="bg-layer bg-top"></div>
+          <!-- Top background layer -->
+          <div class="bg-layer bg-top"></div>
 
-            <!-- Bottom background layer (moves with scroll) -->
-            <div class="bg-layer bg-bottom"></div>
+          <!-- Bottom background layer (moves with scroll) -->
+          <div class="bg-layer bg-bottom"></div>
 
-            <nav class="nav-buttons">
-                <button onclick="scrollToSection('core')">The Core</button>
-                <button onclick="scrollToSection('lab')">The Lab</button>
-                <button onclick="scrollToSection('logs')">The Logs</button>
-                <button onclick="scrollToSection('connect')">Connect</button>
-            </nav>
+          <nav class="nav-buttons">
+            <button onclick="scrollToSection('core')">The Core</button>
+            <button onclick="scrollToSection('lab')">The Lab</button>
+            <button onclick="scrollToSection('logs')">The Logs</button>
+            <button onclick="scrollToSection('connect')">Connect</button>
+          </nav>
 
-            <div class="intro">
-                <h1>Welcome to Paradox</h1>
-                <h2>Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
-                <div class="astronaut-wrapper" onclick="scrollToSection('core')">
-                    <img src="assets/astroGIF.gif" id="astronaut" alt="Click here to...">
-                    <h3>Dive with me</h3>
-                </div>
+          <div class="intro">
+            <h1>Welcome to Paradox</h1>
+            <h2>Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
+            <div class="astronaut-wrapper" onclick="scrollToSection('core')">
+              <img
+                src="assets/astroGIF.gif"
+                id="astronaut"
+                alt="Click here to..."
+              />
+              <h3>Dive with me</h3>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Core -->
-    <section id="core1" class="section core-sec">
+      <!-- Core -->
+      <section id="core1" class="section core-sec">
         <div class="core1-content">
-            <h2 class="core1-title">
-                What Is <span class="highlight-pink">Paradox</span>?
-            </h2>
-            <p class="core1-text">
+          <h2 class="core1-title">
+            What Is <span class="highlight-pink">Paradox</span>?
+          </h2>
+          <p class="core1-text">
             Paradox is where innovation defies limits! <br />
             We build powerful, game-changing applications<br />
             that disrupt the ordinary and set new standards. <br />
             Think beyond the unthinkable <br />
             —because at Paradox, boundaries don’t exist!
-            </p>
+          </p>
         </div>
-    </section>
+      </section>
 
-    <section id="core2" class="section core-sec">
+      <section id="core2" class="section core-sec">
         <div class="core2-container">
-            
-            <div class="core-card" id="card-curiosity">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="assets/core-curiosity.png" alt="Curiosity icon" class="card-image">
-                    </div>
-                    <div class="card-back">
-                        <div class="core2-title">Curiosity</div>
-                        <p class="core2-text">We question the norm.</p>
-                    </div>
-                </div>
+          <div class="core-card" id="card-curiosity">
+            <div class="card-inner">
+              <div class="card-front">
+                <img
+                  src="assets/core-curiosity.png"
+                  alt="Curiosity icon"
+                  class="card-image"
+                />
+              </div>
+              <div class="card-back">
+                <div class="core2-title">Curiosity</div>
+                <p class="core2-text">We question the norm.</p>
+              </div>
             </div>
-            <div class="core-card" id="card-creation">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="assets/core-creation.png" alt="Creation icon" class="card-image">
-                    </div>
-                    <div class="card-back">
-                        <div class="core2-title">Creation</div>
-                        <p class="core2-text">We design for both<br />logic and chaos.</p>
-                    </div>
-                </div>
+          </div>
+          <div class="core-card" id="card-creation">
+            <div class="card-inner">
+              <div class="card-front">
+                <img
+                  src="assets/core-creation.png"
+                  alt="Creation icon"
+                  class="card-image"
+                />
+              </div>
+              <div class="card-back">
+                <div class="core2-title">Creation</div>
+                <p class="core2-text">
+                  We design for both<br />logic and chaos.
+                </p>
+              </div>
             </div>
-            <div class="core-card" id="card-connection">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="assets/core-connection.png" alt="Connection icon" class="card-image">
-                    </div>
-                    <div class="card-back">
-                        <div class="card-content">
-                            <div class="core2-title">Connection</div>
-                            <p class="core2-text">We make things<br />people feel.</p>
-                        </div>
-                    </div>
+          </div>
+          <div class="core-card" id="card-connection">
+            <div class="card-inner">
+              <div class="card-front">
+                <img
+                  src="assets/core-connection.png"
+                  alt="Connection icon"
+                  class="card-image"
+                />
+              </div>
+              <div class="card-back">
+                <div class="card-content">
+                  <div class="core2-title">Connection</div>
+                  <p class="core2-text">We make things<br />people feel.</p>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
-    
-    <!-- Lab -->
+      </section>
+
+      <!-- Lab -->
       <section id="lab" class="section">
         <div class="lab-stars" id="lab-star"></div>
         <div class="grid"></div>
@@ -130,141 +158,153 @@
         </div>
       </section>
 
-        <!-- AstroDrive -->
-        <section id="astro" class="section">
-          <div class="stars"></div>
-          <div class="twinkling"></div>
+      <!-- AstroDrive -->
+      <section id="astro" class="section">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
 
-          <div class="logo-container">
-            <img src="assets/astrodrive-logo.jpg" alt="AstroDrive Logo" class="Astrologo" />
-            <p class="tagline">Unleash the Cosmos!</p>
+        <div class="logo-container">
+          <img
+            src="assets/astrodrive-logo.jpg"
+            alt="AstroDrive Logo"
+            class="Astrologo"
+          />
+          <p class="tagline">Unleash the Cosmos!</p>
+        </div>
+
+        <div class="content">
+          <h1>AstroDrive</h1>
+
+          <p class="intro-line">Your launchpad into the cosmos!</p>
+
+          <p>
+            From breaking space news and epic celestial events to mind-blowing
+            discoveries, space tech, and stargazing guides — we bring the entire
+            universe to your screen.
+          </p>
+
+          <p>
+            Whether you're a curious beginner or a hardcore space nerd,
+            AstroDrive fuels your cosmic curiosity with fun, facts, and fiery
+            enthusiasm.
+          </p>
+        </div>
+
+        <div class="social-links">
+          <a
+            href="https://www.facebook.com/share/1RMNsbTsMg/?mibextid=qi2Omg"
+            class="social-link facebook"
+            target="_blank"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/company/astrodrive-fun/"
+            class="social-link linkedin"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a
+            href="https://discord.gg/dxXB28AH"
+            class="social-link discord"
+            target="_blank"
+            ><i class="fab fa-discord"></i
+          ></a>
+          <a
+            href="https://astrodrive.fun/"
+            class="social-link google"
+            target="_blank"
+            ><i class="fab fa-google"></i
+          ></a>
+          <a
+            href="https://youtube.com/@astrodrive-l5g6i?si=voF6mSaJAKEOncik"
+            class="social-link youtube"
+            target="_blank"
+            ><i class="fab fa-youtube"></i
+          ></a>
+        </div>
+      </section>
+
+      <!-- DevDiary -->
+      <section id="dev" class="section">
+        <div class="galaxy-grid"></div>
+
+        <div class="container">
+          <div class="robot-container">
+            <img
+              src="assets/devdiary-astronaut.png"
+              alt="Friendly Robot"
+              class="robot-image"
+            />
           </div>
 
-          <div class="content">
-            <h1>AstroDrive</h1>
+          <div class="content-container">
+            <h1 class="title">DevDiary</h1>
+            <p class="subtitle">Your coding journey companion</p>
 
-            <p class="intro-line">Your launchpad into the cosmos!</p>
-
-            <p>
-              From breaking space news and epic celestial events to mind-blowing
-              discoveries, space tech, and stargazing guides — we bring the entire
-              universe to your screen.
-            </p>
-
-            <p>
-              Whether you're a curious beginner or a hardcore space nerd,
-              AstroDrive fuels your cosmic curiosity with fun, facts, and fiery
-              enthusiasm.
-            </p>
-          </div>
-
-          <div class="social-links">
-            <a
-              href="https://www.facebook.com/share/1RMNsbTsMg/?mibextid=qi2Omg"
-              class="social-link facebook"
-              target="_blank"
-              ><i class="fab fa-facebook"></i
-            ></a>
-            <a
-              href="https://www.linkedin.com/company/astrodrive-fun/"
-              class="social-link linkedin"
-              target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <a
-              href="https://discord.gg/MqdA4SX7"
-              class="social-link discord"
-              target="_blank"
-              ><i class="fab fa-discord"></i
-            ></a>
-            <a
-              href="https://astrodrive.fun/"
-              class="social-link google"
-              target="_blank"
-              ><i class="fab fa-google"></i
-            ></a>
-            <a
-              href="https://youtube.com/@astrodrive-l5g6i?si=voF6mSaJAKEOncik"
-              class="social-link youtube"
-              target="_blank"
-              ><i class="fab fa-youtube"></i
-            ></a>
-          </div>
-        </section>
-
-        <!-- DevDiary -->
-        <section id="dev" class="section">
-          <header class="header">
-            <h1>Dev Diary</h1>
-            <p>Showcasing our journey through code and creativity</p>
-          </header>
-
-          <section class="projects">
-            <h2 class="section-title">Our Projects</h2>
-            <div class="project-grid">
-              <div class="project-card">
-                <div class="project-image">
-                  <img
-                    src="https://img.icons8.com/ios/452/worldwide-location.png"
-                    alt="Mirror Icon"
-                  />
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">Mirror</h3>
-                  <p class="project-description">
-                    A social media platform connecting friends and family through
-                    shared moments.
-                  </p>
-                  <a href="#" class="project-link">View Project</a>
-                </div>
-              </div>
-
-              <div class="project-card">
-                <div class="project-image">
-                  <img
-                    src="https://img.icons8.com/ios/452/astronaut.png"
-                    alt="AstroDrive Icon"
-                  />
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">AstroDrive</h3>
-                  <p class="project-description">
-                    Real-time messaging app with a beautiful, space-themed
-                    interface.
-                  </p>
-                  <a href="#" class="project-link">View Project</a>
-                </div>
-              </div>
-
-              <div class="project-card">
-                <div class="project-image">
-                  <img
-                    src="https://img.icons8.com/ios/452/controller.png"
-                    alt="GameVault Icon"
-                  />
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">GameVault</h3>
-                  <p class="project-description">
-                    Cloud gaming platform with seamless multiplayer integration.
-                  </p>
-                  <a href="#" class="project-link">View Project</a>
-                </div>
-              </div>
+            <div class="button-container">
+              <button class="cta-button" id="letsGoBtn">Let's Go!</button>
             </div>
-          </section>
-        </section>
+          </div>
+        </div>
+      </section>
 
-    <!-- Connect -->
-     
-  </main>
+      <!-- services -->
+      <section id="services" class="services-section">
+        <div class="space-bg" id="spaceBg"></div>
 
-  <div class="custom-cursor"></div>
-  
-  <!-- Navigation Cue (bottom-right arrow) -->
-  <div class="nav-arrow" onclick="scrollToNextSection()">&#8595;</div>
+        <h2 class="section-title">Our Services</h2>
 
-  
-  <script src="scripts.js"></script>
-</body>
+        <div class="services-container">
+          <div class="service-card">
+            <div class="service-icon">🖥️</div>
+            <h3 class="service-title">Web Design</h3>
+            <p class="service-description">
+              Custom, responsive websites tailored to your brand with the latest
+              technologies and frameworks.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h3 class="service-title">Mobile App Development</h3>
+            <p class="service-description">
+              iOS and Android applications built for performance, usability, and
+              engagement.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3 class="service-title">UI/UX Design</h3>
+            <p class="service-description">
+              Beautiful, intuitive interfaces designed to enhance user
+              experience and drive conversions.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🎮</div>
+            <h3 class="service-title">Game Development</h3>
+            <p class="service-description">
+              Immersive gaming experiences across multiple platforms with
+              stunning graphics.
+            </p>
+          </div>
+        </div>
+
+        <a href="#contact" class="contact-btn">Contact With Us</a>
+
+        <!-- GSAP Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+      </section>
+      <!-- Connect -->
+    </main>
+
+    <div class="custom-cursor"></div>
+
+    <!-- Navigation Cue (bottom-right arrow) -->
+    <div class="nav-arrow" onclick="scrollToNextSection()">&#8595;</div>
+
+    <script src="scripts.js"></script>
+  </body>
 </html>
