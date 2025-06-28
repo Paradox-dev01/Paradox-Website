@@ -92,38 +92,27 @@ function scrollToNextSection() {
   const next = visibleSections[0] || sections[0];
   next.scrollIntoView({ behavior: "smooth" });
 }
+const navArrow = document.querySelector('.nav-arrow');
+const landingSection = document.getElementById('landing');
+const connectSection = document.getElementById('connect');
 
-// Optional Starfield Canvas (can remove if not needed)
-// const canvas = document.getElementById('starfield');
-// if (canvas) {
-//   const ctx = canvas.getContext('2d');
-//   let stars = [];
+function checkNavArrowVisibility() {
+  const landingRect = landingSection.getBoundingClientRect();
+  const connectRect = connectSection.getBoundingClientRect();
 
-//   function resizeCanvas() {
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerHeight;
-//     stars = Array.from({ length: 200 }, () => ({
-//       x: Math.random() * canvas.width,
-//       y: Math.random() * canvas.height,
-//       r: Math.random() * 1.5 + 0.5
-//     }));
-//   }
+  if (
+    (landingRect.top <= window.innerHeight && landingRect.bottom >= 0) ||
+    (connectRect.top <= window.innerHeight && connectRect.bottom >= 0)
+  ) {
+    navArrow.style.display = 'none';
+  } else {
+    navArrow.style.display = 'block';
+  }
+}
 
-//   function drawStars() {
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     ctx.fillStyle = '#fff';
-//     stars.forEach(star => {
-//       ctx.beginPath();
-//       ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-//       ctx.fill();
-//     });
-//     requestAnimationFrame(drawStars);
-//   }
+window.addEventListener('scroll', checkNavArrowVisibility);
+window.addEventListener('load', checkNavArrowVisibility);
 
-//   window.addEventListener('resize', resizeCanvas);
-//   resizeCanvas();
-//   drawStars();
-// }
 
 
 
@@ -264,9 +253,9 @@ landingCore.addEventListener('mouseleave', () => {
 // === SELECT DOM ELEMENTS ===
 const bgBottom = document.querySelector('.bg-bottom');
 const astronaut = document.getElementById('astronaut');
-const landingSection = document.getElementById('landing');
+// const landingSection = document.getElementById('landing');
 const landingBg = document.getElementById('landing-background');
-const navArrow = document.querySelector('.nav-arrow');
+// const navArrow = document.querySelector('.nav-arrow');
 
 // === FLY-AWAY ANIMATION TRIGGER ===
 function triggerFlyAwayAndScroll() {
