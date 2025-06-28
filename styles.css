@@ -1,3 +1,13 @@
+/* 
+#FF0090
+#E37CF5
+#DC7AF5
+#601CB8
+#4449A3
+#85A0E0
+#413484
+*/
+
 * {
     cursor: none !important;
 }
@@ -8,7 +18,7 @@ h1 {
   font-size: clamp(2.5rem, 6vw, 5rem);
   text-align: center;
   margin: 0;
-  color: #fff;
+  color: #fcf2ff;
 }
 
 h2 {
@@ -34,8 +44,7 @@ p {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #000; /* fallback if canvas is removed */
+  background: #000;
   overflow-x: hidden;
 }
 
@@ -46,7 +55,7 @@ body {
   left: 0;
   width: 20px;
   height: 20px;
-  background: #00ffe7;
+  background: #0091ff;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -56,18 +65,18 @@ body {
     /* Idle State */
 .custom-cursor.idle {
   animation: pulse 1.5s infinite;
-  background: #008f7a;
+  background: #00698f;
 }
     /* Clicked State */
 .custom-cursor.clicked {
   transform: translate(-50%, -50%) scale(1.5);
-  background: #00ffee;
+  background: #92dbff;
 }
     /* Hover on clickable */
 .custom-cursor.hover {
   width: 24px;
   height: 24px;
-  background: #fffeef;
+  background: #e37fff;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   transition: all 0.2s ease;
 }
@@ -79,7 +88,7 @@ body {
 }
 
 /* Optional Background Canvas */
-#starfield {
+/* #starfield {
   position: fixed;
   top: 0;
   left: 0;
@@ -87,7 +96,7 @@ body {
   height: 100%;
   z-index: -10;
   background: black;
-}
+} */
 
 /* Sticky Logo */
 .logo {
@@ -98,7 +107,7 @@ body {
   z-index: 1000;
 }
 .logo img {
-  height: 100px;
+  height: 5vh;
   width: auto;
 }
 
@@ -109,7 +118,7 @@ body {
   left: 0;
   height: 5px;
   width: 0%;
-  background: #00ffe7;
+  background: #7f25f4;
   z-index: 1000;
   transition: width 0.25s ease-out;
 }
@@ -117,9 +126,9 @@ body {
 /* Section Styling */
 .section {
   height: 100vh;
-  opacity: 0;
+  /* opacity: 0;
   transform: translateY(45px);
-  transition: opacity 1s ease, transform 0.6s ease;
+  transition: opacity 1s ease, transform 0.6s ease; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +148,7 @@ body {
   bottom: 30px; 
   right: 30px;  
   font-size: 3rem;
-  color: #00ffe7;
+  color: #009cea;
   z-index: 999;
   animation: bounce 1.5s infinite;
   transition: text-shadow 0.3s ease-in-out;
@@ -147,10 +156,10 @@ body {
 
 .nav-arrow:hover {
   text-shadow: 
-    0 0 10px #00ffe7,
-    0 0 20px #00ffe7,
-    0 0 30px #00ffe7,
-    0 0 40px #00ffe7;
+    0 0 10px #00bfff,
+    0 0 20px #00bfff,
+    0 0 30px #00bfff,
+    0 0 40px #00bfff;
 }
 
 /* Bounce Animation */
@@ -192,46 +201,30 @@ body {
 }
 
 
+.landing-core {
+  position: relative;
+  overflow: hidden;
+  background-color: #1a1935; 
+}
 
-
-/* =====  LANDING PAGE  ===== */
-
-.bg-layer {
+/* Canvas fills the parent container */
+#sci-fi-bg {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
   top: 0;
   left: 0;
-  pointer-events: none;
-}
-
-/* Top background (static) */
-.bg-top {
-  background-image: url('assets/landing-top-bg.jpg');
-}
-
-/* Bottom background (moves down slightly) */
-.bg-bottom {
-  background-image: url('assets/landing-bottom-bg.jpg');
-  will-change: transform;
-  transition: transform 0.3s ease-out;
-}
-
-#landing-background {
-  position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 100vh;
-  overflow: hidden;
+  height: 100%;
+  pointer-events: none; 
+  z-index: 0;
+  background-color: #000; 
 }
+
+/* =====  LANDING PAGE  ===== */
 
 /* Nav buttons */
 .nav-buttons {
   position: absolute;
-  top: 40px;
+  top: 25px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -239,16 +232,16 @@ body {
   z-index: 10;
 }
 .nav-buttons button {
-  background-color: rgba(0, 255, 231, 0.15);
+  background-color: rgba(5, 171, 208, 0.15);
   border: none;
-  color: #00ffe7;
+  color: #ff1b9c;
   padding: .5rem 2rem;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
   border-radius: 30px;
 }
 .nav-buttons button:hover {
-  background-color: rgba(0, 255, 231, 0.25);
+  background-color: rgba(162, 238, 255, 0.15);
 }
 .nav-buttons button {
   font-family: 'Inknut Antiqua', 'Lora', serif;
@@ -274,12 +267,18 @@ body {
 }
 .intro h1 {
   margin: 0;
+  background: linear-gradient(45deg, #FF0090, #d778f7, #8db5f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 .intro h2 {
   margin: 0.5rem 0 2rem 0; /* top right bottom left */
   white-space: nowrap;
   max-width: none;
 }
+
 .astronaut-wrapper {
   margin-top:2rem;
   display: flex;
@@ -287,11 +286,13 @@ body {
   align-items: center;
 }
 #astronaut {
+  position: relative;
   width: 150px;
   max-width: 40vw;
   transition: transform 0.8s ease-out, opacity 0.4s ease-out;
 }
 #astronaut:hover {
+  cursor: pointer;
   animation: jump 0.6s ease infinite;
 }
 @keyframes jump {
@@ -308,14 +309,6 @@ body {
   transition: opacity 0.6s ease-in-out;
   will-change: opacity;
 }
-/* Make astronaut fly up */
-#astronaut.fly-away {
-  animation: flyUp 1.2s forwards;
-}
-@keyframes flyUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-200vh); opacity: 0; }
-}
 
 
 /* =====  CORE  ===== */
@@ -324,7 +317,6 @@ body {
 #core1 {
   position: relative;
   min-height: 100vh;
-  background-image: url('assets/core1-bg.jpg'); 
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
@@ -332,9 +324,6 @@ body {
   align-items: center;
   justify-content: left;
   padding: 4rem 5vw;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
   z-index: 0;
 }
 
@@ -354,37 +343,40 @@ body {
 
 .core1-title {
   font-family: 'Inknut Antiqua', serif;
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-align: left;
-  color: #00ffe7;
+  color: #7340ff;
   margin-bottom: 1rem;
 }
 .highlight-pink {
-  color: #ff66cc;
+  color: #de74ff;
 }
 .core1-text {
-  color: #c0fefe;
-  font-size: 1.1rem;
+  color: #c1c8ff;
+  font-size: 1.5rem;
   max-width: 600px;
-  line-height:1.3;
+  line-height:1;
   letter-spacing: 0.03em;
   white-space: pre-line;
+  
+}
+
+.core1-content {
+  position: relative; /* needed for GSAP transform */
+  max-width: 800px;
+  margin-left: clamp(1rem, 6vw, 5rem);
+  border-radius: 20px;
+  /* Remove any conflicting transform from CSS */
+  transform: none !important;
 }
 
 /*  CORE 2  */
 #core2 {
   position: relative;
-  background-image: url('assets/core-bg.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
-}
-
-/* Floating Animation */
-@keyframes floatCard {
-  0% { transform: translateY(0px) rotateX(0deg); }
-  100% { transform: translateY(-10px) rotateX(1deg); }
 }
 
 #core2::after {
@@ -405,7 +397,7 @@ body {
 }
 
 .core2-container {
-  position: relative; /* Important for overlay positioning */
+  position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -416,7 +408,51 @@ body {
   margin: auto;
 }
 
-/* Overlay that shows the bg image */
+/* === Floating Keyframe Animation === */
+@keyframes floatCard {
+  0%   { transform: translateY(-25px) rotateX(3deg); }
+  100% { transform: translateY(10px) rotateX(-2deg); }
+}
+
+/* === Floating Effect: Side Cards === */
+#card-curiosity,
+#card-connection {
+  animation: floatCard 3s ease-in-out infinite alternate;
+}
+
+/* === Floating Effect: Middle Card (Opposite Direction) === */
+#card-creation {
+  animation: floatCard 3s ease-in-out infinite alternate-reverse;
+}
+
+/* === Core Card Base Styling === */
+#core2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  justify-content: center; 
+  min-height: 100vh;    
+  text-align: center;
+  padding: 2rem;
+}
+.core2-main-title {
+  font-size: clamp(1.5rem, 2.5vw, 3.5rem);
+  /* font-weight: 700; */
+  color: #c1c8ff;
+  letter-spacing: 0.15em;
+  margin-top: 3rem;     
+  margin-bottom: 1rem;  
+  text-shadow: 
+    0 0 6px #009eaa,   
+    0 0 12px #007d80;  
+}
+.core2-container {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .core-card {
   background-color: #000000;
   background-image: url('assets/core-card-bg.png');
@@ -431,8 +467,7 @@ body {
   text-align: center;
   font-family: 'Inknut Antiqua', serif;
   word-wrap: break-word;
-  animation: floatCard 3s ease-in-out infinite alternate;
-  perspective: 1000px;  /* needed for 3D flip */
+  perspective: 1000px; /* Needed for 3D flip */
 }
 .core-card:hover .card-inner {
   transform: rotateY(180deg);
@@ -444,16 +479,16 @@ body {
   height: 100%;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  transform: rotateY(0deg); 
 }
 
 .card-front, .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* display: flex; */
-  align-items: center; /*vertical*/
-  justify-content: center; /*horixontal*/
-  padding: 1.5rem;
+  display: flex;
+  align-items: center;      /* horizontal centering */
+  justify-content: center;  /* vertical centering */
   backface-visibility: hidden;
   top: 0;
   left: 0;
@@ -461,80 +496,37 @@ body {
   transform-style: preserve-3d;
 }
 .card-front {
-  /* display: flex; */
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+  background-size: 75% auto;
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: inherit;
+}
+#card-curiosity .card-front {
+  background-image: url('assets/core-curiosity.png');
+}
+#card-creation .card-front {
+  background-image: url('assets/core-creation.png');
+}
+#card-connection .card-front {
+  background-image: url('assets/core-connection.png');
 }
 .card-back {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform: rotateY(180deg);
-  padding: 1.5rem;
-  backface-visibility: hidden;
-}
-.card-image {
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  object-fit: contain;
-  display: block;
-}
-.card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;      /* horizontal centering */
-  justify-content: center;  /* vertical centering */
-  text-align: center;
-}
-
-.card-inner.flipped {
   transform: rotateY(180deg);
 }
-
-/* Titles & Text */
 .core2-title {
-  font-size: 1.8rem;
-  color: #00ffe7;
-  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #00a2ff;
+  text-transform: uppercase;
 }
-
 .core2-text {
   font-family: 'Merriweather', serif;
-  color: #c0fefe;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  color: #c0e2fe;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
-
-/* Icon with Pulse */
-.core-icon {
-  font-size: 2rem;
-  color: #ff66cc;
-  animation: pulse-glow 2s infinite ease-in-out;
-}
-
-@keyframes pulse-glow {
-  0% { text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff66cc; }
-  50% { text-shadow: 0 0 15px #ff66cc, 0 0 25px #ff66cc; }
-  100% { text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff66cc; }
-}
-
-/* #card-creation {
-  transform: translateY(-60px) !important;
-  z-index: 2;
-} */
-
-/* Responsive */
-@media (max-width: 768px) {
-  .core-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
 
 /* =====  THE LAB  ===== */
 

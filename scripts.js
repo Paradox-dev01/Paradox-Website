@@ -47,7 +47,7 @@ document.addEventListener('mouseup', () => {
 });
 
   // Hovering clickable items
-document.querySelectorAll('a, button, .enter-button, .nav-arrow').forEach(el => {
+document.querySelectorAll('a, button, .enter-button, .nav-arrow, #astronaut').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.classList.add('hover');
   });
@@ -58,20 +58,20 @@ document.querySelectorAll('a, button, .enter-button, .nav-arrow').forEach(el => 
 
 
 // Scroll Animation Observer
-const sections = document.querySelectorAll('.section');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    } else {
-      entry.target.classList.remove('visible');
-    }
-  });
-}, {
-  threshold: 0.3
-});
+// const sections = document.querySelectorAll('.section');
+// const observer = new IntersectionObserver(entries => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       entry.target.classList.add('visible');
+//     } else {
+//       entry.target.classList.remove('visible');
+//     }
+//   });
+// }, {
+//   threshold: 0.3
+// });
 
-sections.forEach(section => observer.observe(section));
+// sections.forEach(section => observer.observe(section));
 
 
 // Scroll Progress Bar
@@ -92,157 +92,337 @@ function scrollToNextSection() {
 }
 
 // Optional Starfield Canvas (can remove if not needed)
-const canvas = document.getElementById('starfield');
-if (canvas) {
-  const ctx = canvas.getContext('2d');
-  let stars = [];
+// const canvas = document.getElementById('starfield');
+// if (canvas) {
+//   const ctx = canvas.getContext('2d');
+//   let stars = [];
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    stars = Array.from({ length: 200 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.5
-    }));
-  }
+//   function resizeCanvas() {
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
+//     stars = Array.from({ length: 200 }, () => ({
+//       x: Math.random() * canvas.width,
+//       y: Math.random() * canvas.height,
+//       r: Math.random() * 1.5 + 0.5
+//     }));
+//   }
 
-  function drawStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#fff';
-    stars.forEach(star => {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-      ctx.fill();
-    });
-    requestAnimationFrame(drawStars);
-  }
+//   function drawStars() {
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     ctx.fillStyle = '#fff';
+//     stars.forEach(star => {
+//       ctx.beginPath();
+//       ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+//       ctx.fill();
+//     });
+//     requestAnimationFrame(drawStars);
+//   }
 
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-  drawStars();
-}
+//   window.addEventListener('resize', resizeCanvas);
+//   resizeCanvas();
+//   drawStars();
+// }
 
 
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(MotionPathPlugin);
+
+
+const canvas = document.getElementById('sci-fi-bg');
+const ctx = canvas.getContext('2d');
+
+let width, height, points;
+
+const POINT_COUNT = 150; 
+const MAX_DISTANCE = 120; 
+
+// Initialize canvas size
+function resize() {
+  width = canvas.clientWidth;
+  height = canvas.clientHeight;
+  canvas.width = width * devicePixelRatio;
+  canvas.height = height * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Point class for each moving dot
+class Point {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 0.5; // slow movement
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.radius = 1.5;
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Bounce off edges
+    if (this.x < 0 || this.x > width) this.vx *= -1;
+    if (this.y < 0 || this.y > height) this.vy *= -1;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(0, 255, 255, 0.7)';
+    ctx.shadowColor = '#0ff';
+    ctx.shadowBlur = 6;
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function distance(p1, p2) {
+  return Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+}
+
+// The "disruption" effect variables
+let disruptX = null;
+let disruptY = null;
+const DISRUPT_RADIUS = 170;
+
+// Initialize points
+function initPoints() {
+  points = [];
+  for (let i = 0; i < POINT_COUNT; i++) {
+    points.push(new Point());
+  }
+}
+initPoints();
+
+// Animation loop using GSAP ticker
+gsap.ticker.add(() => {
+  ctx.clearRect(0, 0, width, height);
+
+  // Update and draw points
+  points.forEach(p => p.update());
+
+  // Draw lines between close points
+  for (let i = 0; i < POINT_COUNT; i++) {
+    for (let j = i + 1; j < POINT_COUNT; j++) {
+      let dist = distance(points[i], points[j]);
+      if (dist < MAX_DISTANCE) {
+        let opacity = 1 - dist / MAX_DISTANCE;
+
+        // Check disruption: if either point is near cursor, disrupt line opacity and position
+        if (
+          disruptX !== null &&
+          (distance(points[i], { x: disruptX, y: disruptY }) < DISRUPT_RADIUS ||
+            distance(points[j], { x: disruptX, y: disruptY }) < DISRUPT_RADIUS)
+        ) {
+          // Random shake offset for disruption
+          const offsetX = (Math.random() - 0.5) * 10;
+          const offsetY = (Math.random() - 0.5) * 10;
+
+          ctx.strokeStyle = `rgba(255, 0, 255, ${opacity * 0.6})`; // disrupted line color pinkish
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(points[i].x + offsetX, points[i].y + offsetY);
+          ctx.lineTo(points[j].x - offsetX, points[j].y - offsetY);
+          ctx.stroke();
+        } else {
+          ctx.strokeStyle = `rgba(0, 255, 255, ${opacity * 0.3})`; // normal line color cyanish, less opacity
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(points[i].x, points[i].y);
+          ctx.lineTo(points[j].x, points[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  // Draw points on top
+  points.forEach(p => p.draw());
+});
+
+const landingCore = document.querySelector('.landing-core');
+
+landingCore.addEventListener('mousemove', (e) => {
+  const rect = landingCore.getBoundingClientRect();
+  disruptX = e.clientX - rect.left;
+  disruptY = e.clientY - rect.top;
+});
+
+landingCore.addEventListener('mouseleave', () => {
+  disruptX = null;
+  disruptY = null;
+});
+
 
 
 
 //  --- LANDING PAGE --- 
 
+// === SELECT DOM ELEMENTS ===
 const bgBottom = document.querySelector('.bg-bottom');
 const astronaut = document.getElementById('astronaut');
 const landingSection = document.getElementById('landing');
 const landingBg = document.getElementById('landing-background');
+const navArrow = document.querySelector('.nav-arrow');
 
-window.addEventListener('scroll', () => {
-  const rect = landingSection.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
+// === FLY-AWAY ANIMATION TRIGGER ===
+function triggerFlyAwayAndScroll() {
+  astronaut.style.pointerEvents = 'none';
 
-  // Calculate how much of landing section is out of view (0 to 1)
-  const scrollProgress = 1 - Math.max(0, Math.min(1, rect.bottom / windowHeight));
+  const waveX = gsap.utils.random(-300, 300);
+  const waveY = gsap.utils.random(-400, -700);
+  const rotate = gsap.utils.random(-200, 200);
 
-  // Apply downward translation to bg-bottom (max ~50px)
-  const translateY = Math.min(scrollProgress * 50, 50); // Max 50px movement
-  bgBottom.style.transform = `translateY(${translateY}px)`;
+  // Create a floaty motion path
+  gsap.timeline({
+    onComplete: () => {
+      scrollToSection('core1');
+      gsap.set(astronaut, { clearProps: 'all' });
+      astronaut.style.pointerEvents = 'auto';
+    }
+  })
+  .to(astronaut, {
+    duration: 1.6,
+    ease: 'power1.inOut',
+    motionPath: {
+      path: [
+        { x: 0, y: 0 },
+        { x: waveX * 0.5, y: waveY * 0.4 },
+        { x: waveX, y: waveY }
+      ],
+      curviness: 1.5
+    },
+    rotation: rotate,
+    scale: 0.3,
+    opacity: 0
+  });
+}
 
-  // Fade out landing background normally
-  landingBg.style.opacity = 1 - scrollProgress;
-});
-
-// Scroll navigation
+// === SCROLL TO SECTION ===
 function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
+// === CLICK TO TRIGGER FLY-AWAY ===
+const landingClickableItems = [
+  ...document.querySelectorAll('#landing button'),
+  ...document.querySelectorAll('#landing .scroll-down-arrow')
+];
+
+// Astronaut click: fly away AND scroll to core1
+astronaut?.addEventListener('click', triggerFlyAwayAndScroll);
+
+// Other items trigger fly-away
+landingClickableItems.forEach(item => {
+  item?.addEventListener('click', triggerFlyAway);
+});
+
+
+// === SCROLL EVENTS ===
 window.addEventListener('scroll', () => {
   const rect = landingSection.getBoundingClientRect();
   const windowHeight = window.innerHeight;
-  // Fade based on scroll progress (0 = top of screen, 1 = fully out of view)
-  const fadeProgress = 1 - Math.max(0, Math.min(1, rect.bottom / windowHeight));
-  landingBg.style.opacity = 1 - fadeProgress;
-  // Trigger fly-away if scrolled past halfway
-  if (fadeProgress > 0.1) {
+
+  // SCROLL PROGRESS (0 = fully visible, 1 = fully out of view)
+  const scrollProgress = 1 - Math.max(0, Math.min(1, rect.bottom / windowHeight));
+
+  // Move bg-bottom (e.g., trapezium effect)
+  if (bgBottom) {
+    const translateY = Math.min(scrollProgress * 50, 50); // Max 50px
+    bgBottom.style.transform = `translateY(${translateY}px)`;
+  }
+
+  // Fade out landing background
+  if (landingBg) {
+    landingBg.style.opacity = 1 - scrollProgress;
+  }
+
+  // Trigger astronaut fly-away after slight scroll
+  if (scrollProgress > 0.1) {
     astronaut.classList.add('fly-away');
   } else {
     astronaut.classList.remove('fly-away');
   }
+
+  // Show nav arrow after scrolling 60% of viewport height
+  navArrow.style.display = window.scrollY > window.innerHeight * 0.6 ? 'block' : 'none';
 });
 
-function triggerFlyAway() {
-  astronaut.classList.add('fly-away');
-}
-// Add click listeners to trigger it manually
-const landingClickableItems = [
-  astronaut,
-  ...document.querySelectorAll('#landing button'),
-  ...document.querySelectorAll('#landing .scroll-down-arrow')
-];
-landingClickableItems.forEach(item => {
-  item?.addEventListener('click', () => {
-    triggerFlyAway();
-  });
-});
-
-// Show nav arrow only after scrolling 60%
-const navArrow = document.querySelector('.nav-arrow');
-window.addEventListener('scroll', () => {
-  const pct = window.scrollY / window.innerHeight;
-  navArrow.style.display = pct > 0.6 ? 'block' : 'none';
-});
 
 
 //  --- CORE ---
 
 //1
-const core1 = document.getElementById('core1');
-const coreObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      core1.classList.add('fade-in');
-      // optional: remove after first load
-      // coreObserver.unobserve(core1); 
+gsap.fromTo(
+  '.core1-content',
+  { x: '150vw' },
+  {
+    // x: 'calc(50vw - 400px)',
+    x: '-50vw',
+    // x: '0vw',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#core1',
+      start: 'top 80%',
+      end: 'bottom 20%',
+      scrub: true,
     }
-  });
-}, { threshold: 0.3 });
-
-coreObserver.observe(core1);
+  }
+);
 
 //2
 gsap.utils.toArray('.core-card').forEach((card, index) => {
-    gsap.fromTo(card,
-        {
-            y: index === 1 ? 20 : 60,
-            opacity: 0,
-            rotateY: 30,
-            scale: 0.8
-        },
-        {
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 85%',
-                toggleActions: 'play none none reset'
-            },
-            y: 0,
-            opacity: 1,
-            rotateY: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: 'power3.out',
-            delay: index * 0.1
-        }
-    );
+  const cardInner = card.querySelector('.card-inner');
+
+  // Entrance animation
+  gsap.fromTo(card,
+    {
+      y: index === 1 ? 20 : 60,
+      opacity: 0,
+      rotateY: 30,
+      scale: 0.8
+    },
+    {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 85%',
+        toggleActions: 'play none none reset'
+      },
+      y: 0,
+      opacity: 1,
+      rotateY: 0,
+      scale: 1,
+      duration: 1.2,
+      ease: 'power3.out',
+      delay: index * 0.1
+    }
+  );
+
+  // Flip when scrolling away from #core2
+  ScrollTrigger.create({
+    trigger: '#core2',
+    start: 'bottom 90%',
+    end: 'bottom top',
+    onUpdate: (self) => {
+      if (self.progress > 0.1 && self.direction === 1) {
+        gsap.to(cardInner, {
+          rotateY: 180,
+          duration: 1,
+          ease: 'power2.out'
+        });
+      } else if (self.progress < 0.1 && self.direction === -1) {
+        gsap.to(cardInner, {
+          rotateY: 0,
+          duration: 1,
+          ease: 'power2.inOut'
+        });
+      }
+    }
+  });
 });
 
-ScrollTrigger.create({
-  trigger: '#core2',
-  start: 'bottom bottom',
-  end: 'bottom top',
-  toggleClass: { targets: '.card-inner', className: 'flipped' },
-  scrub: true,
-});
-
+// Optional blur effect when leaving section
 ScrollTrigger.create({
   trigger: '#core2',
   start: 'bottom bottom',
