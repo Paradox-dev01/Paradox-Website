@@ -1,8 +1,8 @@
 // Cursor
-const cursor = document.querySelector('.custom-cursor');
+const cursor = document.querySelector(".custom-cursor");
 let isMoving = false;
 
-  // Move cursor with mouse
+// Move cursor with mouse
 let mouseX = 0;
 let mouseY = 0;
 let rafRequested = false;
@@ -18,8 +18,8 @@ document.addEventListener("mousemove", (e) => {
 
   if (!isMoving) {
     isMoving = true;
-    cursor.classList.remove('idle');
-    setTimeout(() => isMoving = false, 100);
+    cursor.classList.remove("idle");
+    setTimeout(() => (isMoving = false), 100);
   }
 });
 
@@ -29,25 +29,25 @@ function updateCursor() {
   rafRequested = false;
 }
 
-  // Idle animation trigger after no movement for 1.5s
+// Idle animation trigger after no movement for 1.5s
 let idleTimeout;
-document.addEventListener('mousemove', () => {
+document.addEventListener("mousemove", () => {
   clearTimeout(idleTimeout);
   idleTimeout = setTimeout(() => {
-    cursor.classList.add('idle');
+    cursor.classList.add("idle");
   }, 1500);
 });
 
-  // Click animation
-document.addEventListener('mousedown', () => {
-  cursor.classList.add('clicked');
+// Click animation
+document.addEventListener("mousedown", () => {
+  cursor.classList.add("clicked");
 });
-document.addEventListener('mouseup', () => {
-  cursor.classList.remove('clicked');
+document.addEventListener("mouseup", () => {
+  cursor.classList.remove("clicked");
 });
 
   // Hovering clickable items
-document.querySelectorAll('a, button, .enter-button, .nav-arrow, #astronaut').forEach(el => {
+document.querySelectorAll('a, button, .enter-button, .nav-arrow').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.classList.add('hover');
   });
@@ -55,7 +55,6 @@ document.querySelectorAll('a, button, .enter-button, .nav-arrow, #astronaut').fo
     cursor.classList.remove('hover');
   });
 });
-
 
 // Scroll Animation Observer
 // const sections = document.querySelectorAll('.section');
@@ -75,20 +74,22 @@ document.querySelectorAll('a, button, .enter-button, .nav-arrow, #astronaut').fo
 
 
 // Scroll Progress Bar
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
   const scrollPercent = (scrollTop / docHeight) * 100;
-  document.querySelector('.scroll-progress-bar').style.width = `${scrollPercent}%`;
+  document.querySelector(
+    ".scroll-progress-bar"
+  ).style.width = `${scrollPercent}%`;
 });
 
 // Navigation Arrow Scroll
 function scrollToNextSection() {
-  const visibleSections = Array.from(sections).filter(section =>
-    section.getBoundingClientRect().top >= 0
+  const visibleSections = Array.from(sections).filter(
+    (section) => section.getBoundingClientRect().top >= 0
   );
   const next = visibleSections[0] || sections[0];
-  next.scrollIntoView({ behavior: 'smooth' });
+  next.scrollIntoView({ behavior: "smooth" });
 }
 
 // Optional Starfield Canvas (can remove if not needed)
@@ -257,7 +258,7 @@ landingCore.addEventListener('mouseleave', () => {
 
 
 
-//  --- LANDING PAGE --- 
+//  --- LANDING PAGE ---
 
 // === SELECT DOM ELEMENTS ===
 const bgBottom = document.querySelector('.bg-bottom');
@@ -301,7 +302,7 @@ function triggerFlyAwayAndScroll() {
 
 // === SCROLL TO SECTION ===
 function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
 // === CLICK TO TRIGGER FLY-AWAY ===
@@ -317,7 +318,6 @@ astronaut?.addEventListener('click', triggerFlyAwayAndScroll);
 landingClickableItems.forEach(item => {
   item?.addEventListener('click', triggerFlyAway);
 });
-
 
 // === SCROLL EVENTS ===
 window.addEventListener('scroll', () => {
@@ -342,95 +342,75 @@ window.addEventListener('scroll', () => {
   if (scrollProgress > 0.1) {
     astronaut.classList.add('fly-away');
   } else {
-    astronaut.classList.remove('fly-away');
+    astronaut.classList.remove("fly-away");
   }
-
-  // Show nav arrow after scrolling 60% of viewport height
-  navArrow.style.display = window.scrollY > window.innerHeight * 0.6 ? 'block' : 'none';
 });
 
+// Show nav arrow only after scrolling 60%
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / window.innerHeight;
+  navArrow.style.display = pct > 0.6 ? 'block' : 'none';
+});
 
 
 //  --- CORE ---
 
 //1
-gsap.fromTo(
-  '.core1-content',
-  { x: '150vw' },
-  {
-    // x: 'calc(50vw - 400px)',
-    x: '-50vw',
-    // x: '0vw',
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#core1',
-      start: 'top 80%',
-      end: 'bottom 20%',
-      scrub: true,
+const core1 = document.getElementById('core1');
+const coreObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      core1.classList.add('fade-in');
+      // optional: remove after first load
+      // coreObserver.unobserve(core1); 
     }
-  }
-);
+  });
+}, { threshold: 0.3 });
+
+coreObserver.observe(core1);
 
 //2
 gsap.utils.toArray('.core-card').forEach((card, index) => {
-  const cardInner = card.querySelector('.card-inner');
-
-  // Entrance animation
-  gsap.fromTo(card,
-    {
-      y: index === 1 ? 20 : 60,
-      opacity: 0,
-      rotateY: 30,
-      scale: 0.8
-    },
-    {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 85%',
-        toggleActions: 'play none none reset'
-      },
-      y: 0,
-      opacity: 1,
-      rotateY: 0,
-      scale: 1,
-      duration: 1.2,
-      ease: 'power3.out',
-      delay: index * 0.1
-    }
-  );
-
-  // Flip when scrolling away from #core2
-  ScrollTrigger.create({
-    trigger: '#core2',
-    start: 'bottom 90%',
-    end: 'bottom top',
-    onUpdate: (self) => {
-      if (self.progress > 0.1 && self.direction === 1) {
-        gsap.to(cardInner, {
-          rotateY: 180,
-          duration: 1,
-          ease: 'power2.out'
-        });
-      } else if (self.progress < 0.1 && self.direction === -1) {
-        gsap.to(cardInner, {
-          rotateY: 0,
-          duration: 1,
-          ease: 'power2.inOut'
-        });
-      }
-    }
-  });
+    gsap.fromTo(card,
+        {
+            y: index === 1 ? 20 : 60,
+            opacity: 0,
+            rotateY: 30,
+            scale: 0.8
+        },
+        {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 85%',
+                toggleActions: 'play none none reset'
+            },
+            y: 0,
+            opacity: 1,
+            rotateY: 0,
+            scale: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            delay: index * 0.1
+        }
+    );
 });
 
-// Optional blur effect when leaving section
 ScrollTrigger.create({
   trigger: '#core2',
   start: 'bottom bottom',
   end: 'bottom top',
-  onLeave: () => document.querySelector('#core2').classList.add('blurred'),
-  onLeaveBack: () => document.querySelector('#core2').classList.remove('blurred'),
+  toggleClass: { targets: '.card-inner', className: 'flipped' },
+  scrub: true,
 });
 
+ScrollTrigger.create({
+  trigger: "#core2",
+  start: "bottom bottom",
+  end: "bottom top",
+  onLeave: () => document.querySelector("#core2").classList.add("blurred"),
+  onLeaveBack: () =>
+    document.querySelector("#core2").classList.remove("blurred"),
+});
 
 //  --- THE LABS ---
 
@@ -451,7 +431,7 @@ for (let i = 0; i < starCount; i++) {
   star.style.top = `${Math.random() * 100}%`;
   star.style.left = `${Math.random() * 100}%`;
 
-  starsContainer.appendChild(lab-star);
+  starsContainer.appendChild(lab - star);
 }
 
 // GSAP Animations
@@ -464,7 +444,7 @@ gsap.utils.toArray(".lab-star").forEach((labStar) => {
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut",
-  })
+  });
 });
 
 // Animate grid
@@ -486,7 +466,7 @@ gsap.to(".neon-circle", {
 });
 
 // Animate content
-// gsap.from("h1", {
+//gsap.from("h1", {
 //   y: -50,
 //   opacity: 0,
 //   duration: 1.5,
@@ -643,12 +623,137 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
 //  --- THE LOGS ---
 
+//  --- THE SERVICES ---
+document.addEventListener("DOMContentLoaded", function () {
+  const spaceBg = document.getElementById("spaceBg");
 
+  // Create stars
+  for (let i = 0; i < 200; i++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
 
+    // Random size between 1px and 3px
+    const size = Math.random() * 2 + 1;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+
+    // Random position
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+
+    // Random opacity
+    star.style.opacity = Math.random() * 0.8 + 0.2;
+
+    spaceBg.appendChild(star);
+
+    // Animate twinkling
+    gsap.to(star, {
+      duration: Math.random() * 3 + 1,
+      opacity: Math.random() * 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+  }
+
+  // Create shooting stars occasionally
+  function createShootingStar() {
+    const shootingStar = document.createElement("div");
+    shootingStar.classList.add("shooting-star");
+
+    // Start position (off screen to top-left)
+    shootingStar.style.left = `${Math.random() * 20}%`;
+    shootingStar.style.top = `${Math.random() * 20}%`;
+
+    spaceBg.appendChild(shootingStar);
+
+    // Animate shooting star
+    gsap.fromTo(
+      shootingStar,
+      {
+        opacity: 0,
+        x: 0,
+        y: 0,
+      },
+      {
+        opacity: 1,
+        x: "100vw",
+        y: "100vh",
+        duration: 1.5,
+        ease: "power1.out",
+        onComplete: () => {
+          spaceBg.removeChild(shootingStar);
+        },
+      }
+    );
+
+    // Schedule next shooting star
+    setTimeout(createShootingStar, Math.random() * 5000 + 3000);
+  }
+
+  // Start shooting stars
+  setTimeout(createShootingStar, 2000);
+
+  // Create some planets in the background
+  for (let i = 0; i < 3; i++) {
+    const planet = document.createElement("div");
+    planet.classList.add("planet");
+
+    // Random size between 100px and 300px
+    const size = Math.random() * 200 + 100;
+    planet.style.width = `${size}px`;
+    planet.style.height = `${size}px`;
+
+    // Random position (off to sides)
+    planet.style.left = `${Math.random() > 0.5 ? -size / 2 : 100 - size / 2}%`;
+    planet.style.top = `${Math.random() * 70 + 15}%`;
+
+    // Random color
+    const colors = ["#4facfe", "#00f2fe", "#7928ca", "#ff0080"];
+    planet.style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    spaceBg.appendChild(planet);
+
+    // Make them visible
+    gsap.to(planet, {
+      duration: 2,
+      opacity: 0.1,
+      ease: "power1.out",
+    });
+  }
+
+  // Animate service cards on scroll into view
+  const serviceCards = document.querySelectorAll(".service-card");
+
+  serviceCards.forEach((card, index) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      delay: index * 0.1,
+      ease: "back.out(1.7)",
+    });
+  });
+
+  // Animate contact button
+  gsap.from(".contact-btn", {
+    scrollTrigger: {
+      trigger: ".contact-btn",
+      start: "top 80%",
+      toggleActions: "play none none none",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out",
+  });
+});
 //  --- CONNECT ---
-
-
-
