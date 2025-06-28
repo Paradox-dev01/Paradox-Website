@@ -84,6 +84,7 @@ window.addEventListener("scroll", () => {
 });
 
 // Navigation Arrow Scroll
+const sections = document.querySelectorAll('.section');
 function scrollToNextSection() {
   const visibleSections = Array.from(sections).filter(
     (section) => section.getBoundingClientRect().top >= 0
@@ -349,7 +350,7 @@ window.addEventListener('scroll', () => {
 // Show nav arrow only after scrolling 60%
 window.addEventListener('scroll', () => {
   const pct = window.scrollY / window.innerHeight;
-  navArrow.style.display = pct > 0.6 ? 'block' : 'none';
+  navArrow.classList.toggle('visible', pct > 0.6);
 });
 
 
@@ -431,7 +432,7 @@ for (let i = 0; i < starCount; i++) {
   star.style.top = `${Math.random() * 100}%`;
   star.style.left = `${Math.random() * 100}%`;
 
-  starsContainer.appendChild(lab - star);
+  starsContainer.appendChild(lab-star);
 }
 
 // GSAP Animations
@@ -506,6 +507,162 @@ document.addEventListener("mousemove", (e) => {
     duration: 1,
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Create grid background
+    createGrid();
+    
+    // Header animation
+    gsap.to('.header h1', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out'
+    });
+
+    gsap.to('.header p', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.3,
+        ease: 'power3.out'
+    });
+
+    // Section title animation
+    gsap.to('.section-title', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.6,
+        ease: 'power3.out'
+    });
+
+    // Project cards animation
+    gsap.utils.toArray('.project-card').forEach((card, i) => {
+        gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.9 + (i * 0.15),
+            ease: 'back.out'
+        });
+    });
+
+    // Scroll animations for when user scrolls back up
+    gsap.to('.section-title', {
+        scrollTrigger: {
+            trigger: '.section-title',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out'
+    });
+
+    gsap.utils.toArray('.project-card').forEach((card, i) => {
+        gsap.to(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'back.out'
+        });
+    });
+
+    // Responsive grid on resize
+    window.addEventListener('resize', () => {
+        const gridBg = document.getElementById('gridBg');
+        gridBg.innerHTML = '';
+        createGrid();
+    });
+});
+
+function createGrid() {
+    const gridBg = document.getElementById('gridBg');
+    const gridSize = 50; // distance between grid lines
+    const cols = Math.ceil(window.innerWidth / gridSize) + 1;
+    const rows = Math.ceil(window.innerHeight / gridSize) + 1;
+    
+    // Create vertical lines
+    for (let i = 0; i < cols; i++) {
+        const line = document.createElement('div');
+        line.className = 'grid-line vertical';
+        line.style.left = `${i * gridSize}px`;
+        gridBg.appendChild(line);
+        
+        // Animate vertical lines
+        gsap.from(line, {
+            duration: 1.5,
+            delay: i * 0.02,
+            opacity: 0,
+            ease: 'power2.out'
+        });
+    }
+    
+    // Create horizontal lines
+    for (let i = 0; i < rows; i++) {
+        const line = document.createElement('div');
+        line.className = 'grid-line horizontal';
+        line.style.top = `${i * gridSize}px`;
+        gridBg.appendChild(line);
+        
+        // Animate horizontal lines
+        gsap.from(line, {
+            duration: 1.5,
+            delay: i * 0.02,
+            opacity: 0,
+            ease: 'power2.out'
+        });
+    }
+    
+    // Create grid dots at intersections
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            const dot = document.createElement('div');
+            dot.className = 'grid-dot';
+            dot.style.left = `${i * gridSize}px`;
+            dot.style.top = `${j * gridSize}px`;
+            gridBg.appendChild(dot);
+            
+            // Animate dots with random delays
+            gsap.to(dot, {
+                duration: 0.8,
+                delay: Math.random() * 1.5,
+                scale: 1,
+                ease: 'elastic.out(1, 0.5)'
+            });
+        }
+    }
+    
+    // Create pulsing animation for grid lines
+    gsap.to('.grid-line', {
+        opacity: 0.5,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+    });
+    
+    // Create floating animation for dots
+    gsap.to('.grid-dot', {
+        y: () => Math.random() * 10 - 5,
+        x: () => Math.random() * 10 - 5,
+        duration: () => Math.random() * 3 + 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+    });
+}
+
+
+
 
 // --- ASTRO DRIVE
 document.addEventListener("DOMContentLoaded", function () {
@@ -756,4 +913,234 @@ document.addEventListener("DOMContentLoaded", function () {
     ease: "power2.out",
   });
 });
+
+
 //  --- CONNECT ---
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize GSAP
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Create swirling effect
+    const swirlContainer = document.getElementById('swirl-container');
+    const swirlCount = 15;
+    
+    for (let i = 0; i < swirlCount; i++) {
+        const swirl = document.createElement('div');
+        swirl.classList.add('swirl');
+        
+        // Size increases with index
+        const size = 50 + (i * 20);
+        swirl.style.width = `${size}px`;
+        swirl.style.height = `${size}px`;
+        
+        // Position near the left side
+        swirl.style.left = `${-size/4 + Math.random() * 30}px`;
+        swirl.style.top = `${(100 - size/3)/2 + (Math.random() * 50 - 25)}%`;
+        
+        // Random opacity
+        swirl.style.opacity = 0.1 + (Math.random() * 0.3);
+        
+        swirlContainer.appendChild(swirl);
+        
+        // Animate each swirl with GSAP
+        gsap.to(swirl, {
+            rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
+            duration: 15 + (Math.random() * 20),
+            repeat: -1,
+            ease: "none"
+        });
+        
+        // Pulse animation
+        gsap.to(swirl, {
+            scale: 1 + (Math.random() * 0.3),
+            opacity: 0.05 + (Math.random() * 0.2),
+            duration: 2 + (Math.random() * 3),
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+    
+    // Create animated background with GSAP
+    const background = document.getElementById('content-background');
+    
+    // Create SVG for background
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
+    background.appendChild(svg);
+    
+    // Create gradient
+    const defs = document.createElementNS(svgNS, "defs");
+    svg.appendChild(defs);
+    
+    const gradient = document.createElementNS(svgNS, "linearGradient");
+    gradient.setAttribute("id", "grad1");
+    gradient.setAttribute("x1", "0%");
+    gradient.setAttribute("y1", "0%");
+    gradient.setAttribute("x2", "100%");
+    gradient.setAttribute("y2", "100%");
+    defs.appendChild(gradient);
+    
+    const stop1 = document.createElementNS(svgNS, "stop");
+    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute("stop-color", "#1a0029");
+    gradient.appendChild(stop1);
+    
+    const stop2 = document.createElementNS(svgNS, "stop");
+    stop2.setAttribute("offset", "100%");
+    stop2.setAttribute("stop-color", "#3a0068");
+    gradient.appendChild(stop2);
+    
+    // Create background rect
+    const rect = document.createElementNS(svgNS, "rect");
+    rect.setAttribute("width", "100%");
+    rect.setAttribute("height", "100%");
+    rect.setAttribute("fill", "url(#grad1)");
+    svg.appendChild(rect);
+    
+    // Add some additional swirl effects
+    for (let i = 0; i < 5; i++) {
+        const smallSwirl = document.createElement('div');
+        smallSwirl.classList.add('swirl');
+        
+        const size = 10 + (i * 5);
+        smallSwirl.style.width = `${size}px`;
+        smallSwirl.style.height = `${size}px`;
+        smallSwirl.style.border = '1px solid rgba(138, 43, 226, 0.8)';
+        
+        // Position randomly on the left side
+        smallSwirl.style.left = `${10 + Math.random() * 20}%`;
+        smallSwirl.style.top = `${Math.random() * 80 + 10}%`;
+        
+        swirlContainer.appendChild(smallSwirl);
+        
+        // Animate with different timing
+        gsap.to(smallSwirl, {
+            rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
+            duration: 5 + (Math.random() * 8),
+            repeat: -1,
+            ease: "none"
+        });
+        
+        // Move around slightly
+        gsap.to(smallSwirl, {
+            x: Math.random() * 30 - 15,
+            y: Math.random() * 30 - 15,
+            duration: 3 + (Math.random() * 2),
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+    
+    // Create animated particles
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElementNS(svgNS, "circle");
+        const size = Math.random() * 2 + 1;
+        
+        particle.setAttribute("r", size);
+        particle.setAttribute("fill", "rgba(255, 255, 255, " + (Math.random() * 0.5) + ")");
+        
+        const xPos = Math.random() * 100;
+        const yPos = Math.random() * 100;
+        
+        particle.setAttribute("cx", xPos + "%");
+        particle.setAttribute("cy", yPos + "%");
+        
+        svg.appendChild(particle);
+        
+        // Animate each particle
+        gsap.to(particle, {
+            cx: xPos + (Math.random() * 10 - 5) + "%",
+            cy: yPos + (Math.random() * 10 - 5) + "%",
+            opacity: Math.random() * 0.7 + 0.3,
+            duration: Math.random() * 5 + 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+
+    // Animate content elements
+    // Main title animation
+    gsap.to("#connect-title", {
+        opacity: 1,
+        duration: 1,
+        delay: 0.5
+    });
+    
+    // Social icons animation
+    gsap.to(".social-icon", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        delay: 1
+    });
+    
+    // Message box animation
+    gsap.to("#message-box", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 2
+    });
+    
+    // Footer text animation
+    gsap.to("#footer-text", {
+        opacity: 1,
+        duration: 1,
+        delay: 2.5
+    });
+    
+    // Add message sending functionality
+    document.getElementById('send-button').addEventListener('click', sendMessage);
+    
+    // Also allow sending with Enter key
+    document.getElementById('message-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    
+    function sendMessage() {
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value.trim();
+        
+        if (message) {
+            // Here you would typically send the message to a server
+            // For now, we'll just clear the input and show a brief animation
+            messageInput.value = '';
+            
+            // Flash effect on button to confirm sending
+            gsap.to('#send-button', {
+                backgroundColor: 'rgba(138, 43, 226, 0.9)',
+                duration: 0.3,
+                yoyo: true,
+                repeat: 1
+            });
+            
+            // Show a confirmation message
+            const sendBtn = document.getElementById('send-button');
+            const originalText = sendBtn.textContent;
+            sendBtn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
+            setTimeout(() => {
+                sendBtn.innerHTML = originalText + ' <i class="fas fa-paper-plane"></i>';
+            }, 2000);
+
+            document.getElementById('send-button').innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
+            
+            setTimeout(() => {
+                document.getElementById('send-button').innerHTML = currentText;
+            }, 2000);
+        }
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        // You could add responsive adjustments here if needed
+    });
+});
