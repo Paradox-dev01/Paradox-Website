@@ -1242,6 +1242,75 @@ button {
 }
 
 /* === RESPONSIVE === */
+/* Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  .dev-diary {
+    flex-direction: column;
+    height: auto;
+  }
+  .diary-left,
+  .diary-right {
+    flex: none;
+    width: 100%;
+    height: auto;
+    padding: 1.5rem;
+  }
+  .dev-word {
+    font-size: 6rem;
+    margin-left: 0;
+    line-height: 0.4;
+  }
+  .diary-word {
+    font-size: 7rem;
+  }
+  .log-entry {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Mobile (<= 768px) */
+@media (max-width: 768px) {
+  .dev-word {
+    font-size: 4.5rem;
+  }
+  .diary-word {
+    font-size: 5.5rem;
+  }
+  .log-text {
+    font-size: 1rem;
+  }
+  .log-entry {
+    padding: 1rem 1rem;
+  }
+  .log-container {
+    gap: 1.5rem;
+  }
+}
+
+/* Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .dev-word {
+    font-size: 3rem;
+  }
+  .diary-word {
+    font-size: 3.5rem;
+  }
+  .log-text {
+    font-size: 0.9rem;
+  }
+  .log-entry {
+    padding: 0.75rem 1rem;
+  }
+  .log-container {
+    gap: 1rem;
+  }
+  .diary-left {
+    padding: 1rem;
+  }
+  .diary-right {
+    padding: 1rem;
+  }
+}
 
 
 
@@ -1395,6 +1464,87 @@ button {
   inset: 0;
   z-index: 0;
 }
+
+/* === RESPONSIVE === */
+/* Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  #services {
+    height: auto;
+    padding: 60px 15px;
+  }
+  .services-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  .service-card {
+    width: 45%;
+    margin-bottom: 2rem;
+    padding: 15px;
+  }
+  .service-title h2 {
+    font-size: 1.5rem;
+  }
+  .service-description {
+    font-size: 0.95rem;
+  }
+  .contact-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile (<= 768px) */
+@media (max-width: 768px) {
+  #services {
+    padding: 40px 10px;
+  }
+  .services-container {
+    gap: 20px;
+  }
+  .service-card {
+    width: 90%;
+    padding: 12px;
+  }
+  .service-title h2 {
+    font-size: 1.3rem;
+  }
+  .service-description {
+    font-size: 0.9rem;
+  }
+  .contact-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+  #services {
+    padding: 30px 8px;
+  }
+  .services-container {
+    gap: 15px;
+  }
+  .service-card {
+    width: 100%;
+    padding: 10px;
+  }
+  .service-title h2 {
+    font-size: 1.1rem;
+  }
+  .service-description {
+    font-size: 0.85rem;
+  }
+  .contact-btn {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+  }
+}
+
+
+
+
 
 /* for both dev diary and services */
 .galaxy-grid {
