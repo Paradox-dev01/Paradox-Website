@@ -305,9 +305,9 @@ const landingClickableItems = [
 astronaut?.addEventListener('click', triggerFlyAwayAndScroll);
 
 // Other items trigger fly-away
-landingClickableItems.forEach(item => {
-  item?.addEventListener('click', triggerFlyAway);
-});
+// landingClickableItems.forEach(item => {
+//   item?.addEventListener('click', triggerFlyAway);
+// });
 
 // === SCROLL EVENTS ===
 window.addEventListener('scroll', () => {
@@ -402,254 +402,121 @@ ScrollTrigger.create({
     document.querySelector("#core2").classList.remove("blurred"),
 });
 
+
+
 //  --- THE LABS ---
 document.addEventListener("DOMContentLoaded", () => {
-// Create stars
-const starsContainer = document.getElementById("lab-stars");
-const starCount = 200;
+  console.log("Script loaded!");
 
-for (let i = 0; i < starCount; i++) {
-  const star = document.createElement("div");
-  star.classList.add("lab-star");
+  document.querySelectorAll('.project-link-area').forEach(link => {
+    link.addEventListener('click', function(e) {
+      console.log("Link clicked:", this);
 
-  // Random size between 1 and 3 pixels
-  const size = Math.random() * 2 + 1;
-  star.style.width = `${size}px`;
-  star.style.height = `${size}px`;
+      if (this.dataset.status === 'under-construction') {
+        e.preventDefault();
+        alert("🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive, which is already available.");
+      }
+    });
+  });
 
-  // Random position
-  star.style.top = `${Math.random() * 100}%`;
-  star.style.left = `${Math.random() * 100}%`;
+  // GSAP: Stars
+  const starsContainer = document.getElementById("lab-stars");
+  const starCount = 120;
 
-  starsContainer.appendChild(star);
-}
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement("div");
+    star.classList.add("lab-star");
 
-// GSAP Animations
+    const size = Math.random() * 2 + 1;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
 
-// Animate stars twinkling
-gsap.utils.toArray(".lab-star").forEach((labStar) => {
-  gsap.to(labStar, {
-    opacity: Math.random() * 0.5 + 0.3,
-    duration: Math.random() * 3 + 1,
+    starsContainer.appendChild(star);
+
+    gsap.to(star, {
+      opacity: Math.random() * 0.6 + 0.2,
+      duration: Math.random() * 2 + 1,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: Math.random() * 3,
+    });
+  }
+
+  // Neon circle animation
+  gsap.to(".neon-circle", {
+    scale: 1.05,
+    opacity: 0.6,
+    duration: 2,
     repeat: -1,
     yoyo: true,
     ease: "sine.inOut",
   });
-});
-});
 
-// Animate grid
-gsap.to(".grid", {
-  backgroundPosition: "0 50px, 50px 0",
-  duration: 20,
-  repeat: -1,
-  ease: "none",
-});
+  // Mouse parallax
+  document.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y = (e.clientY / window.innerHeight - 0.5) * 30;
 
-// Animate neon circle
-gsap.to(".neon-circle", {
-  scale: 1.05,
-  opacity: 0.6,
-  duration: 2,
-  repeat: -1,
-  yoyo: true,
-  ease: "sine.inOut",
-});
+    gsap.to(".neon-circle", {
+      x,
+      y,
+      duration: 1,
+      ease: "power3.out",
+    });
 
-// Animate content
-gsap.from(".lab-content h1", {
-  y: -50,
-  opacity: 0,
-  duration: 1.5,
-  ease: "back.out",
-});
-
-gsap.from(".lab-content p", {
-  y: 30,
-  opacity: 0,
-  duration: 1,
-  stagger: 0.3,
-  ease: "power2.out",
-});
-
-gsap.from(".cta", {
-  y: 30,
-  opacity: 0,
-  duration: 1,
-  delay: 1.5,
-  ease: "back.out",
-});
-
-// Mouse movement parallax effect
-document.addEventListener("mousemove", (e) => {
-  const mouseX = e.clientX / window.innerWidth - 0.5;
-  const mouseY = e.clientY / window.innerHeight - 0.5;
-
-  gsap.to(".neon-circle", {
-    x: mouseX * 20,
-    y: mouseY * 20,
-    duration: 1,
+    gsap.to(".lab-stars", {
+      x: x * 0.5,
+      y: y * 0.5,
+      duration: 1,
+      ease: "power3.out",
+    });
   });
 
-  gsap.to(".lab-stars", {
-    x: mouseX * 10,
-    y: mouseY * 10,
+  // Entry animation
+  gsap.from(".lab-content h1", {
+    y: -40,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power2.out",
+  });
+
+  gsap.from(".lab-content p", {
+    y: 20,
+    opacity: 0,
     duration: 1,
+    delay: 0.2,
+    stagger: 0.2,
+    ease: "power2.out",
+  });
+
+  gsap.from(".labs-title", {
+    scrollTrigger: {
+      trigger: ".labs-title",
+      start: "top 80%",
+    },
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out",
+  });
+
+  gsap.utils.toArray(".project-card").forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      delay: i * 0.1,
+      ease: "back.out(1.7)",
+    });
   });
 });
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Create grid background
-    createGrid();
-    
-    // Header animation
-    gsap.to('.header h1', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out'
-    });
-
-    gsap.to('.header p', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out'
-    });
-
-    // Section title animation
-    gsap.to('.section-title', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        delay: 0.6,
-        ease: 'power3.out'
-    });
-
-    // Project cards animation
-    gsap.utils.toArray('.project-card').forEach((card, i) => {
-        gsap.to(card, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            delay: 0.9 + (i * 0.15),
-            ease: 'back.out'
-        });
-    });
-
-    // Scroll animations for when user scrolls back up
-    gsap.to('.section-title', {
-        scrollTrigger: {
-            trigger: '.section-title',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out'
-    });
-
-    gsap.utils.toArray('.project-card').forEach((card, i) => {
-        gsap.to(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'back.out'
-        });
-    });
-
-    // Responsive grid on resize
-    window.addEventListener('resize', () => {
-        const gridBg = document.getElementById('gridBg');
-        gridBg.innerHTML = '';
-        createGrid();
-    });
-});
-
-function createGrid() {
-    const gridBg = document.getElementById('gridBg');
-    const gridSize = 50; // distance between grid lines
-    const cols = Math.ceil(window.innerWidth / gridSize) + 1;
-    const rows = Math.ceil(window.innerHeight / gridSize) + 1;
-    
-    // Create vertical lines
-    for (let i = 0; i < cols; i++) {
-        const line = document.createElement('div');
-        line.className = 'grid-line vertical';
-        line.style.left = `${i * gridSize}px`;
-        gridBg.appendChild(line);
-        
-        // Animate vertical lines
-        gsap.from(line, {
-            duration: 1.5,
-            delay: i * 0.02,
-            opacity: 0,
-            ease: 'power2.out'
-        });
-    }
-    
-    // Create horizontal lines
-    for (let i = 0; i < rows; i++) {
-        const line = document.createElement('div');
-        line.className = 'grid-line horizontal';
-        line.style.top = `${i * gridSize}px`;
-        gridBg.appendChild(line);
-        
-        // Animate horizontal lines
-        gsap.from(line, {
-            duration: 1.5,
-            delay: i * 0.02,
-            opacity: 0,
-            ease: 'power2.out'
-        });
-    }
-    
-    // Create grid dots at intersections
-    for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-            const dot = document.createElement('div');
-            dot.className = 'grid-dot';
-            dot.style.left = `${i * gridSize}px`;
-            dot.style.top = `${j * gridSize}px`;
-            gridBg.appendChild(dot);
-            
-            // Animate dots with random delays
-            gsap.to(dot, {
-                duration: 0.8,
-                delay: Math.random() * 1.5,
-                scale: 1,
-                ease: 'elastic.out(1, 0.5)'
-            });
-        }
-    }
-    
-    // Create pulsing animation for grid lines
-    gsap.to('.grid-line', {
-        opacity: 0.5,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut'
-    });
-    
-    // Create floating animation for dots
-    gsap.to('.grid-dot', {
-        y: () => Math.random() * 10 - 5,
-        x: () => Math.random() * 10 - 5,
-        duration: () => Math.random() * 3 + 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut'
-    });
-}
 
 
 
@@ -1081,48 +948,47 @@ document.addEventListener('DOMContentLoaded', function() {
         delay: 2.5
     });
     
-    // Add message sending functionality
-    document.getElementById('send-button').addEventListener('click', sendMessage);
-    
-    // Also allow sending with Enter key
-    document.getElementById('message-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-    
+    // Unified message sending logic
     function sendMessage() {
-        const messageInput = document.getElementById('message-input');
-        const message = messageInput.value.trim();
-        
-        if (message) {
-            // Here you would typically send the message to a server
-            // For now, we'll just clear the input and show a brief animation
-            messageInput.value = '';
-            
-            // Flash effect on button to confirm sending
-            gsap.to('#send-button', {
-                backgroundColor: 'rgba(138, 43, 226, 0.9)',
-                duration: 0.3,
-                yoyo: true,
-                repeat: 1
-            });
-            
-            // Show a confirmation message
-            const sendBtn = document.getElementById('send-button');
-            const originalText = sendBtn.textContent;
-            sendBtn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
-            setTimeout(() => {
-                sendBtn.innerHTML = originalText + ' <i class="fas fa-paper-plane"></i>';
-            }, 2000);
+      const email = 'paradoxicalparadox.v01@gmail.com';
+      const input = document.getElementById('message-input');
+      const message = input.value.trim();
+      const body = encodeURIComponent(message);
 
-            document.getElementById('send-button').innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
-            
-            setTimeout(() => {
-                document.getElementById('send-button').innerHTML = currentText;
-            }, 2000);
-        }
+      // Gmail compose URL
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=${body}`;
+      window.open(gmailUrl, '_blank');
+
+      // Clear input
+      input.value = '';
+
+      // Flash effect on button to confirm sending
+      gsap.to('#send-button', {
+        backgroundColor: 'rgba(138, 43, 226, 0.9)',
+        duration: 0.3,
+        yoyo: true,
+        repeat: 1
+      });
+
+      // Temporarily change button text
+      const sendBtn = document.getElementById('send-button');
+      const originalText = 'Send Message';
+      sendBtn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
+
+      setTimeout(() => {
+        sendBtn.innerHTML = originalText + ' <i class="fas fa-paper-plane"></i>';
+      }, 2000);
     }
+
+    // Handle button click
+    document.getElementById('send-button').addEventListener('click', sendMessage);
+
+    // Handle Enter key
+    document.getElementById('message-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
 
     // Handle window resize
     window.addEventListener('resize', function() {

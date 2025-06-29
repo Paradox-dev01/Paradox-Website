@@ -35,7 +35,7 @@
   /head>
   <body>
     <!-- Sticky Logo (top-left) -->
-    <div class="logo">
+    <div class="logo clickable" onclick="scrollToSection('landing')">
       <img src="assets/paradox-logo.png" alt="Paradox" />
     </div>
 
@@ -53,6 +53,7 @@
             <button onclick="scrollToSection('core')">The Core</button>
             <button onclick="scrollToSection('lab')">The Lab</button>
             <button onclick="scrollToSection('dev-diary')">The Logs</button>
+            <button onclick="scrollToSection('services')">Services</button>
             <button onclick="scrollToSection('connect')">Connect</button>
         </nav>
 
@@ -144,30 +145,34 @@
               
               <div class="project-grid">
                   <div class="project-card">
+                    <a href="#" class="project-link-area" data-status="under-construction">
                       <div class="project-image">🌐</div>
                       <div class="project-content">
-                          <h3 class="project-title">Mirror</h3>
-                          <p class="project-description">A social media platform connecting friends and family through shared moments.</p>
-                          <a href="#" class="project-link">View Project</a>
+                        <h3 class="project-title">Mirror</h3>
+                        <p class="project-description">A social media platform connecting friends and family through shared moments.</p>
+                        <span class="project-link">View Project</span>
                       </div>
+                    </a>
                   </div>
-
                   <div class="project-card">
+                    <a href="#astro" class="project-link-area" data-status="under-construction">
                       <div class="project-image">📱</div>
                       <div class="project-content">
-                          <h3 class="project-title">AstroDrive</h3>
-                          <p class="project-description">Real-time messaging app with a beautiful, space-themed interface.</p>
-                          <a href="#astro" class="project-link">View Project</a>
+                        <h3 class="project-title">AstroDrive</h3>
+                        <p class="project-description">Real-time messaging app with a beautiful, space-themed interface.</p>
+                        <span class="project-link">View Project</span>
                       </div>
+                    </a>
                   </div>
-
                   <div class="project-card">
+                    <a href="#" class="project-link-area" data-status="under-construction">
                       <div class="project-image">🎮</div>
                       <div class="project-content">
-                          <h3 class="project-title">GameVault</h3>
-                          <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
-                          <a href="#" class="project-link">View Project</a>
+                        <h3 class="project-title">GameVault</h3>
+                        <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
+                        <span class="project-link">View Project</span>
                       </div>
+                    </a>
                   </div>
               </div>
             </div>
@@ -242,6 +247,8 @@
 
       <!-- DevDiary -->
       <section id="dev-diary" class="section dev-diary">
+        <div class="galaxy-grid"></div> 
+
         <div class="diary-left">
           <div class="diary-title-wrapper">
             <div class="dev-word">Dev</div>
@@ -289,13 +296,15 @@
         <div class="space-bg" id="spaceBg"></div>
 
         <div class="section-title">
-          <h2>Our Services</h2>
+          <h1>Our Services</h1>
         </div>
           
         <div class="services-container">
           <div class="service-card">
             <div class="service-icon">🖥️</div>
-            <h3 class="service-title">Web Design</h3>
+            <div class="service-title">
+              <h2>Web Design</h2>
+            </div>
             <p class="service-description">
               Custom, responsive websites tailored to your brand with the latest
               technologies and frameworks.
@@ -304,7 +313,9 @@
 
           <div class="service-card">
             <div class="service-icon">📱</div>
-            <h3 class="service-title">Mobile App Development</h3>
+            <div class="service-title">
+              <h2>Mobile App Development</h2>
+            </div>
             <p class="service-description">
               iOS and Android applications built for performance, usability, and
               engagement.
@@ -313,7 +324,9 @@
 
           <div class="service-card">
             <div class="service-icon">🎨</div>
-            <h3 class="service-title">UI/UX Design</h3>
+            <div class="service-title">
+              <h2>UI/UX Design</h2>
+            </div>
             <p class="service-description">
               Beautiful, intuitive interfaces designed to enhance user
               experience and drive conversions.
@@ -322,7 +335,9 @@
 
           <div class="service-card">
             <div class="service-icon">🎮</div>
-            <h3 class="service-title">Game Development</h3>
+            <div class="service-title">
+              <h2>Game Development</h2>
+            </div>
             <p class="service-description">
               Immersive gaming experiences across multiple platforms with
               stunning graphics.
@@ -347,28 +362,28 @@
                     <h1 id="connect-title">Want to hack into the Paradox?</h1>
                     
                     <div class="social-icons">
-                        <a href="https://discord.gg/DGXj5GE7" target="_blank" class="social-icon" id="discord">
+                        <a href="https://discord.gg/NYcyaqbFJp" target="_blank" class="social-icon" id="discord">
                             <div class="icon-circle">
                                 <i class="fab fa-discord"></i>
                             </div>
                             <!-- <div class="icon-name">Discord</div> -->
                         </a>
                         
-                        <a href="https://linkedin.com" target="_blank" class="social-icon" id="linkedin">
+                        <a href="https://www.linkedin.com/company/paradoxicalparadox/" target="_blank" class="social-icon" id="linkedin">
                             <div class="icon-circle">
                                 <i class="fab fa-linkedin-in"></i>
                             </div>
                             <!-- <div class="icon-name">LinkedIn</div> -->
                         </a>
                         
-                        <a href="https://instagram.com" target="_blank" class="social-icon" id="instagram">
+                        <a href="https://youtube.com/@paradox-r9v?si=cYZ4XZrL4j803yaX" target="_blank" class="social-icon" id="instagram">
                             <div class="icon-circle">
-                                <i class="fab fa-instagram"></i>
+                                <i class="fab fa-youtube"></i>
                             </div>
                             <!-- <div class="icon-name">Instagram</div> -->
                         </a>
                         
-                        <a href="https://facebook.com" target="_blank" class="social-icon" id="facebook">
+                        <a href="https://www.facebook.com/share/1Hzu9ZY71p/" target="_blank" class="social-icon" id="facebook">
                             <div class="icon-circle">
                                 <i class="fab fa-facebook-f"></i>
                             </div>
@@ -399,7 +414,7 @@
     <div class="custom-cursor"></div>
 
     <!-- Navigation Cue (bottom-right arrow) -->
-    <div class="nav-arrow" onclick="scrollToNextSection()">&#8595;</div>
+    <div class="nav-arrow" onclick="scrollToNextSection()" aria-label="Scroll down" role="button" tabindex="0"></div>
 
     <script src="scripts.js"></script>
   </body>
