@@ -52,7 +52,7 @@
         <nav class="nav-buttons">
             <button onclick="scrollToSection('core')">The Core</button>
             <button onclick="scrollToSection('lab')">The Lab</button>
-            <button onclick="scrollToSection('logs')">The Logs</button>
+            <button onclick="scrollToSection('dev-diary')">The Logs</button>
             <button onclick="scrollToSection('connect')">Connect</button>
         </nav>
 
@@ -125,50 +125,51 @@
 
       <!-- Lab -->
       <section id="lab" class="section">
-        <div class="lab-stars" id="lab-star"></div>
+        <div class="lab-stars" id="lab-stars"></div>
         <div class="grid"></div>
         <div class="neon-circle"></div>
 
-        <div class="content">
+        <div class="lab-content">
           <h1>Welcome to <span>The Lab</span></h1>
-          <p>A place for paradoxes, prototypes, and projects with a pulse.</p>
-          <p>Some call them "ideas."</p>
-          <p>We call them previews of the future</p>
-          <a href="#projects" class="cta">Projects in the works</a>
+          <p>A place for Paradox's prototypes and projects with a pulse.</p>
+          <p>Some call them "ideas". We call them visions of the future</p>
+          <!-- <a href="#projects" class="cta">Projects in the works</a> -->
         </div>
 
         <div class="our-projects">
             <div id="projects" class="projects">
-            <div class="grid-bg" id="gridBg"></div>
-                <h2 class="section-title">Our Projects</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <div class="project-image">🌐</div>
-                        <div class="project-content">
-                            <h3 class="project-title">Mirror</h3>
-                            <p class="project-description">A social media platform connecting friends and family through shared moments.</p>
-                            <a href="#" class="project-link">View Project</a>
-                        </div>
-                    </div>
+              <div class="grid-bg" id="gridBg"></div>
+              
+              <h2 class="labs-title">Our Projects</h2>
+              
+              <div class="project-grid">
+                  <div class="project-card">
+                      <div class="project-image">🌐</div>
+                      <div class="project-content">
+                          <h3 class="project-title">Mirror</h3>
+                          <p class="project-description">A social media platform connecting friends and family through shared moments.</p>
+                          <a href="#" class="project-link">View Project</a>
+                      </div>
+                  </div>
 
-                    <div class="project-card">
-                        <div class="project-image">📱</div>
-                        <div class="project-content">
-                            <h3 class="project-title">AstroDrive</h3>
-                            <p class="project-description">Real-time messaging app with a beautiful, space-themed interface.</p>
-                            <a href="#astro" class="project-link">View Project</a>
-                        </div>
-                    </div>
+                  <div class="project-card">
+                      <div class="project-image">📱</div>
+                      <div class="project-content">
+                          <h3 class="project-title">AstroDrive</h3>
+                          <p class="project-description">Real-time messaging app with a beautiful, space-themed interface.</p>
+                          <a href="#astro" class="project-link">View Project</a>
+                      </div>
+                  </div>
 
-                    <div class="project-card">
-                        <div class="project-image">🎮</div>
-                        <div class="project-content">
-                            <h3 class="project-title">GameVault</h3>
-                            <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
-                            <a href="#" class="project-link">View Project</a>
-                        </div>
-                    </div>
-                </div>
+                  <div class="project-card">
+                      <div class="project-image">🎮</div>
+                      <div class="project-content">
+                          <h3 class="project-title">GameVault</h3>
+                          <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
+                          <a href="#" class="project-link">View Project</a>
+                      </div>
+                  </div>
+              </div>
             </div>
         </div>
       </section>
@@ -240,24 +241,44 @@
         </section>
 
       <!-- DevDiary -->
-      <section id="dev" class="section">
-        <div class="galaxy-grid"></div>
-
-        <div class="container">
-          <div class="robot-container">
-            <img
-              src="assets/devdiary-astronaut.png"
-              alt="Friendly Robot"
-              class="robot-image"
-            />
+      <section id="dev-diary" class="section dev-diary">
+        <div class="diary-left">
+          <div class="diary-title-wrapper">
+            <div class="dev-word">Dev</div>
+            <div class="diary-word">Diary</div>
           </div>
+        </div>
 
-          <div class="content-container">
-            <h1 class="title">DevDiary</h1>
-            <p class="subtitle">Your coding journey companion</p>
+        <div class="diary-right">
+          <div class="log-container">
+            <div class="log-entry">
+              <div class="log-number">log#001</div>
+              <div class="log-text">the idea moved from brain to repo<br>init commit. the silence breaks.</div>
+              <div class="log-meta">April 27, 2025 • <span class="tags">#init #design</span></div>
+            </div>
 
-            <div class="button-container">
-              <button class="cta-button" id="letsGoBtn">Let's Go!</button>
+            <div class="log-entry">
+              <div class="log-number">log#002</div>
+              <div class="log-text">the codebase took its first breath</div>
+              <div class="log-meta">April 28, 2025 • <span class="tags">#init #setup #freshstart</span></div>
+            </div>
+
+            <div class="log-entry">
+              <div class="log-number">log#003</div>
+              <div class="log-text">we refactored the legacy code without crying (too much)</div>
+              <div class="log-meta">May 1, 2025 • <span class="tags">#refactor #techdebt #survivors</span></div>
+            </div>
+
+            <div class="log-entry">
+              <div class="log-number">log#004</div>
+              <div class="log-text">introduced dark mode, finally respecting your retina</div>
+              <div class="log-meta">May 3, 2025 • <span class="tags">#darkmode #ux #theme</span></div>
+            </div>
+
+            <div class="log-entry">
+              <div class="log-number">log#005</div>
+              <div class="log-text">backend stopped leaking emotions (and memory)</div>
+              <div class="log-meta">May 9, 2025 • <span class="tags">#backend #memoryleak #optimization</span></div>
             </div>
           </div>
         </div>
@@ -267,8 +288,10 @@
       <section id="services" class="section">
         <div class="space-bg" id="spaceBg"></div>
 
-        <h2 class="section-title">Our Services</h2>
-
+        <div class="section-title">
+          <h2>Our Services</h2>
+        </div>
+          
         <div class="services-container">
           <div class="service-card">
             <div class="service-icon">🖥️</div>
@@ -308,16 +331,13 @@
         </div>
 
         <a href="#contact" class="contact-btn">Contact With Us</a>
-
-        <!-- GSAP Library -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
       </section>
 
 
       <!-- Connect -->
       <section id="connect" class="section">
         <div class="connect-container">
-            <div class="connect-background" id="content-background"> </div>
+            <div class="connect-background" id="connect-background"> </div>
             <div class="swirl-container" id="swirl-container"> </div>
             
             <div class="connect-content">
@@ -326,7 +346,7 @@
                 <div class="connect-main-content">
                     <h1 id="connect-title">Want to hack into the Paradox?</h1>
                     
-                    <div class="social-icons glitch-effect">
+                    <div class="social-icons">
                         <a href="https://discord.gg/DGXj5GE7" target="_blank" class="social-icon" id="discord">
                             <div class="icon-circle">
                                 <i class="fab fa-discord"></i>
@@ -357,7 +377,7 @@
                     </div>
                     
                     <div class="message-box" id="message-box">
-                        <input type="text" class="message-input" placeholder="send us your thoughts!" id="message-input">
+                        <input type="text" class="message-input" placeholder="Send us your thoughts!" id="message-input">
                         <button class="send-button" id="send-button">
                             Send Message <i class="fas fa-paper-plane"></i>
                         </button>
@@ -365,8 +385,10 @@
                 </div>
                 
                 <div class="footer-text" id="footer-text">
+                  <p>
                     Paradox Software Initiative<br>
                     Focused on bringing digital art and creative experiences.
+                  </p>
                 </div>
             </div>
         </div>

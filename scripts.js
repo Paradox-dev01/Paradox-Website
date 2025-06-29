@@ -403,7 +403,7 @@ ScrollTrigger.create({
 });
 
 //  --- THE LABS ---
-
+document.addEventListener("DOMContentLoaded", () => {
 // Create stars
 const starsContainer = document.getElementById("lab-stars");
 const starCount = 200;
@@ -421,7 +421,7 @@ for (let i = 0; i < starCount; i++) {
   star.style.top = `${Math.random() * 100}%`;
   star.style.left = `${Math.random() * 100}%`;
 
-  starsContainer.appendChild(lab-star);
+  starsContainer.appendChild(star);
 }
 
 // GSAP Animations
@@ -435,6 +435,7 @@ gsap.utils.toArray(".lab-star").forEach((labStar) => {
     yoyo: true,
     ease: "sine.inOut",
   });
+});
 });
 
 // Animate grid
@@ -456,20 +457,20 @@ gsap.to(".neon-circle", {
 });
 
 // Animate content
-//gsap.from("h1", {
-//   y: -50,
-//   opacity: 0,
-//   duration: 1.5,
-//   ease: "back.out",
-// });
+gsap.from(".lab-content h1", {
+  y: -50,
+  opacity: 0,
+  duration: 1.5,
+  ease: "back.out",
+});
 
-// gsap.from("p", {
-//   y: 30,
-//   opacity: 0,
-//   duration: 1,
-//   stagger: 0.3,
-//   ease: "power2.out",
-// });
+gsap.from(".lab-content p", {
+  y: 30,
+  opacity: 0,
+  duration: 1,
+  stagger: 0.3,
+  ease: "power2.out",
+});
 
 gsap.from(".cta", {
   y: 30,
@@ -769,8 +770,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-//  --- THE LOGS ---
-
 //  --- THE SERVICES ---
 document.addEventListener("DOMContentLoaded", function () {
   const spaceBg = document.getElementById("spaceBg");
@@ -906,10 +905,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //  --- CONNECT ---
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize GSAP
-    gsap.registerPlugin(ScrollTrigger);
-    
+document.addEventListener('DOMContentLoaded', function() {    
     // Create swirling effect
     const swirlContainer = document.getElementById('swirl-container');
     const swirlCount = 15;
@@ -952,7 +948,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Create animated background with GSAP
-    const background = document.getElementById('content-background');
+    const background = document.getElementById('connect-background');
     
     // Create SVG for background
     const svgNS = "http://www.w3.org/2000/svg";
