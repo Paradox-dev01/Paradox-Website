@@ -103,6 +103,46 @@ button {
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   transition: all 0.2s ease;
 }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    background: black;
+    position: relative;
+    color: white;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    animation: twinkle 4s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    background: #000 url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    color: white;
+}
+
 /* Idle pulse animation */
 @keyframes pulse {
   0% {
@@ -767,7 +807,7 @@ button {
 #lab {
   position: relative;
   min-height: 200vh; /* make the section longer than screen */
-  background-color: #0a0a1a;
+  background-color: #000000;
   color: #ffffff;
   overflow: hidden;
   padding: 4rem 0rem 0rem;
@@ -777,36 +817,36 @@ button {
   justify-content: flex-start;
 }
 
-.lab-stars {
+.stars,
+.labs-star{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-  pointer-events: none;
+  z-index: -2;
 }
 
-.lab-star {
-  position: absolute;
-  background-color: white;
-  border-radius: 50%;
-  opacity: 0;
+.stars {
+  background: #000 url("https://i.imgur.com/YKY28eT.png") repeat top center;
 }
 
-.grid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index: 0;
-  pointer-events: none;
+.twinkling {
+  background: transparent url("https://i.imgur.com/XYMF4ca.png") repeat top
+    center;
+  animation: twinkling 200s linear infinite;
+  z-index: -1;
 }
+
+@keyframes twinkling {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
 
 .neon-circle {
   position: absolute;
@@ -861,6 +901,38 @@ button {
   /* border-radius: 20px; */
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 }
+
+.stars-overlay {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2rem;
+}
+
+/* Overlay layer for twinkling stars */
+.stars-overlay::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 20px 20px, 40px 40px;
+  background-position: 0 0, 10px 10px;
+  animation: twinkle-star 3s infinite alternate;
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+/* Twinkle animation for star overlay */
+@keyframes twinkle-star {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
 
 .labs-title {
   font-size: 2.5rem;
@@ -935,7 +1007,10 @@ button {
 }
 
 
-
+@keyframes twinkle {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
 
 
 /*  ASTRO DRIVE  */
