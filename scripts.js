@@ -837,12 +837,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const stop1 = document.createElementNS(svgNS, "stop");
     stop1.setAttribute("offset", "0%");
-    stop1.setAttribute("stop-color", "#1a0029");
+    stop1.setAttribute("stop-color", "rgba(27, 4, 44, 0.87)");
     gradient.appendChild(stop1);
     
     const stop2 = document.createElementNS(svgNS, "stop");
     stop2.setAttribute("offset", "100%");
-    stop2.setAttribute("stop-color", "#3a0068");
+    stop2.setAttribute("stop-color", "#190339ff");
     gradient.appendChild(stop2);
     
     // Create background rect
@@ -860,7 +860,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const size = 10 + (i * 5);
         smallSwirl.style.width = `${size}px`;
         smallSwirl.style.height = `${size}px`;
-        smallSwirl.style.border = '1px solid rgba(138, 43, 226, 0.8)';
+        smallSwirl.style.border = '1px solid #170627d9';
         
         // Position randomly on the left side
         smallSwirl.style.left = `${10 + Math.random() * 20}%`;
