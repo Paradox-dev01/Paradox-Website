@@ -46,7 +46,7 @@ document.addEventListener("mouseup", () => {
   cursor.classList.remove("clicked");
 });
 
-  // Hovering clickable items
+// Hovering clickable items
 document.querySelectorAll('a, button, .enter-button, .nav-arrow').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.classList.add('hover');
@@ -125,8 +125,8 @@ const ctx = canvas.getContext('2d');
 
 let width, height, points;
 
-const POINT_COUNT = 150; 
-const MAX_DISTANCE = 120; 
+const POINT_COUNT = 150;
+const MAX_DISTANCE = 120;
 
 // Initialize canvas size
 function resize() {
@@ -273,21 +273,21 @@ function triggerFlyAwayAndScroll() {
       astronaut.style.pointerEvents = 'auto';
     }
   })
-  .to(astronaut, {
-    duration: 1.6,
-    ease: 'power1.inOut',
-    motionPath: {
-      path: [
-        { x: 0, y: 0 },
-        { x: waveX * 0.5, y: waveY * 0.4 },
-        { x: waveX, y: waveY }
-      ],
-      curviness: 1.5
-    },
-    rotation: rotate,
-    scale: 0.3,
-    opacity: 0
-  });
+    .to(astronaut, {
+      duration: 1.6,
+      ease: 'power1.inOut',
+      motionPath: {
+        path: [
+          { x: 0, y: 0 },
+          { x: waveX * 0.5, y: waveY * 0.4 },
+          { x: waveX, y: waveY }
+        ],
+        curviness: 1.5
+      },
+      rotation: rotate,
+      scale: 0.3,
+      opacity: 0
+    });
 }
 
 // === SCROLL TO SECTION ===
@@ -361,28 +361,28 @@ coreObserver.observe(core1);
 
 //2
 gsap.utils.toArray('.core-card').forEach((card, index) => {
-    gsap.fromTo(card,
-        {
-            y: index === 1 ? 20 : 60,
-            opacity: 0,
-            rotateY: 30,
-            scale: 0.8
-        },
-        {
-            scrollTrigger: {
-                trigger: card,
-                start: 'top 85%',
-                toggleActions: 'play none none reset'
-            },
-            y: 0,
-            opacity: 1,
-            rotateY: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: 'power3.out',
-            delay: index * 0.1
-        }
-    );
+  gsap.fromTo(card,
+    {
+      y: index === 1 ? 20 : 60,
+      opacity: 0,
+      rotateY: 30,
+      scale: 0.8
+    },
+    {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 85%',
+        toggleActions: 'play none none reset'
+      },
+      y: 0,
+      opacity: 1,
+      rotateY: 0,
+      scale: 1,
+      duration: 1.2,
+      ease: 'power3.out',
+      delay: index * 0.1
+    }
+  );
 });
 
 ScrollTrigger.create({
@@ -409,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("Script loaded!");
 
   document.querySelectorAll('.project-link-area').forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
       console.log("Link clicked:", this);
 
       if (this.dataset.status === 'under-construction') {
@@ -639,6 +639,67 @@ document.addEventListener("DOMContentLoaded", function () {
 //  --- THE SERVICES ---
 document.addEventListener("DOMContentLoaded", function () {
   const spaceBg = document.getElementById("spaceBg");
+  document.addEventListener("DOMContentLoaded", () => {
+  // Select the services section and swirl container
+  const servicesSection = document.getElementById('services'); // Replace with your actual section ID
+  const swirlContainer = document.getElementById('swirl-container');
+  const swirlCount = 15;
+
+  // Dynamically position swirl container within the top half of the services section
+  const servicesHeight = servicesSection.offsetHeight;
+  const topHalfHeight = servicesHeight / 2;
+
+  swirlContainer.style.top = `0`; // Keep it in the top half
+  swirlContainer.style.height = `${topHalfHeight}px`; // Limit the container height to the top half of the services section
+
+  // Create and animate the swirls
+  for (let i = 0; i < swirlCount; i++) {
+    const swirl = document.createElement('div');
+    swirl.classList.add('swirl');
+
+    // Random size for each swirl
+    const size = 50 + (i * 20);
+    swirl.style.width = `${size}px`;
+    swirl.style.height = `${size}px`;
+
+    // Position the swirl within the top half of the services section
+    const positionTop = Math.random() * topHalfHeight;
+    swirl.style.top = `${positionTop}px`;
+
+    swirl.style.left = `${-size / 4 + Math.random() * 30}px`;
+
+    // Random opacity and animation
+    swirl.style.opacity = 0.1 + (Math.random() * 0.3);
+
+    swirlContainer.appendChild(swirl);
+
+    // Animate each swirl with GSAP
+    gsap.to(swirl, {
+      rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
+      duration: 15 + (Math.random() * 20),
+      repeat: -1,
+      ease: "none"
+    });
+
+    // Pulse animation for swirl
+    gsap.to(swirl, {
+      scale: 1 + (Math.random() * 0.3),
+      opacity: 0.05 + (Math.random() * 0.2),
+      duration: 2 + (Math.random() * 3),
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+  }
+
+  // Handle resize if needed
+  window.addEventListener('resize', () => {
+    const servicesHeight = servicesSection.offsetHeight;
+    const topHalfHeight = servicesHeight / 2;
+    swirlContainer.style.height = `${topHalfHeight}px`;
+  });
+});
+
 
   // Create stars
   for (let i = 0; i < 200; i++) {
@@ -771,124 +832,126 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //  --- CONNECT ---
 
-document.addEventListener('DOMContentLoaded', function() {    
-    // Create swirling effect
-    const swirlContainer = document.getElementById('swirl-container');
-    const swirlCount = 15;
-    
-    for (let i = 0; i < swirlCount; i++) {
-        const swirl = document.createElement('div');
-        swirl.classList.add('swirl');
-        
-        // Size increases with index
-        const size = 50 + (i * 20);
-        swirl.style.width = `${size}px`;
-        swirl.style.height = `${size}px`;
-        
-        // Position near the left side
-        swirl.style.left = `${-size/4 + Math.random() * 30}px`;
-        swirl.style.top = `${(100 - size/3)/2 + (Math.random() * 50 - 25)}%`;
-        
-        // Random opacity
-        swirl.style.opacity = 0.1 + (Math.random() * 0.3);
-        
-        swirlContainer.appendChild(swirl);
-        
-        // Animate each swirl with GSAP
-        gsap.to(swirl, {
-            rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
-            duration: 15 + (Math.random() * 20),
-            repeat: -1,
-            ease: "none"
-        });
-        
-        // Pulse animation
-        gsap.to(swirl, {
-            scale: 1 + (Math.random() * 0.3),
-            opacity: 0.05 + (Math.random() * 0.2),
-            duration: 2 + (Math.random() * 3),
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-    }
-    
-    // Create animated background with GSAP
-    const background = document.getElementById('connect-background');
-    
-    // Create SVG for background
-    const svgNS = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(svgNS, "svg");
-    svg.setAttribute("width", "100%");
-    svg.setAttribute("height", "100%");
-    background.appendChild(svg);
-    
-    // Create gradient
-    const defs = document.createElementNS(svgNS, "defs");
-    svg.appendChild(defs);
-    
-    const gradient = document.createElementNS(svgNS, "linearGradient");
-    gradient.setAttribute("id", "grad1");
-    gradient.setAttribute("x1", "0%");
-    gradient.setAttribute("y1", "0%");
-    gradient.setAttribute("x2", "100%");
-    gradient.setAttribute("y2", "100%");
-    defs.appendChild(gradient);
-    
-    const stop1 = document.createElementNS(svgNS, "stop");
-    stop1.setAttribute("offset", "0%");
-    stop1.setAttribute("stop-color", "rgba(27, 4, 44, 0.87)");
-    gradient.appendChild(stop1);
-    
-    const stop2 = document.createElementNS(svgNS, "stop");
-    stop2.setAttribute("offset", "100%");
-    stop2.setAttribute("stop-color", "#190339ff");
-    gradient.appendChild(stop2);
-    
-    // Create background rect
-    const rect = document.createElementNS(svgNS, "rect");
-    rect.setAttribute("width", "100%");
-    rect.setAttribute("height", "100%");
-    rect.setAttribute("fill", "url(#grad1)");
-    svg.appendChild(rect);
-    
-    // Add some additional swirl effects
-    for (let i = 0; i < 5; i++) {
-        const smallSwirl = document.createElement('div');
-        smallSwirl.classList.add('swirl');
-        
-        const size = 10 + (i * 5);
-        smallSwirl.style.width = `${size}px`;
-        smallSwirl.style.height = `${size}px`;
-        smallSwirl.style.border = '1px solid #170627d9';
-        
-        // Position randomly on the left side
-        smallSwirl.style.left = `${10 + Math.random() * 20}%`;
-        smallSwirl.style.top = `${Math.random() * 80 + 10}%`;
-        
-        swirlContainer.appendChild(smallSwirl);
-        
-        // Animate with different timing
-        gsap.to(smallSwirl, {
-            rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
-            duration: 5 + (Math.random() * 8),
-            repeat: -1,
-            ease: "none"
-        });
-        
-        // Move around slightly
-        gsap.to(smallSwirl, {
-            x: Math.random() * 30 - 15,
-            y: Math.random() * 30 - 15,
-            duration: 3 + (Math.random() * 2),
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-    }
-    
-    // Create animated particles
-    for (let i = 0; i < 50; i++) {
+document.addEventListener('DOMContentLoaded', function () {
+  // Create swirling effect
+  const swirlContainer = document.getElementById('swirl-container');
+  const swirlCount = 15;
+
+  for (let i = 0; i < swirlCount; i++) {
+    const swirl = document.createElement('div');
+    swirl.classList.add('swirl');
+
+    // Size increases with index
+    const size = 50 + (i * 20);
+    swirl.style.width = `${size}px`;
+    swirl.style.height = `${size}px`;
+
+    // Position near the left side
+    swirl.style.left = `${-size / 4 + Math.random() * 30}px`;
+    swirl.style.top = `${(100 - size / 3) / 2 + (Math.random() * 50 - 25)}%`;
+
+    // Random opacity
+    swirl.style.opacity = 0.1 + (Math.random() * 0.3);
+
+    swirlContainer.appendChild(swirl);
+
+    // Animate each swirl with GSAP
+    gsap.to(swirl, {
+      rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
+      duration: 15 + (Math.random() * 20),
+      repeat: -1,
+      ease: "none"
+    });
+
+    // Pulse animation
+    gsap.to(swirl, {
+      scale: 1 + (Math.random() * 0.3),
+      opacity: 0.05 + (Math.random() * 0.2),
+      duration: 2 + (Math.random() * 3),
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+  }
+
+  // Create animated background with GSAP
+  const background = document.getElementById('connect-background');
+
+  // Create SVG for background
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("width", "100%");
+  svg.setAttribute("height", "100%");
+  background.appendChild(svg);
+
+  // Create gradient
+  const defs = document.createElementNS(svgNS, "defs");
+  svg.appendChild(defs);
+
+  const gradient = document.createElementNS(svgNS, "linearGradient");
+  gradient.setAttribute("id", "grad1");
+  gradient.setAttribute("x1", "0%");
+  gradient.setAttribute("y1", "0%");
+  gradient.setAttribute("x2", "100%");
+  gradient.setAttribute("y2", "100%");
+  defs.appendChild(gradient);
+
+  const stop1 = document.createElementNS(svgNS, "stop");
+  stop1.setAttribute("offset", "0%");
+  stop1.setAttribute("stop-color", "rgba(27, 4, 44, 0.87)");
+  gradient.appendChild(stop1);
+
+  const stop2 = document.createElementNS(svgNS, "stop");
+  stop2.setAttribute("offset", "100%");
+  stop2.setAttribute("stop-color", "#190339ff");
+  gradient.appendChild(stop2);
+
+  // Create background rect
+  const rect = document.createElementNS(svgNS, "rect");
+  rect.setAttribute("width", "100%");
+  rect.setAttribute("height", "100%");
+  rect.setAttribute("fill", "url(#grad1)");
+  svg.appendChild(rect);
+
+  // Add some additional swirl effects
+  for (let i = 0; i < 5; i++) {
+    const smallSwirl = document.createElement('div');
+    smallSwirl.classList.add('swirl');
+
+    const size = 10 + (i * 5);
+    smallSwirl.style.width = `${size}px`;
+    smallSwirl.style.height = `${size}px`;
+    smallSwirl.style.border = '1px solid #170627d9';
+
+    // Position randomly on the left side
+    smallSwirl.style.left = `${10 + Math.random() * 20}%`;
+    smallSwirl.style.top = `${Math.random() * 80 + 10}%`;
+
+    swirlContainer.appendChild(smallSwirl);
+
+    // Animate with different timing
+    gsap.to(smallSwirl, {
+      rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
+      duration: 5 + (Math.random() * 8),
+      repeat: -1,
+      ease: "none"
+    });
+
+    // Move around slightly
+    gsap.to(smallSwirl, {
+      x: Math.random() * 30 - 15,
+      y: Math.random() * 30 - 15,
+      duration: 3 + (Math.random() * 2),
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+  }
+
+  // Create animated particles
+  
+  
+   for (let i = 0; i < 50; i++) {
         const particle = document.createElementNS(svgNS, "circle");
         const size = Math.random() * 2 + 1;
         
@@ -896,7 +959,7 @@ document.addEventListener('DOMContentLoaded', function() {
         particle.setAttribute("fill", "rgba(255, 255, 255, " + (Math.random() * 0.5) + ")");
         
         const xPos = Math.random() * 100;
-        const yPos = Math.random() * 100;
+        const yPos = Math.random() * 50;
         
         particle.setAttribute("cx", xPos + "%");
         particle.setAttribute("cy", yPos + "%");
@@ -906,8 +969,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Animate each particle
         gsap.to(particle, {
             cx: xPos + (Math.random() * 10 - 5) + "%",
-            cy: yPos + (Math.random() * 10 - 5) + "%",
-            opacity: Math.random() * 0.7 + 0.3,
+            cy: yPos + (Math.random() * 10 -5) + "%",
+            opacity: Math.random() * 0.7 + 0.3 ,
             duration: Math.random() * 5 + 3,
             repeat: -1,
             yoyo: true,
@@ -915,82 +978,82 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Animate content elements
-    // Main title animation
-    gsap.to("#connect-title", {
-        opacity: 1,
-        duration: 1,
-        delay: 0.5
+  // Animate content elements
+  // Main title animation
+  gsap.to("#connect-title", {
+    opacity: 1,
+    duration: 1,
+    delay: 0.5
+  });
+
+  // Social icons animation
+  gsap.to(".social-icon", {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    stagger: 0.2,
+    delay: 1
+  });
+
+  // Message box animation
+  gsap.to("#message-box", {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: 2
+  });
+
+  // Footer text animation
+  gsap.to("#footer-text", {
+    opacity: 1,
+    duration: 1,
+    delay: 2.5
+  });
+
+  // Unified message sending logic
+  function sendMessage() {
+    const email = 'paradoxicalparadox.v01@gmail.com';
+    const input = document.getElementById('message-input');
+    const message = input.value.trim();
+    const body = encodeURIComponent(message);
+
+    // Gmail compose URL
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=${body}`;
+    window.open(gmailUrl, '_blank');
+
+    // Clear input
+    input.value = '';
+
+    // Flash effect on button to confirm sending
+    gsap.to('#send-button', {
+      backgroundColor: 'rgba(138, 43, 226, 0.9)',
+      duration: 0.3,
+      yoyo: true,
+      repeat: 1
     });
-    
-    // Social icons animation
-    gsap.to(".social-icon", {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        delay: 1
-    });
-    
-    // Message box animation
-    gsap.to("#message-box", {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 2
-    });
-    
-    // Footer text animation
-    gsap.to("#footer-text", {
-        opacity: 1,
-        duration: 1,
-        delay: 2.5
-    });
-    
-    // Unified message sending logic
-    function sendMessage() {
-      const email = 'paradoxicalparadox.v01@gmail.com';
-      const input = document.getElementById('message-input');
-      const message = input.value.trim();
-      const body = encodeURIComponent(message);
 
-      // Gmail compose URL
-      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=${body}`;
-      window.open(gmailUrl, '_blank');
+    // Temporarily change button text
+    const sendBtn = document.getElementById('send-button');
+    const originalText = 'Send Message';
+    sendBtn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
 
-      // Clear input
-      input.value = '';
+    setTimeout(() => {
+      sendBtn.innerHTML = originalText + ' <i class="fas fa-paper-plane"></i>';
+    }, 2000);
+  }
 
-      // Flash effect on button to confirm sending
-      gsap.to('#send-button', {
-        backgroundColor: 'rgba(138, 43, 226, 0.9)',
-        duration: 0.3,
-        yoyo: true,
-        repeat: 1
-      });
+  // Handle button click
+  document.getElementById('send-button').addEventListener('click', sendMessage);
 
-      // Temporarily change button text
-      const sendBtn = document.getElementById('send-button');
-      const originalText = 'Send Message';
-      sendBtn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
-
-      setTimeout(() => {
-        sendBtn.innerHTML = originalText + ' <i class="fas fa-paper-plane"></i>';
-      }, 2000);
+  // Handle Enter key
+  document.getElementById('message-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
     }
+  });
 
-    // Handle button click
-    document.getElementById('send-button').addEventListener('click', sendMessage);
-
-    // Handle Enter key
-    document.getElementById('message-input').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        // You could add responsive adjustments here if needed
-    });
+  // Handle window resize
+  window.addEventListener('resize', function () {
+    // You could add responsive adjustments here if needed
+  });
 });
