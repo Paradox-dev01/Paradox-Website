@@ -47,16 +47,14 @@ document.addEventListener("mouseup", () => {
 });
 
 // Hovering clickable items
-document
-  .querySelectorAll("a, button, .enter-button, .nav-arrow")
-  .forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      cursor.classList.add("hover");
-    });
-    el.addEventListener("mouseleave", () => {
-      cursor.classList.remove("hover");
-    });
+document.querySelectorAll('.logo, a, button, .enter-button, .nav-arrow, #astronaut').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.classList.add('hover');
   });
+  el.addEventListener("mouseleave", () => {
+    cursor.classList.remove("hover");
+  });
+});
 
 // Scroll Animation Observer
 // const sections = document.querySelectorAll('.section');
@@ -123,7 +121,7 @@ const ctx = canvas.getContext("2d");
 let width, height, points;
 
 const POINT_COUNT = 150;
-const MAX_DISTANCE = 120;
+const MAX_DISTANCE = 100;
 
 // Initialize canvas size
 function resize() {
@@ -172,7 +170,7 @@ function distance(p1, p2) {
 // The "disruption" effect variables
 let disruptX = null;
 let disruptY = null;
-const DISRUPT_RADIUS = 170;
+const DISRUPT_RADIUS = 160;
 
 // Initialize points
 function initPoints() {
