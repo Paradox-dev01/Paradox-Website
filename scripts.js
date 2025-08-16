@@ -47,14 +47,16 @@ document.addEventListener("mouseup", () => {
 });
 
 // Hovering clickable items
-document.querySelectorAll('a, button, .enter-button, .nav-arrow').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('hover');
+document
+  .querySelectorAll("a, button, .enter-button, .nav-arrow")
+  .forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("hover");
+    });
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("hover");
+    });
   });
-  el.addEventListener('mouseleave', () => {
-    cursor.classList.remove('hover');
-  });
-});
 
 // Scroll Animation Observer
 // const sections = document.querySelectorAll('.section');
@@ -72,7 +74,6 @@ document.querySelectorAll('a, button, .enter-button, .nav-arrow').forEach(el => 
 
 // sections.forEach(section => observer.observe(section));
 
-
 // Scroll Progress Bar
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
@@ -84,7 +85,7 @@ window.addEventListener("scroll", () => {
 });
 
 // Navigation Arrow Scroll
-const sections = document.querySelectorAll('.section');
+const sections = document.querySelectorAll(".section");
 function scrollToNextSection() {
   const visibleSections = Array.from(sections).filter(
     (section) => section.getBoundingClientRect().top >= 0
@@ -92,9 +93,9 @@ function scrollToNextSection() {
   const next = visibleSections[0] || sections[0];
   next.scrollIntoView({ behavior: "smooth" });
 }
-const navArrow = document.querySelector('.nav-arrow');
-const landingSection = document.getElementById('landing');
-const connectSection = document.getElementById('connect');
+const navArrow = document.querySelector(".nav-arrow");
+const landingSection = document.getElementById("landing");
+const connectSection = document.getElementById("connect");
 
 function checkNavArrowVisibility() {
   const landingRect = landingSection.getBoundingClientRect();
@@ -104,24 +105,20 @@ function checkNavArrowVisibility() {
     (landingRect.top <= window.innerHeight && landingRect.bottom >= 0) ||
     (connectRect.top <= window.innerHeight && connectRect.bottom >= 0)
   ) {
-    navArrow.style.display = 'none';
+    navArrow.style.display = "none";
   } else {
-    navArrow.style.display = 'block';
+    navArrow.style.display = "block";
   }
 }
 
-window.addEventListener('scroll', checkNavArrowVisibility);
-window.addEventListener('load', checkNavArrowVisibility);
-
-
-
+window.addEventListener("scroll", checkNavArrowVisibility);
+window.addEventListener("load", checkNavArrowVisibility);
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(MotionPathPlugin);
 
-
-const canvas = document.getElementById('sci-fi-bg');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("sci-fi-bg");
+const ctx = canvas.getContext("2d");
 
 let width, height, points;
 
@@ -137,7 +134,7 @@ function resize() {
   ctx.scale(devicePixelRatio, devicePixelRatio);
 }
 resize();
-window.addEventListener('resize', resize);
+window.addEventListener("resize", resize);
 
 // Point class for each moving dot
 class Point {
@@ -160,8 +157,8 @@ class Point {
 
   draw() {
     ctx.beginPath();
-    ctx.fillStyle = 'rgba(0, 255, 255, 0.7)';
-    ctx.shadowColor = '#0ff';
+    ctx.fillStyle = "rgba(0, 255, 255, 0.7)";
+    ctx.shadowColor = "#0ff";
     ctx.shadowBlur = 6;
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fill();
@@ -191,7 +188,7 @@ gsap.ticker.add(() => {
   ctx.clearRect(0, 0, width, height);
 
   // Update and draw points
-  points.forEach(p => p.update());
+  points.forEach((p) => p.update());
 
   // Draw lines between close points
   for (let i = 0; i < POINT_COUNT; i++) {
@@ -229,64 +226,62 @@ gsap.ticker.add(() => {
   }
 
   // Draw points on top
-  points.forEach(p => p.draw());
+  points.forEach((p) => p.draw());
 });
 
-const landingCore = document.querySelector('.landing-core');
+const landingCore = document.querySelector(".landing-core");
 
-landingCore.addEventListener('mousemove', (e) => {
+landingCore.addEventListener("mousemove", (e) => {
   const rect = landingCore.getBoundingClientRect();
   disruptX = e.clientX - rect.left;
   disruptY = e.clientY - rect.top;
 });
 
-landingCore.addEventListener('mouseleave', () => {
+landingCore.addEventListener("mouseleave", () => {
   disruptX = null;
   disruptY = null;
 });
 
-
-
-
 //  --- LANDING PAGE ---
 
 // === SELECT DOM ELEMENTS ===
-const bgBottom = document.querySelector('.bg-bottom');
-const astronaut = document.getElementById('astronaut');
+const bgBottom = document.querySelector(".bg-bottom");
+const astronaut = document.getElementById("astronaut");
 // const landingSection = document.getElementById('landing');
-const landingBg = document.getElementById('landing-background');
+const landingBg = document.getElementById("landing-background");
 // const navArrow = document.querySelector('.nav-arrow');
 
 // === FLY-AWAY ANIMATION TRIGGER ===
 function triggerFlyAwayAndScroll() {
-  astronaut.style.pointerEvents = 'none';
+  astronaut.style.pointerEvents = "none";
 
   const waveX = gsap.utils.random(-300, 300);
   const waveY = gsap.utils.random(-400, -700);
   const rotate = gsap.utils.random(-200, 200);
 
   // Create a floaty motion path
-  gsap.timeline({
-    onComplete: () => {
-      scrollToSection('core1');
-      gsap.set(astronaut, { clearProps: 'all' });
-      astronaut.style.pointerEvents = 'auto';
-    }
-  })
+  gsap
+    .timeline({
+      onComplete: () => {
+        scrollToSection("core1");
+        gsap.set(astronaut, { clearProps: "all" });
+        astronaut.style.pointerEvents = "auto";
+      },
+    })
     .to(astronaut, {
       duration: 1.6,
-      ease: 'power1.inOut',
+      ease: "power1.inOut",
       motionPath: {
         path: [
           { x: 0, y: 0 },
           { x: waveX * 0.5, y: waveY * 0.4 },
-          { x: waveX, y: waveY }
+          { x: waveX, y: waveY },
         ],
-        curviness: 1.5
+        curviness: 1.5,
       },
       rotation: rotate,
       scale: 0.3,
-      opacity: 0
+      opacity: 0,
     });
 }
 
@@ -297,12 +292,12 @@ function scrollToSection(id) {
 
 // === CLICK TO TRIGGER FLY-AWAY ===
 const landingClickableItems = [
-  ...document.querySelectorAll('#landing button'),
-  ...document.querySelectorAll('#landing .scroll-down-arrow')
+  ...document.querySelectorAll("#landing button"),
+  ...document.querySelectorAll("#landing .scroll-down-arrow"),
 ];
 
 // Astronaut click: fly away AND scroll to core1
-astronaut?.addEventListener('click', triggerFlyAwayAndScroll);
+astronaut?.addEventListener("click", triggerFlyAwayAndScroll);
 
 // Other items trigger fly-away
 // landingClickableItems.forEach(item => {
@@ -310,12 +305,13 @@ astronaut?.addEventListener('click', triggerFlyAwayAndScroll);
 // });
 
 // === SCROLL EVENTS ===
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const rect = landingSection.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
   // SCROLL PROGRESS (0 = fully visible, 1 = fully out of view)
-  const scrollProgress = 1 - Math.max(0, Math.min(1, rect.bottom / windowHeight));
+  const scrollProgress =
+    1 - Math.max(0, Math.min(1, rect.bottom / windowHeight));
 
   // Move bg-bottom (e.g., trapezium effect)
   if (bgBottom) {
@@ -330,66 +326,69 @@ window.addEventListener('scroll', () => {
 
   // Trigger astronaut fly-away after slight scroll
   if (scrollProgress > 0.1) {
-    astronaut.classList.add('fly-away');
+    astronaut.classList.add("fly-away");
   } else {
     astronaut.classList.remove("fly-away");
   }
 });
 
 // Show nav arrow only after scrolling 60%
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const pct = window.scrollY / window.innerHeight;
-  navArrow.classList.toggle('visible', pct > 0.6);
+  navArrow.classList.toggle("visible", pct > 0.6);
 });
-
 
 //  --- CORE ---
 
 //1
-const core1 = document.getElementById('core1');
-const coreObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      core1.classList.add('fade-in');
-      // optional: remove after first load
-      // coreObserver.unobserve(core1); 
-    }
-  });
-}, { threshold: 0.3 });
+const core1 = document.getElementById("core1");
+const coreObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        core1.classList.add("fade-in");
+        // optional: remove after first load
+        // coreObserver.unobserve(core1);
+      }
+    });
+  },
+  { threshold: 0.3 }
+);
 
 coreObserver.observe(core1);
 
 //2
-gsap.utils.toArray('.core-card').forEach((card, index) => {
-  gsap.fromTo(card,
+gsap.utils.toArray(".core-card").forEach((card, index) => {
+  gsap.fromTo(
+    card,
     {
       y: index === 1 ? 20 : 60,
       opacity: 0,
       rotateY: 30,
-      scale: 0.8
+      scale: 0.8,
     },
     {
       scrollTrigger: {
         trigger: card,
-        start: 'top 85%',
-        toggleActions: 'play none none reset'
+        start: "top 85%",
+        toggleActions: "play none none reset",
       },
       y: 0,
       opacity: 1,
       rotateY: 0,
       scale: 1,
       duration: 1.2,
-      ease: 'power3.out',
-      delay: index * 0.1
+      ease: "power3.out",
+      delay: index * 0.1,
     }
   );
 });
 
 ScrollTrigger.create({
-  trigger: '#core2',
-  start: 'bottom bottom',
-  end: 'bottom top',
-  toggleClass: { targets: '.card-inner', className: 'flipped' },
+  trigger: "#core2",
+  start: "bottom bottom",
+  end: "bottom top",
+  toggleClass: { targets: ".card-inner", className: "flipped" },
   scrub: true,
 });
 
@@ -402,19 +401,19 @@ ScrollTrigger.create({
     document.querySelector("#core2").classList.remove("blurred"),
 });
 
-
-
 //  --- THE LABS ---
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Script loaded!");
 
-  document.querySelectorAll('.project-link-area').forEach(link => {
-    link.addEventListener('click', function (e) {
+  document.querySelectorAll(".project-link-area").forEach((link) => {
+    link.addEventListener("click", function (e) {
       console.log("Link clicked:", this);
 
-      if (this.dataset.status === 'under-construction') {
+      if (this.dataset.status === "under-construction") {
         e.preventDefault();
-        alert("🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive, which is already available.");
+        alert(
+          "🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive, which is already available."
+        );
       }
     });
   });
@@ -533,6 +532,22 @@ document.addEventListener("DOMContentLoaded", function () {
     galaxyGrid.appendChild(star);
   }
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".autoShow");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+  });
+
   // Animation for elements - now with bounce effect
   // gsap.from(".robot-image", {
   //   duration: 1.5,
@@ -582,7 +597,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //   });
   // }
 });
-
 
 // --- ASTRO DRIVE
 document.addEventListener("DOMContentLoaded", function () {
@@ -635,71 +649,69 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 //  --- THE SERVICES ---
 document.addEventListener("DOMContentLoaded", function () {
   const spaceBg = document.getElementById("spaceBg");
   document.addEventListener("DOMContentLoaded", () => {
-  // Select the services section and swirl container
-  const servicesSection = document.getElementById('services'); // Replace with your actual section ID
-  const swirlContainer = document.getElementById('swirl-container');
-  const swirlCount = 15;
+    // Select the services section and swirl container
+    const servicesSection = document.getElementById("services"); // Replace with your actual section ID
+    const swirlContainer = document.getElementById("swirl-container");
+    const swirlCount = 15;
 
-  // Dynamically position swirl container within the top half of the services section
-  const servicesHeight = servicesSection.offsetHeight;
-  const topHalfHeight = servicesHeight / 2;
-
-  swirlContainer.style.top = `0`; // Keep it in the top half
-  swirlContainer.style.height = `${topHalfHeight}px`; // Limit the container height to the top half of the services section
-
-  // Create and animate the swirls
-  for (let i = 0; i < swirlCount; i++) {
-    const swirl = document.createElement('div');
-    swirl.classList.add('swirl');
-
-    // Random size for each swirl
-    const size = 50 + (i * 20);
-    swirl.style.width = `${size}px`;
-    swirl.style.height = `${size}px`;
-
-    // Position the swirl within the top half of the services section
-    const positionTop = Math.random() * topHalfHeight;
-    swirl.style.top = `${positionTop}px`;
-
-    swirl.style.left = `${-size / 4 + Math.random() * 30}px`;
-
-    // Random opacity and animation
-    swirl.style.opacity = 0.1 + (Math.random() * 0.3);
-
-    swirlContainer.appendChild(swirl);
-
-    // Animate each swirl with GSAP
-    gsap.to(swirl, {
-      rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
-      duration: 15 + (Math.random() * 20),
-      repeat: -1,
-      ease: "none"
-    });
-
-    // Pulse animation for swirl
-    gsap.to(swirl, {
-      scale: 1 + (Math.random() * 0.3),
-      opacity: 0.05 + (Math.random() * 0.2),
-      duration: 2 + (Math.random() * 3),
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
-  }
-
-  // Handle resize if needed
-  window.addEventListener('resize', () => {
+    // Dynamically position swirl container within the top half of the services section
     const servicesHeight = servicesSection.offsetHeight;
     const topHalfHeight = servicesHeight / 2;
-    swirlContainer.style.height = `${topHalfHeight}px`;
-  });
-});
 
+    swirlContainer.style.top = `0`; // Keep it in the top half
+    swirlContainer.style.height = `${topHalfHeight}px`; // Limit the container height to the top half of the services section
+
+    // Create and animate the swirls
+    for (let i = 0; i < swirlCount; i++) {
+      const swirl = document.createElement("div");
+      swirl.classList.add("swirl");
+
+      // Random size for each swirl
+      const size = 50 + i * 20;
+      swirl.style.width = `${size}px`;
+      swirl.style.height = `${size}px`;
+
+      // Position the swirl within the top half of the services section
+      const positionTop = Math.random() * topHalfHeight;
+      swirl.style.top = `${positionTop}px`;
+
+      swirl.style.left = `${-size / 4 + Math.random() * 30}px`;
+
+      // Random opacity and animation
+      swirl.style.opacity = 0.1 + Math.random() * 0.3;
+
+      swirlContainer.appendChild(swirl);
+
+      // Animate each swirl with GSAP
+      gsap.to(swirl, {
+        rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
+        duration: 15 + Math.random() * 20,
+        repeat: -1,
+        ease: "none",
+      });
+
+      // Pulse animation for swirl
+      gsap.to(swirl, {
+        scale: 1 + Math.random() * 0.3,
+        opacity: 0.05 + Math.random() * 0.2,
+        duration: 2 + Math.random() * 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }
+
+    // Handle resize if needed
+    window.addEventListener("resize", () => {
+      const servicesHeight = servicesSection.offsetHeight;
+      const topHalfHeight = servicesHeight / 2;
+      swirlContainer.style.height = `${topHalfHeight}px`;
+    });
+  });
 
   // Create stars
   for (let i = 0; i < 200; i++) {
@@ -829,20 +841,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 //  --- CONNECT ---
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   // Create swirling effect
-  const swirlContainer = document.getElementById('swirl-container');
+  const swirlContainer = document.getElementById("swirl-container");
   const swirlCount = 15;
 
   for (let i = 0; i < swirlCount; i++) {
-    const swirl = document.createElement('div');
-    swirl.classList.add('swirl');
+    const swirl = document.createElement("div");
+    swirl.classList.add("swirl");
 
     // Size increases with index
-    const size = 50 + (i * 20);
+    const size = 50 + i * 20;
     swirl.style.width = `${size}px`;
     swirl.style.height = `${size}px`;
 
@@ -851,31 +862,31 @@ document.addEventListener('DOMContentLoaded', function () {
     swirl.style.top = `${(100 - size / 3) / 2 + (Math.random() * 50 - 25)}%`;
 
     // Random opacity
-    swirl.style.opacity = 0.1 + (Math.random() * 0.3);
+    swirl.style.opacity = 0.1 + Math.random() * 0.3;
 
     swirlContainer.appendChild(swirl);
 
     // Animate each swirl with GSAP
     gsap.to(swirl, {
       rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
-      duration: 15 + (Math.random() * 20),
+      duration: 15 + Math.random() * 20,
       repeat: -1,
-      ease: "none"
+      ease: "none",
     });
 
     // Pulse animation
     gsap.to(swirl, {
-      scale: 1 + (Math.random() * 0.3),
-      opacity: 0.05 + (Math.random() * 0.2),
-      duration: 2 + (Math.random() * 3),
+      scale: 1 + Math.random() * 0.3,
+      opacity: 0.05 + Math.random() * 0.2,
+      duration: 2 + Math.random() * 3,
       repeat: -1,
       yoyo: true,
-      ease: "sine.inOut"
+      ease: "sine.inOut",
     });
   }
 
   // Create animated background with GSAP
-  const background = document.getElementById('connect-background');
+  const background = document.getElementById("connect-background");
 
   // Create SVG for background
   const svgNS = "http://www.w3.org/2000/svg";
@@ -915,13 +926,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Add some additional swirl effects
   for (let i = 0; i < 5; i++) {
-    const smallSwirl = document.createElement('div');
-    smallSwirl.classList.add('swirl');
+    const smallSwirl = document.createElement("div");
+    smallSwirl.classList.add("swirl");
 
-    const size = 10 + (i * 5);
+    const size = 10 + i * 5;
     smallSwirl.style.width = `${size}px`;
     smallSwirl.style.height = `${size}px`;
-    smallSwirl.style.border = '1px solid #170627d9';
+    smallSwirl.style.border = "1px solid #170627d9";
 
     // Position randomly on the left side
     smallSwirl.style.left = `${10 + Math.random() * 20}%`;
@@ -932,58 +943,60 @@ document.addEventListener('DOMContentLoaded', function () {
     // Animate with different timing
     gsap.to(smallSwirl, {
       rotation: 360 * (Math.random() > 0.5 ? 1 : -1),
-      duration: 5 + (Math.random() * 8),
+      duration: 5 + Math.random() * 8,
       repeat: -1,
-      ease: "none"
+      ease: "none",
     });
 
     // Move around slightly
     gsap.to(smallSwirl, {
       x: Math.random() * 30 - 15,
       y: Math.random() * 30 - 15,
-      duration: 3 + (Math.random() * 2),
+      duration: 3 + Math.random() * 2,
       repeat: -1,
       yoyo: true,
-      ease: "sine.inOut"
+      ease: "sine.inOut",
     });
   }
 
   // Create animated particles
-  
-  
-   for (let i = 0; i < 50; i++) {
-        const particle = document.createElementNS(svgNS, "circle");
-        const size = Math.random() * 2 + 1;
-        
-        particle.setAttribute("r", size);
-        particle.setAttribute("fill", "rgba(255, 255, 255, " + (Math.random() * 0.5) + ")");
-        
-        const xPos = Math.random() * 100;
-        const yPos = Math.random() * 50;
-        
-        particle.setAttribute("cx", xPos + "%");
-        particle.setAttribute("cy", yPos + "%");
-        
-        svg.appendChild(particle);
-        
-        // Animate each particle
-        gsap.to(particle, {
-            cx: xPos + (Math.random() * 10 - 5) + "%",
-            cy: yPos + (Math.random() * 10 -5) + "%",
-            opacity: Math.random() * 0.7 + 0.3 ,
-            duration: Math.random() * 5 + 3,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-    }
+
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElementNS(svgNS, "circle");
+    const size = Math.random() * 2 + 1;
+
+    particle.setAttribute("r", size);
+    particle.setAttribute(
+      "fill",
+      "rgba(255, 255, 255, " + Math.random() * 0.5 + ")"
+    );
+
+    const xPos = Math.random() * 100;
+    const yPos = Math.random() * 50;
+
+    particle.setAttribute("cx", xPos + "%");
+    particle.setAttribute("cy", yPos + "%");
+
+    svg.appendChild(particle);
+
+    // Animate each particle
+    gsap.to(particle, {
+      cx: xPos + (Math.random() * 10 - 5) + "%",
+      cy: yPos + (Math.random() * 10 - 5) + "%",
+      opacity: Math.random() * 0.7 + 0.3,
+      duration: Math.random() * 5 + 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  }
 
   // Animate content elements
   // Main title animation
   gsap.to("#connect-title", {
     opacity: 1,
     duration: 1,
-    delay: 0.5
+    delay: 0.5,
   });
 
   // Social icons animation
@@ -992,7 +1005,7 @@ document.addEventListener('DOMContentLoaded', function () {
     y: 0,
     duration: 0.8,
     stagger: 0.2,
-    delay: 1
+    delay: 1,
   });
 
   // Message box animation
@@ -1000,41 +1013,41 @@ document.addEventListener('DOMContentLoaded', function () {
     opacity: 1,
     y: 0,
     duration: 0.8,
-    delay: 2
+    delay: 2,
   });
 
   // Footer text animation
   gsap.to("#footer-text", {
     opacity: 1,
     duration: 1,
-    delay: 2.5
+    delay: 2.5,
   });
 
   // Unified message sending logic
   function sendMessage() {
-    const email = 'paradoxicalparadox.v01@gmail.com';
-    const input = document.getElementById('message-input');
+    const email = "paradoxicalparadox.v01@gmail.com";
+    const input = document.getElementById("message-input");
     const message = input.value.trim();
     const body = encodeURIComponent(message);
 
     // Gmail compose URL
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&body=${body}`;
-    window.open(gmailUrl, '_blank');
+    window.open(gmailUrl, "_blank");
 
     // Clear input
-    input.value = '';
+    input.value = "";
 
     // Flash effect on button to confirm sending
-    gsap.to('#send-button', {
-      backgroundColor: 'rgba(138, 43, 226, 0.9)',
+    gsap.to("#send-button", {
+      backgroundColor: "rgba(138, 43, 226, 0.9)",
       duration: 0.3,
       yoyo: true,
-      repeat: 1
+      repeat: 1,
     });
 
     // Temporarily change button text
-    const sendBtn = document.getElementById('send-button');
-    const originalText = 'Send Message';
+    const sendBtn = document.getElementById("send-button");
+    const originalText = "Send Message";
     sendBtn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
 
     setTimeout(() => {
@@ -1043,17 +1056,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Handle button click
-  document.getElementById('send-button').addEventListener('click', sendMessage);
+  document.getElementById("send-button").addEventListener("click", sendMessage);
 
   // Handle Enter key
-  document.getElementById('message-input').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
+  document.getElementById("message-input").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
       sendMessage();
     }
   });
 
   // Handle window resize
-  window.addEventListener('resize', function () {
+  window.addEventListener("resize", function () {
     // You could add responsive adjustments here if needed
   });
 });

@@ -25,6 +25,10 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
   </noscript>
+  <!-- Font awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/solid.min.css"
+    integrity="sha512-SRwBRtvmT+LZLST1GBrRec8GROqtjKU1NK23RKSpdL6IRzn2xPeOfBYSeIlc/9iXYagKB5IX6MyKZF1nq4a1fw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -231,11 +235,12 @@
       <div class="galaxy-grid"></div>
 
       <div class="diary-left">
-        <div class="diary-title-wrapper">
+        <div class="diary-title-wrapper autoShow">
           <div class="dev-word">Dev</div>
           <div class="diary-word">Diary</div>
         </div>
       </div>
+
 
       <div class="diary-right">
         <div class="log-container">
@@ -282,8 +287,10 @@
 
       <div class="services-container">
         <div class="service-card">
-          <div class="service-icon">🖥️</div>
+          <!-- Web Design icon -->
           <div class="service-title">
+            <img src="assets/web.svg" alt="Web SVG" width="64" height="64">
+
             <h2>Web Design</h2>
           </div>
           <p class="service-description">
@@ -293,8 +300,10 @@
         </div>
 
         <div class="service-card">
-          <div class="service-icon">📱</div>
+          <!-- Mobile App Development icon -->
           <div class="service-title">
+            <img src="assets/app.svg" alt="App Development" width="64" height="64">
+
             <h2>Mobile App Development</h2>
           </div>
           <p class="service-description">
@@ -304,8 +313,10 @@
         </div>
 
         <div class="service-card">
-          <div class="service-icon">🎨</div>
+          <!-- UI/UX Design icon -->
           <div class="service-title">
+            <img src="assets/ui-ux.svg" alt="UI/UX SVG" width="64" height="64">
+
             <h2>UI/UX Design</h2>
           </div>
           <p class="service-description">
@@ -315,8 +326,10 @@
         </div>
 
         <div class="service-card">
-          <div class="service-icon">🎮</div>
+          <!-- Game Development icon -->
           <div class="service-title">
+            <img src="assets/gameped.svg" alt="Gamepad Gamer" width="64" height="64">
+
             <h2>Game Development</h2>
           </div>
           <p class="service-description">
@@ -326,10 +339,9 @@
         </div>
       </div>
 
-      <a href="#contact" class="contact-btn">Contact With Us</a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=paradoxicalparadox.v01@gmail.com" target="_blank"
+        class="contact-btn"> Contact With Us </a>
     </section>
-
-
     <!-- Connect -->
     <section id="connect" class="section">
       <div class="connect-container">
@@ -373,30 +385,48 @@
                 <!-- <div class="icon-name">Facebook</div> -->
               </a>
             </div>
-
             <div class="message-box" id="message-box">
-              <!-- <form action="https://formsubmit.co/paradoxicalparadox.v01@gmail.com" method="POST"></form>
-              <intput type="text" name="name" placeholer="Name"></intput>
+              <form id="contactForm" action="https://formsubmit.co/73dd08df673f636e31d600d8f854d182" method="POST">
+
+                <input type="email" class="message-input" name="email" placeholder="Your Email" required>
+
+                <input type="text" class="message-input" name="message" placeholder="Send us your thoughts!" required>
+
+                <button type="submit" class="send-button" id="send-button">
+                  Send Message <i class="fas fa-paper-plane"></i>
+                </button>
+
+              </form>
+            </div>
+
+            <script>
+              const form = document.getElementById("contactForm");
+
+              form.addEventListener("submit", function (e) {
+                const emailField = form.querySelector("input[name='email']");
+                if (!emailField.value) {
+                  e.preventDefault(); // সাবমিট বন্ধ
+                  alert("Please enter your email address"); // warning দেখাবে
+                }
+              });
+            </script>
+
+            <!-- <intput type="text" name="name" placeholer="Name"></intput>
 
               <intput type="email" name="email" placeholer="Email"></intput>
               <intput type="text" name="Subject" placeholer="Subject"></intput>
               <textarea name="msg" required placeholder="Send us your thoughts!"> </textarea>
               <button type="submit">Submit</button> -->
-               <input type="text" class="message-input" placeholder="Send us your thoughts!" id="message-input">
-                        <button class="send-button" id="send-button">
-                            Send Message <i class="fas fa-paper-plane"></i>
-                        </button> 
+
+            <div class="footer-text" id="footer-text">
+              <p>
+                Copyright © 2025 Paradox Inc. All rights reserved.<br>
+                <a href="terms.html" target="_blank">Terms and Conditions</a>
+
+              </p>
             </div>
           </div>
-
-          <div class="footer-text" id="footer-text">
-            <p>
-              Paradox Software Initiative<br>
-              Focused on bringing digital art and creative experiences.
-            </p>
-          </div>
         </div>
-      </div>
     </section>
 
   </main>

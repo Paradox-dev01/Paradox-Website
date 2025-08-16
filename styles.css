@@ -26,7 +26,8 @@ h1 {
 }
 
 h2 {
-  font-family: "Chakra Petch", "Inter", "Space Mono", "Share Tech Mono", monospace;
+  font-family: "Chakra Petch", "Inter", "Space Mono", "Share Tech Mono",
+    monospace;
   font-size: clamp(1.25rem, 3vw, 2.5rem);
   text-align: center;
   letter-spacing: 0.3rem;
@@ -189,12 +190,12 @@ button {
 
 .nav-arrow:hover {
   filter: drop-shadow(0 0 10px #00bfff);
-  text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff, 0 0 40px #00bfff;
+  text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff,
+    0 0 40px #00bfff;
 }
 
 /* Bounce Animation */
 @keyframes bounceNav {
-
   0%,
   100% {
     transform: translateY(0);
@@ -356,7 +357,7 @@ button {
 
 .intro h1 {
   margin: 0;
-  background: linear-gradient(45deg, #FF0090, #d778f7, #8db5f6);
+  background: linear-gradient(45deg, #ff0090, #d778f7, #8db5f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -391,7 +392,6 @@ button {
 }
 
 @keyframes jump {
-
   0%,
   100% {
     transform: translateY(0);
@@ -686,15 +686,15 @@ button {
 }
 
 #card-curiosity .card-front {
-  background-image: url('assets/core-curiosity.png');
+  background-image: url("assets/core-curiosity.png");
 }
 
 #card-creation .card-front {
-  background-image: url('assets/core-creation.png');
+  background-image: url("assets/core-creation.png");
 }
 
 #card-connection .card-front {
-  background-image: url('assets/core-connection.png');
+  background-image: url("assets/core-connection.png");
 }
 
 .card-back {
@@ -878,7 +878,11 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
   z-index: 0;
   pointer-events: none;
@@ -1039,7 +1043,8 @@ button {
 }
 
 .twinkling {
-  background: transparent url("https://i.imgur.com/XYMF4ca.png") repeat top center;
+  background: transparent url("https://i.imgur.com/XYMF4ca.png") repeat top
+    center;
   animation: twinkling 200s linear infinite;
   z-index: -1;
 }
@@ -1221,7 +1226,7 @@ button {
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to bottom, #000000, #480071, #480071, #1e0030);
+  background: linear-gradient(to bottom, #000000, #27053b, #270739, #1e0030);
   padding: 2rem;
 }
 
@@ -1281,6 +1286,41 @@ button {
   background: linear-gradient(to bottom, #000000, #141422, #141422, #1e0030);
 }
 
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+    transform: translateX(-100px);
+
+    clip-path: (100% 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+    transform: translateX(0px);
+    clip-path: (0 0 0 0);
+  }
+}
+
+.block {
+  animation: appear 4s linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* Animation in dev diary */
+/* .autoShow {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.8s ease-out;
+}
+
+.autoShow.in-view {
+  opacity: 1;
+  transform: translateY(0);
+} */
+
 .log-container {
   display: flex;
   flex-direction: column;
@@ -1305,7 +1345,7 @@ button {
   color: #eba400;
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 .log-text {
@@ -1418,10 +1458,7 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* padding: 80px 20px; */
   height: 100vh;
-  /* max-width: 1200px; */
-  /* margin: 0 auto; */
   text-align: center;
   z-index: 1;
 }
@@ -1435,66 +1472,69 @@ button {
   background-clip: text;
   text-align: center;
   display: inline-block;
-  position: relative;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
   color: #fff;
   z-index: 2;
 }
 
-/* .section-title::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(90deg, #5c0dc3 25%, rgb(0, 69, 130) 100%); } */
 .services-container {
   display: flex;
-  /* grid-template-columns: repeat(2, 1fr); */
   gap: 50px;
-  justify-items: center;
-  /* max-width: 1000px; */
+  justify-content: center; /* Center the items horizontally */
   margin: 2rem auto;
+  flex-wrap: wrap; /* Allows wrapping of cards on smaller screens */
 }
 
 .service-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, rgba(33, 15, 42), rgba(94, 0, 108, 0.37));
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgba(148, 141, 148, 0.229)
+  );
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 3rem;
   width: 300px;
   transition: transform 0.3s ease;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(246, 246, 246, 0.147);
   position: relative;
   overflow: hidden;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(106, 13, 173, 0.2);
-}
-
-.service-icon {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #550dad 0%, indigo 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  box-shadow: 0 10px 20px rgba(251, 251, 251, 0.2);
 }
 
 .service-title {
-  margin-bottom: 2rem;
   display: flex;
-  justify-content: baseline;
+  flex-direction: column;
+  align-items: center; /* Center the icon and title */
+  margin-bottom: 1rem;
+}
+
+.service-title img {
+  margin-bottom: 1rem; /* Space between icon and title */
 }
 
 .service-title h2 {
-  font-size: 2rem;
+  font-size: 2.1rem;
+  font-weight: bold;
+  margin: 0; /* Remove default margin */
+  color: #290355;
 }
 
 .service-description {
-  color: #cacad5;
+  color: #290355;
   font-size: 1rem;
   line-height: 1.6;
+  font-weight: bold;
+}
+
+.contact-btn:hover::before {
+  left: 100%;
 }
 
 .contact-btn {
@@ -1527,7 +1567,12 @@ button {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: 0.5s;
   z-index: -1;
 }
@@ -1660,7 +1705,6 @@ button {
 }
 
 @keyframes twinkle {
-
   0%,
   100% {
     opacity: 0.3;
@@ -1677,7 +1721,12 @@ button {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    #fff 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   transform: rotate(-45deg);
   opacity: 0;
 }
@@ -1767,7 +1816,8 @@ button {
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 10px rgba(255, 0, 255, 0.4));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3))
+    drop-shadow(0 0 10px rgba(255, 0, 255, 0.4));
   position: relative;
   overflow: visible;
 }
@@ -1781,7 +1831,16 @@ button {
   right: 0;
   bottom: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.8) 2%, transparent 5%), radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.5) 1.5%, transparent 4%);
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(255, 255, 255, 0.8) 2%,
+      transparent 5%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(255, 255, 255, 0.5) 1.5%,
+      transparent 4%
+    );
   background-size: 200% 200%;
   animation: glitter 4s linear infinite;
   mix-blend-mode: screen;
@@ -1831,11 +1890,8 @@ button {
   height: 7rem;
   background: #0f0014;
   border-radius: 35%;
-  box-shadow: 0 0 10px #8a2be2,
-    /* purple glow */
-    0 0 20px #00fff7,
-    /* cyan glow */
-    inset 0 0 15px #8a2be2;
+  box-shadow: 0 0 10px #8a2be2, /* purple glow */ 0 0 20px #00fff7,
+    /* cyan glow */ inset 0 0 15px #8a2be2;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -1852,7 +1908,11 @@ button {
   left: 10%;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(45deg, #50fff9 0 2px, transparent 2px 4px);
+  background: repeating-linear-gradient(
+    45deg,
+    #50fff9 0 2px,
+    transparent 2px 4px
+  );
   mix-blend-mode: screen;
   pointer-events: none;
   opacity: 0.6;
@@ -1861,7 +1921,11 @@ button {
 }
 
 .icon-circle::after {
-  background: repeating-linear-gradient(-45deg, #8a2be2 0 2px, transparent 2px 4px);
+  background: repeating-linear-gradient(
+    -45deg,
+    #8a2be2 0 2px,
+    transparent 2px 4px
+  );
   animation-delay: 3s;
 }
 
@@ -1969,16 +2033,27 @@ button {
 }
 
 .footer-text {
-  opacity: 0;
-  color: #aaa;
-  font-size: 0.1rem;
   position: absolute;
   bottom: 1rem;
   left: 0;
   width: 100%;
   text-align: center;
-  pointer-events: none;
-  user-select: none;
+  font-size: 0.9rem;
+  color: #fff;
+  pointer-events: auto;
+  /* clickable */
+  z-index: 9999;
+  /* উপরেই থাকবে */
+}
+
+.footer-text a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  color: #4f7cff;
+  text-decoration: underline;
 }
 
 /* #connect-title, .social-icon, #message-box, .footer-text { opacity: 1 !important; transform: none !important; display: block !important; } */
