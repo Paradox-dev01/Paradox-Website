@@ -40,6 +40,11 @@
   <script>
     gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
   </script>
+</head>
+
+
+
+
 
 <body>
   <!-- Sticky Logo (top-left) -->
@@ -53,86 +58,89 @@
   <main>
 
     <section class="landing-core" style="position: relative; overflow: hidden;">
-      <canvas id="sci-fi-bg"></canvas>
+        <canvas id="sci-fi-bg"></canvas>
 
-      <!-- Landing -->
-      <section id="landing" class="section fade-scroll">
-       <br><br>
-        <nav class="nav-buttons">
-          <button onclick="scrollToSection('core')">The Core</button>
-          <button onclick="scrollToSection('lab')">The Lab</button>
-          <button onclick="scrollToSection('dev-diary')">The Logs</button>
-          <button onclick="scrollToSection('services')">Services</button>
-          <button onclick="scrollToSection('connect')">Connect</button>
-        </nav>
+        <!-- Landing -->
+        <section id="landing" class="section fade-scroll">
+        <br><br>
+          <nav class="nav-buttons">
+            <button onclick="scrollToSection('core1')">The Core</button>
+            <button onclick="scrollToSection('lab')">The Lab</button>
+            <button onclick="scrollToSection('dev-diary')">The Logs</button>
+            <button onclick="scrollToSection('services')">Services</button>
+            <button onclick="scrollToSection('connect')">Connect</button>
+          </nav>
 
-        <div class="intro">
-          <br><br><br><h1>Welcome to Paradox</h1>
-          <h2 style="color: #f0f3f7">Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
-          <div class="astronaut-wrapper">
-            <img src="assets/astroGIF.gif" id="astronaut" class="clickable" alt="Click here to...">
-            <h3>Dive with me</h3>
+          <div class="intro">
+            <h1>Welcome to Paradox</h1>
+            <h2>Think Beyond Unthinkable, Build Beyond Boundaries.</h2>
+            <div class="astronaut-wrapper">
+              <img src="assets/astroGIF.gif" id="astronaut" class="clickable" alt="Click here to...">
+              <h3>Dive with me</h3>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Core -->
-      <section id="core1" class="section core-sec">
-        <div class="core1-content">
-          <h2  class="core1-title">
-            Mission & Vision of Paradox
-          </h2>
-          <!-- <p class="core1-text">
-            Paradox is where innovation defies limits! We build powerful, game-changing applications that disrupt the ordinary and set new standards. Think beyond the unthinkable, because at Paradox, boundaries don’t exist!
-            </p> -->
-          <p class="core1-text"> <br>
-            Building new software (web app & mobile app) <br>
-            Building Harmless Games (educative) <br><br>
-            Paradox is where innovation defies limits! <br>
-            We build powerful, game-changing applications <br>
-            that disrupt the ordinary and set new standards. <br>
-            Think beyond the unthinkable, <br>
-            because at Paradox, boundaries don’t exist! <br>
-          </p>
-        </div>
-      </section>
+        <!-- Core -->
+        <section id="core1" class="section core-sec">
+          <div class="core1-content">
+            <h2  class="core1-title">
+              Mission & Vision of Paradox
+            </h2>
+            <!-- <p class="core1-text">
+              Paradox is where innovation defies limits! We build powerful, game-changing applications that disrupt the ordinary and set new standards. Think beyond the unthinkable, because at Paradox, boundaries don’t exist!
+              </p> -->
+            <p class="core1-text"> <br>
+              Building new software (web app & mobile app) <br>
+              Building Harmless Games (educative) <br><br>
+              Paradox is where innovation defies limits! <br>
+              We build powerful, game-changing applications <br>
+              that disrupt the ordinary and set new standards. <br>
+              Think beyond the unthinkable, <br>
+              because at Paradox, boundaries don’t exist! <br>
+            </p>
+          </div>
+        </section>
 
-      <section id="core2" class="section core-sec">
-        <h2 class="core2-main-title" style="color:#f0f3f7 ">Core Matrix</h2>
+        <section id="core2" class="section core-sec">
+          <h2 class="core2-main-title">Core Matrix</h2>
+          <h3 class="core2-note">(Hover over a card to flip it and reveal more)</h3>
 
-        <div class="core2-container">
-          <div class="core-card" id="card-curiosity">
-            <div class="card-inner">
-              <div class="card-front" aria-label="Curiosity Icon"> </div>
-              <div class="card-back">
-                <div class="core2-title">Curiosity</div>
-                <p class="core2-text">We question the norm.</p>
+          <div class="core2-container">
+            <div class="core-card" id="card-curiosity">
+              <div class="card-inner">
+                <div class="card-front" aria-label="Curiosity Icon"> </div>
+                <div class="card-back">
+                  <h2 class="core2-title">Curiosity</h2>
+                  <p class="core2-text">We question the norm.</p>
+                </div>
+              </div>
+            </div>
+            <div class="core-card" id="card-creation">
+              <div class="card-inner">
+                <div class="card-front" aria-label="Creation Icon"> </div>
+                <div class="card-back">
+                  <h2 class="core2-title">Creation</h2>
+                  <p class="core2-text">We design for both<br />logic and chaos.</p>
+                </div>
+              </div>
+            </div>
+            <div class="core-card" id="card-connection">
+              <div class="card-inner">
+                <div class="card-front" aria-label="Connection Icon"> </div>
+                <div class="card-back">
+                  <h2 class="core2-title">Connection</h2>
+                  <p class="core2-text">We make things<br />people feel.</p>
+                </div>
               </div>
             </div>
           </div>
-          <div class="core-card" id="card-creation">
-            <div class="card-inner">
-              <div class="card-front" aria-label="Creation Icon"> </div>
-              <div class="card-back">
-                <div class="core2-title">Creation</div>
-                <p class="core2-text">We design for both<br />logic and chaos.</p>
-              </div>
-            </div>
-          </div>
-          <div class="core-card" id="card-connection">
-            <div class="card-inner">
-              <div class="card-front" aria-label="Connection Icon"> </div>
-              <div class="card-back">
-                <div class="core2-title">Connection</div>
-                <p class="core2-text">We make things<br />people feel.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
 
-</section>
+    </section>
+
+
     <!-- Lab -->
     <section id="lab" class="section">
       <div class="lab-stars" id="lab-stars"></div>
@@ -142,7 +150,7 @@
       <div class="lab-content">
         <h1>Welcome to <span>The Lab</span></h1>
         <p>A place for Paradox's prototypes and projects with a pulse.</p>
-        <p>Some call them "ideas". We call them visions of the future</p>
+        <p>Some call them "ideas". We call them visions of the future.</p>
         <!-- <a href="#projects" class="cta">Projects in the works</a> -->
       </div>
 
@@ -154,10 +162,10 @@
             <div class="project-card">
               <a href="#" class="project-link-area" data-status="under-construction">
                 <div class="project-image">
-                  <img src="assets/islamic-app-logo.svg" alt="Islamic App Logo">
+                  <img src="assets/coming-soon.svg" alt="Islamic App Logo">
                 </div>
                 <div class="project-content">
-                  <h3 class="project-title">Islamic App Name</h3>
+                  <h3 class="project-title">Siraway</h3>
                   <p class="project-description">Guide to Islam</p>
                   <span class="project-link">View Project</span>
                 </div>
@@ -179,7 +187,7 @@
             <div class="project-card">
               <a href="#" class="project-link-area" data-status="under-construction">
                 <div class="project-image">
-                  <img src="assets/gavevault-logo.svg" alt="GameVault Logo">
+                  <img src="assets/coming-soon.svg" alt="GameVault Logo">
                 </div>
                 <div class="project-content">
                   <h3 class="project-title">GameVault</h3>
@@ -188,125 +196,68 @@
                 </div>
               </a>
             </div>
-<!-- dummy cards -->
-            <div class="project-card">
-              <a href="#" class="project-link-area" data-status="under-construction">
-                <div class="project-image">
-                  <img src="assets/gavevault-logo.svg" alt="GameVault Logo">
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">GameVault</h3>
-                  <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
-                  <span class="project-link">View Project</span>
-                </div>
-              </a>
-            </div>
-            <div class="project-card">
-              <a href="#" class="project-link-area" data-status="under-construction">
-                <div class="project-image">
-                  <img src="assets/gavevault-logo.svg" alt="GameVault Logo">
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">GameVault</h3>
-                  <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
-                  <span class="project-link">View Project</span>
-                </div>
-              </a>
-            </div>
-            <div class="project-card">
-              <a href="#" class="project-link-area" data-status="under-construction">
-                <div class="project-image">
-                  <img src="assets/gavevault-logo.svg" alt="GameVault Logo">
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">GameVault</h3>
-                  <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
-                  <span class="project-link">View Project</span>
-                </div>
-              </a>
-            </div>
-            <div class="project-card">
-              <a href="#" class="project-link-area" data-status="under-construction">
-                <div class="project-image">
-                  <img src="assets/gavevault-logo.svg" alt="GameVault Logo">
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">GameVault</h3>
-                  <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
-                  <span class="project-link">View Project</span>
-                </div>
-              </a>
-            </div>
-            <div class="project-card">
-              <a href="#" class="project-link-area" data-status="under-construction">
-                <div class="project-image">
-                  <img src="assets/gavevault-logo.svg" alt="GameVault Logo">
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">GameVault</h3>
-                  <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
-                  <span class="project-link">View Project</span>
-                </div>
-              </a>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- AstroDrive -->
-    <section id="astro" class="section">
-      <div class="stars"></div>
-      <div class="twinkling"></div>
-      <div class="astrodrive-containers">
+
+    <section id="extnd-projects-carousal">
+        
+        <!-- AstroDrive -->
+        <section id="astro" class="section">
+          <div class="stars"></div>
+          <div class="twinkling"></div>
+          <div class="astrodrive-containers">
 
 
-          <div class="astrodrive-left">
-            <div class="astrodrive-logo">
-              <img src="assets/astrodrive-logo.jpg" alt="AstroDrive Logo" class="Astrologo" />
-              <h2 class="tagline">Unleash the Cosmos!</h2>
+              <div class="astrodrive-left">
+                <div class="astrodrive-logo">
+                  <img src="assets/astrodrive-logo.jpg" alt="AstroDrive Logo" class="Astrologo" />
+                  <h2 class="tagline">Unleash the Cosmos!</h2>
+                </div>
+
+                <div class="content">
+                  <p>
+                    From breaking space news and epic celestial events to mind-blowing
+                    discoveries, space tech, and stargazing guides, we bring the entire
+                    universe to your screen.
+                  </p>
+
+                  <p>
+                    Whether you're a curious beginner or a hardcore space nerd,
+                    AstroDrive fuels your cosmic curiosity with fun, facts, and fiery
+                    enthusiasm.
+                  </p>
+                </div>
+
+                <div class="social-links">
+                  <a href="https://www.facebook.com/share/1RMNsbTsMg/?mibextid=qi2Omg" class="social-link facebook"
+                    target="_blank"><i class="fab fa-facebook"></i></a>
+                  <a href="https://www.linkedin.com/company/astrodrive-fun/" class="social-link linkedin" target="_blank"><i
+                      class="fab fa-linkedin"></i></a>
+                  <a href="https://discord.gg/dxXB28AH" class="social-link discord" target="_blank"><i
+                      class="fab fa-discord"></i></a>
+                  <a href="https://astrodrive.fun/" class="social-link google" target="_blank"><i class="fab fa-google"></i></a>
+                  <a href="https://youtube.com/@astrodrive-l5g6i?si=voF6mSaJAKEOncik" class="social-link youtube"
+                    target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
             </div>
 
-            <div class="content">
-              <p>
-                From breaking space news and epic celestial events to mind-blowing
-                discoveries, space tech, and stargazing guides, we bring the entire
-                universe to your screen.
-              </p>
 
-              <p>
-                Whether you're a curious beginner or a hardcore space nerd,
-                AstroDrive fuels your cosmic curiosity with fun, facts, and fiery
-                enthusiasm.
-              </p>
+
+            <div class="astrodrive-right">
+
+                <div class="monitor">
+                  <video autoplay loop muted controls controlsList="nodownload" src="assets/AstroDrive-video.mp4"></video>
+                  <div class="led"></div>
+                  <div class="base"></div>
+                </div>
             </div>
 
-            <div class="social-links">
-              <a href="https://www.facebook.com/share/1RMNsbTsMg/?mibextid=qi2Omg" class="social-link facebook"
-                target="_blank"><i class="fab fa-facebook"></i></a>
-              <a href="https://www.linkedin.com/company/astrodrive-fun/" class="social-link linkedin" target="_blank"><i
-                  class="fab fa-linkedin"></i></a>
-              <a href="https://discord.gg/dxXB28AH" class="social-link discord" target="_blank"><i
-                  class="fab fa-discord"></i></a>
-              <a href="https://astrodrive.fun/" class="social-link google" target="_blank"><i class="fab fa-google"></i></a>
-              <a href="https://youtube.com/@astrodrive-l5g6i?si=voF6mSaJAKEOncik" class="social-link youtube"
-                target="_blank"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
+          </div>
+        </section>
 
-
-
-        <div class="astrodrive-right">
-
-            <div class="monitor">
-              <video autoplay loop muted controls controlsList="nodownload" src="assets/AstroDrive-video.mp4"></video>
-              <div class="led"></div>
-              <div class="base"></div>
-            </div>
-        </div>
-
-
-      </div>
         
     </section>
 
@@ -316,8 +267,8 @@
 
       <div class="diary-left">
         <div class="diary-title-wrapper autoShow">
-          <div class="dev-word">Dev</div>
-          <div class="diary-word">Diary</div>
+          <div class="dev-word"><h1>Dev</h1></div>
+          <div class="diary-word"><h1>Diary</h1></div>
         </div>
       </div>
 
@@ -441,48 +392,51 @@
             <h1 id="connect-title">Want to hack into the Paradox?</h1>
 
             <div class="social-icons">
-              <a href="https://discord.gg/NYcyaqbFJp" target="_blank" class="social-icon" id="discord">
-                <div class="icon-circle">
-                  <i class="fab fa-discord"></i>
-                </div>
-                <!-- <div class="icon-name">Discord</div> -->
-              </a>
+                <a href="https://discord.gg/NYcyaqbFJp" target="_blank" class="social-icon" id="discord">
+                  <div class="icon-circle">
+                    <i class="fab fa-discord"></i>
+                  </div>
+                  <!-- <div class="icon-name">Discord</div> -->
+                </a>
 
-              <a href="https://www.linkedin.com/company/paradoxicalparadox/" target="_blank" class="social-icon"
-                id="linkedin">
-                <div class="icon-circle">
-                  <i class="fab fa-linkedin-in"></i>
-                </div>
-                <!-- <div class="icon-name">LinkedIn</div> -->
-              </a>
+                <a href="https://www.linkedin.com/company/paradoxicalparadox/" target="_blank" class="social-icon"
+                  id="linkedin">
+                  <div class="icon-circle">
+                    <i class="fab fa-linkedin-in"></i>
+                  </div>
+                  <!-- <div class="icon-name">LinkedIn</div> -->
+                </a>
 
-              <a href="https://youtube.com/@paradox-r9v?si=cYZ4XZrL4j803yaX" target="_blank" class="social-icon"
-                id="instagram">
-                <div class="icon-circle">
-                  <i class="fab fa-youtube"></i>
-                </div>
-                <!-- <div class="icon-name">Instagram</div> -->
-              </a>
+                <a href="https://youtube.com/@paradox-r9v?si=cYZ4XZrL4j803yaX" target="_blank" class="social-icon"
+                  id="instagram">
+                  <div class="icon-circle">
+                    <i class="fab fa-youtube"></i>
+                  </div>
+                  <!-- <div class="icon-name">Instagram</div> -->
+                </a>
 
-              <a href="https://www.facebook.com/share/1Hzu9ZY71p/" target="_blank" class="social-icon" id="facebook">
-                <div class="icon-circle">
-                  <i class="fab fa-facebook-f"></i>
-                </div>
-                <!-- <div class="icon-name">Facebook</div> -->
-              </a>
+                <a href="https://www.facebook.com/share/1Hzu9ZY71p/" target="_blank" class="social-icon" id="facebook">
+                  <div class="icon-circle">
+                    <i class="fab fa-facebook-f"></i>
+                  </div>
+                  <!-- <div class="icon-name">Facebook</div> -->
+                </a>
             </div>
+
+
+
             <div class="message-box" id="message-box">
-              <form id="contactForm" action="https://formsubmit.co/73dd08df673f636e31d600d8f854d182" method="POST">
+                <form id="contactForm" action="https://formsubmit.co/73dd08df673f636e31d600d8f854d182" method="POST">
 
-                <input type="email" class="message-input" name="email" placeholder="Your Email" required>
+                  <input type="email" class="message-input" name="email" placeholder="Your Email" required>
 
-                <input type="text" class="message-input" name="message" placeholder="Send us your thoughts!" required>
+                  <input type="text" class="message-input" name="message" placeholder="Send us your thoughts!" required>
 
-                <button type="submit" class="send-button" id="send-button">
-                  Send Message <i class="fas fa-paper-plane"></i>
-                </button>
+                  <button type="submit" class="send-button" id="send-button">
+                    Send Message <i class="fas fa-paper-plane"></i>
+                  </button>
 
-              </form>
+                </form>
             </div>
 
             <script>
@@ -499,9 +453,13 @@
 
             <div class="footer-text" id="footer-text">
               <p>
-                Copyright © 2025 Paradox | All rights reserved | <a href="terms.html" target="_blank">Terms and Conditions</a>
+                Copyright © <span id="year"></span> Paradox | All rights reserved | <a href="terms.html" target="_blank">Terms and Conditions</a>
 
               </p>
+              <script>
+                // set year automatically
+                document.getElementById('year').textContent = new Date().getFullYear();
+              </script>
             </div>
 
           </div>

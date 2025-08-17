@@ -91,6 +91,7 @@ function scrollToNextSection() {
   const next = visibleSections[0] || sections[0];
   next.scrollIntoView({ behavior: "smooth" });
 }
+
 const navArrow = document.querySelector(".nav-arrow");
 const landingSection = document.getElementById("landing");
 const connectSection = document.getElementById("connect");
@@ -112,8 +113,16 @@ function checkNavArrowVisibility() {
 window.addEventListener("scroll", checkNavArrowVisibility);
 window.addEventListener("load", checkNavArrowVisibility);
 
+
+// ================================================================================================
+// ================================================================================================
+// ================================================================================================
+
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(MotionPathPlugin);
+
+
+
 
 const canvas = document.getElementById("sci-fi-bg");
 const ctx = canvas.getContext("2d");
@@ -243,6 +252,8 @@ landingCore.addEventListener("mouseleave", () => {
 
 
 //  ---------------------------------------------- LANDING PAGE ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
 
 // === SELECT DOM ELEMENTS ===
 const bgBottom = document.querySelector(".bg-bottom");
@@ -339,6 +350,8 @@ window.addEventListener("scroll", () => {
 });
 
 //  ---------------------------------------------- CORE ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
 
 //1
 const core1 = document.getElementById("core1");
@@ -384,6 +397,18 @@ gsap.utils.toArray(".core-card").forEach((card, index) => {
   );
 });
 
+// Pin Core 2 while Lab scrolls over
+ScrollTrigger.create({
+  trigger: "#core2",
+  start: "top top",
+  endTrigger: "#lab",
+  end: "top top",
+  pin: true,
+  pinSpacing: false, // avoids extra space; keeps canvas & cursor visible
+  scrub: true,
+  snap: true
+});
+
 ScrollTrigger.create({
   trigger: "#core2",
   start: "bottom bottom",
@@ -404,6 +429,8 @@ ScrollTrigger.create({
 
 
 //  ---------------------------------------------- THE LABS ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Script loaded!");
 
@@ -521,6 +548,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+// ---------------------------------------------- EPC ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+
+
+
+
 // ---------------------------------------------- ASTRO DRIVE
 document.addEventListener("DOMContentLoaded", function () {
   // Add animation classes with delays
@@ -572,8 +606,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+ScrollTrigger.create({
+  trigger: "#astro",
+  start: "top top",
+  endTrigger: "#dev-diary",    // fade as DevDiary approaches
+  end: "top top",               // let it end when DevDiary reaches top
+  pin: true,
+  pinSpacing: true,             // reserve space so DevDiary doesn't overlap
+  scrub: true                  // smooth scroll connection
+});
+
+// Fade out AstroDrive content as user scrolls to DevDiary
+gsap.to("#astro", {
+  scrollTrigger: {
+    trigger: "#dev-diary",     // when DevDiary is coming up
+    start: "top bottom",       // starts fading when DevDiary top hits bottom of viewport
+    end: "top top",            // fully faded when DevDiary top hits top of viewport
+    scrub: true
+  },
+  opacity: 0
+});
+
 
 // ---------------------------------------------- DEV DIARY ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
   // Create stars
   const galaxyGrid = document.querySelector(".galaxy-grid");
@@ -604,58 +661,12 @@ document.addEventListener("DOMContentLoaded", function () {
     elements.forEach((el) => observer.observe(el));
   });
 
-  // Animation for elements - now with bounce effect
-  // gsap.from(".robot-image", {
-  //   duration: 1.5,
-  //   opacity: 0,
-  //   x: -100,
-  //   ease: "bounce.out", // Changed to bounce easing
-  // });
-
-  // Rest of the JavaScript remains the same
-  // gsap.from(".title", {
-  //   duration: 1,
-  //   opacity: 0,
-  //   y: 50,
-  //   delay: 0.5,
-  //   ease: "back.out",
-  // });
-
-  // gsap.from(".subtitle", {
-  //   duration: 1,
-  //   opacity: 0,
-  //   y: 50,
-  //   delay: 0.8,
-  //   ease: "back.out",
-  // });
-
-  // gsap.from(".cta-button", {
-  //   duration: 1,
-  //   opacity: 0,
-  //   y: 50,
-
-  //   ease: "back.out",
-  // });
-
-  // Handle button click
-  // const letsGoBtn = document.getElementById("letsGoBtn");
-  // if (letsGoBtn) {
-  //   letsGoBtn.addEventListener("click", function () {
-  //     gsap.to(this, {
-  //       scale: 0.9,
-  //       duration: 0.2,
-  //       yoyo: true,
-  //       repeat: 1,
-  //       onComplete: function () {
-  //         window.location.href = "next-page.html";
-  //       },
-  //     });
-  //   });
-  // }
 });
 
 
 //  ---------------------------------------------- THE SERVICES ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
   const spaceBg = document.getElementById("spaceBg");
   document.addEventListener("DOMContentLoaded", () => {
@@ -863,6 +874,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //  ---------------------------------------------- CONNECT ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
   // Create swirling effect
@@ -930,12 +943,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const stop1 = document.createElementNS(svgNS, "stop");
   stop1.setAttribute("offset", "0%");
-  stop1.setAttribute("stop-color", "rgba(27, 4, 44, 0.87)");
+  stop1.setAttribute("stop-color", "#350842ff");
   gradient.appendChild(stop1);
-
+  
   const stop2 = document.createElementNS(svgNS, "stop");
   stop2.setAttribute("offset", "100%");
-  stop2.setAttribute("stop-color", "#190339ff");
+  stop2.setAttribute("stop-color", "#0f0014");
   gradient.appendChild(stop2);
 
   // Create background rect
