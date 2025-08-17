@@ -51,7 +51,7 @@ h4 {
 }
 
 p {
-  font-family:monospace,"Merriweather", serif;
+  font-family: monospace, "Merriweather", serif;
   font-size: clamp(0.9rem, 1vw + 0.5rem, 1.1rem);
   color: #d6f1ff;
   line-height: 1.6;
@@ -123,6 +123,8 @@ button {
   }
 }
 
+/* x x x x x x x */
+
 /* Sticky Logo */
 .logo {
   position: fixed;
@@ -131,15 +133,10 @@ button {
   margin: 2.5rem;
   z-index: 1000;
 }
-
 .logo img {
   height: clamp(40px, 2vw, 35px);
   width: auto;
   max-width: 100%;
-}
-
-.logo:hover {
-  cursor: pointer;
 }
 
 /* Scroll Progress Bar */
@@ -149,7 +146,7 @@ button {
   left: 0;
   height: 5px;
   width: 0%;
-  background: #7f25f4;
+  background: #a825f4;
   z-index: 1000;
   transition: width 0.25s ease-out;
 }
@@ -167,7 +164,6 @@ button {
   box-sizing: border-box;
   color: white;
 }
-
 .section.visible {
   opacity: 1;
   transform: translateY(0);
@@ -176,23 +172,41 @@ button {
 /* Navigation Arrow */
 .nav-arrow {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 30px;
-  height: 30px;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 12px solid #009cea;
+  bottom: 40px;
+  right: 40px;
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 26px solid #a825f4c2; /* triangle pointing down */
   cursor: pointer;
   z-index: 999;
   animation: bounceNav 1.5s infinite;
-  transition: filter 0.3s ease-in-out;
+}
+.nav-arrow:hover {
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 28px solid #00bfff;
+  filter: drop-shadow(0 0 10px #00bfff91);
 }
 
-.nav-arrow:hover {
-  filter: drop-shadow(0 0 10px #00bfff);
-  text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff,
-    0 0 40px #00bfff;
+.nav-arrow::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* place it directly below the first triangle */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 18px solid #a825f4c2;
+}
+.nav-arrow:hover::after {
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 20px solid #00bfff;
+  filter: drop-shadow(0 0 10px #00bfff8a);
 }
 
 /* Bounce Animation */
@@ -292,7 +306,7 @@ button {
   background-color: #000;
 }
 
-/* ===== LANDING PAGE ===== */
+/* ================================================== LANDING PAGE ================================================== */
 #landing {
   position: relative;
   height: 100vh;
@@ -340,7 +354,7 @@ button {
   font-size: clamp(0.5rem, 1vw, 2rem);
   font-weight: bold;
   letter-spacing: 0.05em;
-margin-top:2rem ;
+  margin-top: 2rem;
 }
 
 /* Intro + astronaut */
@@ -383,13 +397,12 @@ margin-top:2rem ;
 
 #astronaut {
   /* position: relative; */
-  width: 150px;
+  width: 200px;
   max-width: 40vw;
   transition: transform 0.8s ease-out, opacity 0.4s ease-out;
 }
 
 #astronaut:hover {
-  cursor: pointer;
   animation: jump 0.6s ease infinite;
 }
 
@@ -398,7 +411,6 @@ margin-top:2rem ;
   100% {
     transform: translateY(0);
   }
-
   50% {
     transform: translateY(-15px);
   }
@@ -428,7 +440,7 @@ margin-top:2rem ;
   .nav-buttons button {
     font-size: clamp(0.8rem, 1.2vw, 1.5rem);
     padding: 0.4rem 1.5rem;
-    margin: clamp(10px, 3vw, 30px)
+    margin: clamp(10px, 3vw, 30px);
   }
 
   .intro h2 {
@@ -509,7 +521,7 @@ margin-top:2rem ;
   }
 }
 
-/* ===== CORE ===== */
+/* ================================================== CORE ================================================== */
 /* CORE 1 */
 #core1 {
   position: relative;
@@ -738,7 +750,7 @@ margin-top:2rem ;
 
   .core1-title {
     font-size: 2.5rem;
-      color: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
+    color: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
   }
 
   .core1-text {
@@ -847,7 +859,7 @@ margin-top:2rem ;
   }
 }
 
-/* ===== THE LAB ===== */
+/* ================================================== THE LAB ================================================== */
 #lab {
   position: relative;
   /* min-height: 200vh;
@@ -954,8 +966,13 @@ margin-top:2rem ;
   margin-bottom: 3rem;
   text-align: center;
   background: linear-gradient(90deg, #7928ca, #ff0080);
+  /* Standard property */
+  background-clip: text;
+  /* Webkit prefix for Chrome, Safari, Edge */
   -webkit-background-clip: text;
+  /* Make text transparent to show the gradient */
   -webkit-text-fill-color: transparent;
+  color: transparent; /* standard fallback */
 }
 
 .project-grid {
@@ -1021,7 +1038,7 @@ margin-top:2rem ;
   text-align: center;
 }
 
-/* ASTRO DRIVE */
+/* ==================================================ASTRO DRIVE */
 #astro {
   background-color: #000;
   color: #fff;
@@ -1066,7 +1083,81 @@ margin-top:2rem ;
   }
 }
 
-.logo-container {
+.astrodrive-containers {
+  display: flex;
+  align-items: center; /* vertically center content */
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.astrodrive-left,
+.astrodrive-right {
+  flex: 1;
+}
+.astrodrive-left {
+  max-width: 650px;
+  padding: 0 2.5rem;
+}
+.astrodrive-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  position: relative;
+  padding-right: 2.5rem;
+  padding-left: 1rem;
+}
+/* .astrodrive-right video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 14px;
+} */
+
+.monitor {
+  max-width: 100%;
+  background: #05193a; /* bezel background */
+  padding: 1rem;
+  border-radius: 14px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(42, 41, 41, 0.5);
+}
+/* video as the screen  */
+.monitor > video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+/* monitor stand stem */
+.monitor::after {
+  content: "";
+  position: absolute;
+  bottom: -50px; /* places it under the monitor */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 45px;
+  background: #0a234d;
+  border-radius: 8px;
+}
+/* monitor base */
+.monitor::before {
+  content: "";
+  position: absolute;
+  bottom: -55px; /* below the stem */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 15px;
+  background: #0a234d;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.astrodrive-logo {
   margin-bottom: 2rem;
   text-align: center;
   display: flex;
@@ -1075,14 +1166,13 @@ margin-top:2rem ;
 }
 
 .Astrologo {
-  width: 120px;
+  width: 300px;
   height: auto;
-  margin-bottom: 0.5rem;
   filter: drop-shadow(0 0 10px rgba(100, 149, 237, 0.8));
 }
 
 .tagline {
-  font-size: 0.75rem;
+  font-size: 1.15rem;
   color: #4facfe;
   letter-spacing: 1px;
 }
@@ -1127,7 +1217,6 @@ margin-top:2rem ;
   margin-top: 2rem;
   flex-wrap: wrap;
 }
-
 .social-link {
   color: #fff;
   font-size: clamp(1.5rem, 4vw, 2rem);
@@ -1135,28 +1224,22 @@ margin-top:2rem ;
   text-decoration: none;
   display: inline-block;
 }
-
 .social-link:hover {
   transform: translateY(-5px);
   text-shadow: 0 0 15px rgba(100, 149, 237, 0.8);
 }
-
 .facebook {
   color: #3b5998;
 }
-
 .linkedin {
   color: #0077b5;
 }
-
 .discord {
   color: #7289da;
 }
-
 .google {
   color: #db4437;
 }
-
 .youtube {
   color: #ff0000;
 }
@@ -1216,7 +1299,7 @@ margin-top:2rem ;
   }
 }
 
-/* ==== DEV DIARY ==== */
+/* ================================================== DEV DIARY ================================================== */
 .dev-diary {
   display: flex;
   flex-direction: row;
@@ -1233,7 +1316,7 @@ margin-top:2rem ;
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to bottom, #000000, #480071, #480071, #1e0030);
+  background: linear-gradient(to bottom, #000000, #27053b, #270739, #1e0030);
   padding: 2rem;
 }
 
@@ -1292,6 +1375,41 @@ margin-top:2rem ;
   position: relative;
   background: linear-gradient(to bottom, #000000, #141422, #141422, #1e0030);
 }
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+    transform: translateX(-100px);
+
+    clip-path: (100% 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+    transform: translateX(0px);
+    clip-path: (0 0 0 0);
+  }
+}
+
+.block {
+  animation: appear 4s linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* Animation in dev diary */
+/* .autoShow {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.8s ease-out;
+}
+
+.autoShow.in-view {
+  opacity: 1;
+  transform: translateY(0);
+} */
 
 .log-container {
   display: flex;
@@ -1421,7 +1539,7 @@ margin-top:2rem ;
   }
 }
 
-/* ===== SERVICES ===== */
+/* ================================================== SERVICES ================================================== */
 #services {
   background-color: #1e0030;
   color: #fff;
@@ -1430,10 +1548,7 @@ margin-top:2rem ;
   position: relative;
   display: flex;
   flex-direction: column;
-  /* padding: 80px 20px; */
   height: 100vh;
-  /* max-width: 1200px; */
-  /* margin: 0 auto; */
   text-align: center;
   z-index: 1;
 }
@@ -1447,71 +1562,51 @@ margin-top:2rem ;
   background-clip: text;
   text-align: center;
   display: inline-block;
-  position: relative;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
   color: #fff;
   z-index: 2;
 }
 
-/* .section-title::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(90deg, #5c0dc3 25%, rgb(0, 69, 130) 100%); } */
 .services-container {
   display: flex;
-  /* grid-template-columns: repeat(2, 1fr); */
   gap: 50px;
-  justify-items: center;
-  /* max-width: 1000px; */
+  justify-content: center; /* Center the items horizontally */
   margin: 2rem auto;
+  flex-wrap: wrap; /* Allows wrapping of cards on smaller screens */
 }
 
 .service-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-    to bottom,
-    rgba(33, 15, 42),
-    rgba(94, 0, 108, 0.37)
-  );
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 3rem;
-  width: 300px;
-  transition: transform 0.3s ease;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  /* background-color: #e5d2fa9b;  */
+  border-radius: 20px;
+  padding: 30px 20px;
+  width: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 15px 25px rgba(106, 13, 173, 0.6);
 }
-
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(106, 13, 173, 0.2);
 }
-
-.service-icon {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #550dad 0%, indigo 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.service-title img {
+  width: 80px;
+  height: 80px;
+  padding: 15px;
+  margin-bottom: 1rem;
 }
-
-.service-title {
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: baseline;
-}
-
+/* ekhane amar change ashsa naki dekhbo */
 .service-title h2 {
- font-size: 1.5rem;     /* changed heading size*/
-    text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #e3b1ff;
 }
-
 .service-description {
-  color: #cacad5;
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.5;
+  color: #9c73b4;
 }
 
 .contact-btn {
@@ -1531,12 +1626,10 @@ margin-top:2rem ;
   overflow: hidden;
   z-index: 1;
 }
-
 .contact-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(106, 13, 173, 0.4);
 }
-
 .contact-btn::before {
   content: "";
   position: absolute;
@@ -1553,7 +1646,6 @@ margin-top:2rem ;
   transition: 0.5s;
   z-index: -1;
 }
-
 .contact-btn:hover::before {
   left: 100%;
 }
@@ -1592,7 +1684,7 @@ margin-top:2rem ;
 
   .service-title h2 {
     font-size: 1rem;
-      text-align: center;
+    text-align: center;
   }
 
   .service-description {
@@ -1622,7 +1714,7 @@ margin-top:2rem ;
 
   .service-title h2 {
     font-size: 1rem;
-      text-align: center;
+    text-align: center;
   }
 
   .service-description {
@@ -1718,7 +1810,7 @@ margin-top:2rem ;
   opacity: 0.1;
 }
 
-/* ===== CONNECT ===== */
+/* ================================================== CONNECT ================================================== */
 #connect {
   height: 100vh;
   padding: 0;
@@ -1746,17 +1838,16 @@ margin-top:2rem ;
 
 .swirl-container {
   position: absolute;
-  top: 0;
+  top: 25%;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
 }
-
 .swirl {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(138, 43, 226, 0.3);
+  border: 1.5px solid rgba(132, 0, 255, 0.3);
   transform-origin: center;
 }
 
@@ -2013,16 +2104,27 @@ margin-top:2rem ;
 }
 
 .footer-text {
-  opacity: 0;
-  color: #aaa;
-  font-size: 0.1rem;
   position: absolute;
   bottom: 1rem;
   left: 0;
   width: 100%;
   text-align: center;
-  pointer-events: none;
-  user-select: none;
+  font-size: 0.9rem;
+  color: #fff;
+  pointer-events: auto;
+  /* clickable */
+  z-index: 9999;
+  /* উপরেই থাকবে */
+}
+
+.footer-text a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  color: #4f7cff;
+  text-decoration: underline;
 }
 
 /* #connect-title, .social-icon, #message-box, .footer-text { opacity: 1 !important; transform: none !important; display: block !important; } */
