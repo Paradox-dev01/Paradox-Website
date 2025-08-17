@@ -240,7 +240,9 @@ landingCore.addEventListener("mouseleave", () => {
   disruptY = null;
 });
 
-//  --- LANDING PAGE ---
+
+
+//  ---------------------------------------------- LANDING PAGE ----------------------------------------------
 
 // === SELECT DOM ELEMENTS ===
 const bgBottom = document.querySelector(".bg-bottom");
@@ -336,7 +338,7 @@ window.addEventListener("scroll", () => {
   navArrow.classList.toggle("visible", pct > 0.6);
 });
 
-//  --- CORE ---
+//  ---------------------------------------------- CORE ----------------------------------------------
 
 //1
 const core1 = document.getElementById("core1");
@@ -399,7 +401,9 @@ ScrollTrigger.create({
     document.querySelector("#core2").classList.remove("blurred"),
 });
 
-//  --- THE LABS ---
+
+
+//  ---------------------------------------------- THE LABS ----------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Script loaded!");
 
@@ -515,7 +519,61 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// --- DEV DIARY
+
+
+// ---------------------------------------------- ASTRO DRIVE
+document.addEventListener("DOMContentLoaded", function () {
+  // Add animation classes with delays
+  const elementsToAnimate = [
+    { element: document.querySelector(".content h1"), delay: 0 },
+    { element: document.querySelector(".intro-line"), delay: 0.3 },
+    {
+      element: document.querySelectorAll(".content p:not(.intro-line)")[0],
+      delay: 0.6,
+    },
+    {
+      element: document.querySelectorAll(".content p:not(.intro-line)")[1],
+      delay: 0.9,
+    },
+    { element: document.querySelector(".social-links"), delay: 1.2 },
+  ];
+
+  elementsToAnimate.forEach((item) => {
+    if (item.element) {
+      item.element.classList.add("fade-in");
+      item.element.style.animationDelay = `${item.delay}s`;
+    }
+  });
+
+  // Add hover effects for social links
+  const socialLinks = document.querySelectorAll(".social-link");
+  socialLinks.forEach((link) => {
+    link.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-5px)";
+      this.style.textShadow = "0 0 15px rgba(100, 149, 237, 0.8)";
+    });
+
+    link.addEventListener("mouseleave", function () {
+      this.style.transform = "";
+      this.style.textShadow = "";
+    });
+  });
+
+  // Handle window resize
+  function handleResize() {
+    // Any responsive JS adjustments would go here
+  }
+
+  // Debounce resize events
+  let resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleResize, 250);
+  });
+});
+
+
+// ---------------------------------------------- DEV DIARY ----------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
   // Create stars
   const galaxyGrid = document.querySelector(".galaxy-grid");
@@ -596,58 +654,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // }
 });
 
-// --- ASTRO DRIVE
-document.addEventListener("DOMContentLoaded", function () {
-  // Add animation classes with delays
-  const elementsToAnimate = [
-    { element: document.querySelector(".content h1"), delay: 0 },
-    { element: document.querySelector(".intro-line"), delay: 0.3 },
-    {
-      element: document.querySelectorAll(".content p:not(.intro-line)")[0],
-      delay: 0.6,
-    },
-    {
-      element: document.querySelectorAll(".content p:not(.intro-line)")[1],
-      delay: 0.9,
-    },
-    { element: document.querySelector(".social-links"), delay: 1.2 },
-  ];
 
-  elementsToAnimate.forEach((item) => {
-    if (item.element) {
-      item.element.classList.add("fade-in");
-      item.element.style.animationDelay = `${item.delay}s`;
-    }
-  });
-
-  // Add hover effects for social links
-  const socialLinks = document.querySelectorAll(".social-link");
-  socialLinks.forEach((link) => {
-    link.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-5px)";
-      this.style.textShadow = "0 0 15px rgba(100, 149, 237, 0.8)";
-    });
-
-    link.addEventListener("mouseleave", function () {
-      this.style.transform = "";
-      this.style.textShadow = "";
-    });
-  });
-
-  // Handle window resize
-  function handleResize() {
-    // Any responsive JS adjustments would go here
-  }
-
-  // Debounce resize events
-  let resizeTimer;
-  window.addEventListener("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(handleResize, 250);
-  });
-});
-
-//  --- THE SERVICES ---
+//  ---------------------------------------------- THE SERVICES ----------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
   const spaceBg = document.getElementById("spaceBg");
   document.addEventListener("DOMContentLoaded", () => {
@@ -837,9 +845,24 @@ document.addEventListener("DOMContentLoaded", function () {
     duration: 1,
     ease: "power2.out",
   });
+
+
+  const contactBtn = document.querySelector(".contact-btn");
+  const cards = document.querySelectorAll(".service-card");
+
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      contactBtn.classList.add("shine");
+    });
+
+    card.addEventListener("mouseleave", () => {
+      contactBtn.classList.remove("shine");
+    });
+  });
+
 });
 
-//  --- CONNECT ---
+//  ---------------------------------------------- CONNECT ----------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
   // Create swirling effect
