@@ -18,7 +18,7 @@
 
 /* === Headings === */
 h1 {
-  font-family: "Orbitron", "Chakra Petch", "Bebas Neue" monospace;
+  font-family: "Orbitron", "Space Mono", monospace;
   font-size: clamp(2.5rem, 6vw, 5rem);
   text-align: center;
   margin: 0;
@@ -26,7 +26,8 @@ h1 {
 }
 
 h2 {
-  font-family: "Chakra Petch", "Inter", "Space Mono", "Share Tech Mono", monospace;
+  font-family: "Orbitron", "Chakra Petch", "Inter", "Space Mono",
+    "Share Tech Mono", monospace;
   font-size: clamp(1.25rem, 3vw, 2.5rem);
   text-align: center;
   letter-spacing: 0.3rem;
@@ -35,21 +36,22 @@ h2 {
 }
 
 h3 {
-  font-family: "Inter", "Space Mono", "Share Tech Mono", monospace;
+  font-family: "Orbitron", "Inter", "Space Mono", "Share Tech Mono", monospace;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
   color: #a0a0a0;
   margin-top: 1rem;
 }
 
 h4 {
-  font-family: "Courier New", "Lora", "Playfair Display", "Merriweather", serif;
+  font-family: "Orbitron", "Courier New", "Lora", "Playfair Display",
+    "Merriweather", serif;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
   color: #a0a0a0;
   margin-top: 1rem;
 }
 
 p {
-  font-family: "Lora", "Playfair Display", "Merriweather", serif;
+  font-family:monospace,"Merriweather", serif;
   font-size: clamp(0.9rem, 1vw + 0.5rem, 1.1rem);
   color: #d6f1ff;
   line-height: 1.6;
@@ -64,7 +66,7 @@ body {
 }
 
 button {
-  font-family: "Inknut Antiqua", "Lora", serif;
+  font-family: "Orbitron" monospace;
 }
 
 /* Custom Cursor */
@@ -131,7 +133,7 @@ button {
 }
 
 .logo img {
-  height: clamp(20px, 2vw, 35px);
+  height: clamp(40px, 2vw, 35px);
   width: auto;
   max-width: 100%;
 }
@@ -189,12 +191,12 @@ button {
 
 .nav-arrow:hover {
   filter: drop-shadow(0 0 10px #00bfff);
-  text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff, 0 0 40px #00bfff;
+  text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff,
+    0 0 40px #00bfff;
 }
 
 /* Bounce Animation */
 @keyframes bounceNav {
-
   0%,
   100% {
     transform: translateY(0);
@@ -338,6 +340,7 @@ button {
   font-size: clamp(0.5rem, 1vw, 2rem);
   font-weight: bold;
   letter-spacing: 0.05em;
+margin-top:2rem ;
 }
 
 /* Intro + astronaut */
@@ -356,7 +359,7 @@ button {
 
 .intro h1 {
   margin: 0;
-  background: linear-gradient(45deg, #FF0090, #d778f7, #8db5f6);
+  background: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -391,7 +394,6 @@ button {
 }
 
 @keyframes jump {
-
   0%,
   100% {
     transform: translateY(0);
@@ -420,11 +422,13 @@ button {
     top: 20px;
     gap: 1.5rem;
     padding: 0 1rem;
+    margin: clamp(10px, 3vw, 30px);
   }
 
   .nav-buttons button {
     font-size: clamp(0.8rem, 1.2vw, 1.5rem);
     padding: 0.4rem 1.5rem;
+    margin: clamp(10px, 3vw, 30px)
   }
 
   .intro h2 {
@@ -443,7 +447,7 @@ button {
 /* Mobile */
 @media (max-width: 768px) {
   .nav-buttons {
-    top: 15px;
+    top: 35px;
     gap: 1rem;
   }
 
@@ -463,7 +467,7 @@ button {
 
   #astronaut {
     width: 100px;
-    max-width: 50vw;
+    max-width: 110vw;
   }
 }
 
@@ -475,6 +479,7 @@ button {
     transform: translateX(-50%);
     flex-direction: column;
     gap: 0.75rem;
+    margin-top: 50px;
     width: 90vw;
   }
 
@@ -482,6 +487,7 @@ button {
     width: 100%;
     font-size: clamp(0.6rem, 3vw, 1rem);
     padding: 0.4rem 0;
+    margin-top: 9px;
   }
 
   .logo {
@@ -498,8 +504,8 @@ button {
   }
 
   #astronaut {
-    width: 80px;
-    max-width: 70vw;
+    width: 100px;
+    max-width: 90vw;
   }
 }
 
@@ -536,15 +542,15 @@ button {
 
 .core1-title {
   font-size: 3rem;
-  color: #7340ff;
+  color: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
 }
 
-.highlight-pink {
+/* .highlight-pink {
   color: #de74ff;
-}
+} */
 
 .core1-text {
-  color: #c1c8ff;
+  color: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
   font-size: 1.5rem;
   line-height: 1;
   letter-spacing: 0.03em;
@@ -610,9 +616,9 @@ button {
 }
 
 .core2-main-title {
-  font-size: clamp(1.5rem, 2.5vw, 3.5rem);
+  font-size: clamp(4rem, 2.5vw, 3.5rem);
   /* font-weight: 700; */
-  color: #c1c8ff;
+  color: #f0f3f7;
   letter-spacing: 0.15em;
   margin-top: 4rem;
   margin-bottom: 0.5rem;
@@ -686,15 +692,15 @@ button {
 }
 
 #card-curiosity .card-front {
-  background-image: url('assets/core-curiosity.png');
+  background-image: url("assets/core-curiosity.png");
 }
 
 #card-creation .card-front {
-  background-image: url('assets/core-creation.png');
+  background-image: url("assets/core-creation.png");
 }
 
 #card-connection .card-front {
-  background-image: url('assets/core-connection.png');
+  background-image: url("assets/core-connection.png");
 }
 
 .card-back {
@@ -732,6 +738,7 @@ button {
 
   .core1-title {
     font-size: 2.5rem;
+      color: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
   }
 
   .core1-text {
@@ -843,8 +850,8 @@ button {
 /* ===== THE LAB ===== */
 #lab {
   position: relative;
-  min-height: 200vh;
-  /* make the section longer than screen */
+  /* min-height: 200vh;
+  make the section longer than screen */
   background-color: #0a0a1a;
   color: #ffffff;
   overflow: hidden;
@@ -878,7 +885,11 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
   z-index: 0;
   pointer-events: none;
@@ -1039,7 +1050,8 @@ button {
 }
 
 .twinkling {
-  background: transparent url("https://i.imgur.com/XYMF4ca.png") repeat top center;
+  background: transparent url("https://i.imgur.com/XYMF4ca.png") repeat top
+    center;
   animation: twinkling 200s linear infinite;
   z-index: -1;
 }
@@ -1305,7 +1317,7 @@ button {
   color: #eba400;
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 .log-text {
@@ -1455,7 +1467,11 @@ button {
 .service-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, rgba(33, 15, 42), rgba(94, 0, 108, 0.37));
+  background: linear-gradient(
+    to bottom,
+    rgba(33, 15, 42),
+    rgba(94, 0, 108, 0.37)
+  );
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 3rem;
@@ -1488,7 +1504,8 @@ button {
 }
 
 .service-title h2 {
-  font-size: 2rem;
+ font-size: 1.5rem;     /* changed heading size*/
+    text-align: center;
 }
 
 .service-description {
@@ -1527,7 +1544,12 @@ button {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: 0.5s;
   z-index: -1;
 }
@@ -1569,7 +1591,8 @@ button {
   }
 
   .service-title h2 {
-    font-size: 1.5rem;
+    font-size: 1rem;
+      text-align: center;
   }
 
   .service-description {
@@ -1598,7 +1621,8 @@ button {
   }
 
   .service-title h2 {
-    font-size: 1.3rem;
+    font-size: 1rem;
+      text-align: center;
   }
 
   .service-description {
@@ -1627,7 +1651,8 @@ button {
   }
 
   .service-title h2 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    text-align: center;
   }
 
   .service-description {
@@ -1660,7 +1685,6 @@ button {
 }
 
 @keyframes twinkle {
-
   0%,
   100% {
     opacity: 0.3;
@@ -1677,7 +1701,12 @@ button {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    #fff 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   transform: rotate(-45deg);
   opacity: 0;
 }
@@ -1767,7 +1796,8 @@ button {
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 10px rgba(255, 0, 255, 0.4));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3))
+    drop-shadow(0 0 10px rgba(255, 0, 255, 0.4));
   position: relative;
   overflow: visible;
 }
@@ -1781,7 +1811,16 @@ button {
   right: 0;
   bottom: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.8) 2%, transparent 5%), radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.5) 1.5%, transparent 4%);
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(255, 255, 255, 0.8) 2%,
+      transparent 5%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(255, 255, 255, 0.5) 1.5%,
+      transparent 4%
+    );
   background-size: 200% 200%;
   animation: glitter 4s linear infinite;
   mix-blend-mode: screen;
@@ -1831,11 +1870,8 @@ button {
   height: 7rem;
   background: #0f0014;
   border-radius: 35%;
-  box-shadow: 0 0 10px #8a2be2,
-    /* purple glow */
-    0 0 20px #00fff7,
-    /* cyan glow */
-    inset 0 0 15px #8a2be2;
+  box-shadow: 0 0 10px #8a2be2, /* purple glow */ 0 0 20px #00fff7,
+    /* cyan glow */ inset 0 0 15px #8a2be2;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -1852,7 +1888,11 @@ button {
   left: 10%;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(45deg, #50fff9 0 2px, transparent 2px 4px);
+  background: repeating-linear-gradient(
+    45deg,
+    #50fff9 0 2px,
+    transparent 2px 4px
+  );
   mix-blend-mode: screen;
   pointer-events: none;
   opacity: 0.6;
@@ -1861,7 +1901,11 @@ button {
 }
 
 .icon-circle::after {
-  background: repeating-linear-gradient(-45deg, #8a2be2 0 2px, transparent 2px 4px);
+  background: repeating-linear-gradient(
+    -45deg,
+    #8a2be2 0 2px,
+    transparent 2px 4px
+  );
   animation-delay: 3s;
 }
 
