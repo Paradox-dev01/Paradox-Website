@@ -18,7 +18,7 @@
 
 /* === Headings === */
 h1 {
-  font-family: "Orbitron", "Chakra Petch", "Bebas Neue" monospace;
+  font-family: "Orbitron", "Space Mono", monospace;
   font-size: clamp(2.5rem, 6vw, 5rem);
   text-align: center;
   margin: 0;
@@ -26,8 +26,8 @@ h1 {
 }
 
 h2 {
-  font-family: "Chakra Petch", "Inter", "Space Mono", "Share Tech Mono",
-    monospace;
+  font-family: "Orbitron", "Chakra Petch", "Inter", "Space Mono",
+    "Share Tech Mono", monospace;
   font-size: clamp(1.25rem, 3vw, 2.5rem);
   text-align: center;
   letter-spacing: 0.3rem;
@@ -36,21 +36,22 @@ h2 {
 }
 
 h3 {
-  font-family: "Inter", "Space Mono", "Share Tech Mono", monospace;
+  font-family: "Orbitron", "Inter", "Space Mono", "Share Tech Mono", monospace;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
   color: #a0a0a0;
   margin-top: 1rem;
 }
 
 h4 {
-  font-family: "Courier New", "Lora", "Playfair Display", "Merriweather", serif;
+  font-family: "Orbitron", "Courier New", "Lora", "Playfair Display",
+    "Merriweather", serif;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
   color: #a0a0a0;
   margin-top: 1rem;
 }
 
 p {
-  font-family: "Lora", "Playfair Display", "Merriweather", serif;
+  font-family: monospace, "Merriweather", serif;
   font-size: clamp(0.9rem, 1vw + 0.5rem, 1.1rem);
   color: #d6f1ff;
   line-height: 1.6;
@@ -65,7 +66,7 @@ body {
 }
 
 button {
-  font-family: "Inknut Antiqua", "Lora", serif;
+  font-family: "Orbitron" monospace;
 }
 
 /* Custom Cursor */
@@ -123,8 +124,7 @@ button {
 }
 
 
-/* x x x x x x x */ 
-
+/* x x x x x x x */
 
 /* Sticky Logo */
 .logo {
@@ -135,7 +135,7 @@ button {
   z-index: 1000;
 }
 .logo img {
-  height: clamp(20px, 2vw, 35px);
+  height: clamp(40px, 2vw, 35px);
   width: auto;
   max-width: 100%;
 }
@@ -187,7 +187,7 @@ button {
 .nav-arrow:hover {
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
-  border-top: 28px solid #00bfff; 
+  border-top: 28px solid #00bfff;
   filter: drop-shadow(0 0 10px #00bfff91);
 }
 
@@ -199,14 +199,14 @@ button {
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 14px solid transparent;  
+  border-left: 14px solid transparent;
   border-right: 14px solid transparent;
-  border-top: 18px solid #a825f4c2;       
+  border-top: 18px solid #a825f4c2;
 }
 .nav-arrow:hover::after {
-  border-left: 16px solid transparent;  
+  border-left: 16px solid transparent;
   border-right: 16px solid transparent;
-  border-top: 20px solid #00bfff;  
+  border-top: 20px solid #00bfff;
   filter: drop-shadow(0 0 10px #00bfff8a);
 }
 
@@ -307,8 +307,6 @@ button {
   background-color: #000;
 }
 
-
-
 /* ================================================== LANDING PAGE ================================================== */
 #landing {
   position: relative;
@@ -357,6 +355,7 @@ button {
   font-size: clamp(0.5rem, 1vw, 2rem);
   font-weight: bold;
   letter-spacing: 0.05em;
+  margin-top: 2rem;
 }
 
 /* Intro + astronaut */
@@ -375,7 +374,7 @@ button {
 
 .intro h1 {
   margin: 0;
-  background: linear-gradient(45deg, #ff0090, #d778f7, #8db5f6);
+  background: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -436,11 +435,13 @@ button {
     top: 20px;
     gap: 1.5rem;
     padding: 0 1rem;
+    margin: clamp(10px, 3vw, 30px);
   }
 
   .nav-buttons button {
     font-size: clamp(0.8rem, 1.2vw, 1.5rem);
     padding: 0.4rem 1.5rem;
+    margin: clamp(10px, 3vw, 30px);
   }
 
   .intro h2 {
@@ -459,7 +460,7 @@ button {
 /* Mobile */
 @media (max-width: 768px) {
   .nav-buttons {
-    top: 15px;
+    top: 35px;
     gap: 1rem;
   }
 
@@ -479,7 +480,7 @@ button {
 
   #astronaut {
     width: 100px;
-    max-width: 50vw;
+    max-width: 110vw;
   }
 }
 
@@ -491,6 +492,7 @@ button {
     transform: translateX(-50%);
     flex-direction: column;
     gap: 0.75rem;
+    margin-top: 50px;
     width: 90vw;
   }
 
@@ -498,6 +500,7 @@ button {
     width: 100%;
     font-size: clamp(0.6rem, 3vw, 1rem);
     padding: 0.4rem 0;
+    margin-top: 9px;
   }
 
   .logo {
@@ -514,8 +517,8 @@ button {
   }
 
   #astronaut {
-    width: 80px;
-    max-width: 70vw;
+    width: 100px;
+    max-width: 90vw;
   }
 }
 
@@ -552,15 +555,15 @@ button {
 
 .core1-title {
   font-size: 3rem;
-  color: #7340ff;
+  color: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
 }
 
-.highlight-pink {
+/* .highlight-pink {
   color: #de74ff;
-}
+} */
 
 .core1-text {
-  color: #c1c8ff;
+  color: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
   font-size: 1.5rem;
   line-height: 1;
   letter-spacing: 0.03em;
@@ -626,9 +629,9 @@ button {
 }
 
 .core2-main-title {
-  font-size: clamp(1.5rem, 2.5vw, 3.5rem);
+  font-size: clamp(4rem, 2.5vw, 3.5rem);
   /* font-weight: 700; */
-  color: #c1c8ff;
+  color: #f0f3f7;
   letter-spacing: 0.15em;
   margin-top: 4rem;
   margin-bottom: 0.5rem;
@@ -748,6 +751,7 @@ button {
 
   .core1-title {
     font-size: 2.5rem;
+    color: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
   }
 
   .core1-text {
@@ -859,8 +863,8 @@ button {
 /* ================================================== THE LAB ================================================== */
 #lab {
   position: relative;
-  min-height: 200vh;
-  /* make the section longer than screen */
+  /* min-height: 200vh;
+  make the section longer than screen */
   background-color: #0a0a1a;
   color: #ffffff;
   overflow: hidden;
@@ -963,7 +967,7 @@ button {
   margin-bottom: 3rem;
   text-align: center;
   background: linear-gradient(90deg, #7928ca, #ff0080);
-    /* Standard property */
+  /* Standard property */
   background-clip: text;
   /* Webkit prefix for Chrome, Safari, Edge */
   -webkit-background-clip: text;
@@ -1118,7 +1122,7 @@ button {
 
 .astrodrive-containers {
   display: flex;
-  align-items: center;   /* vertically center content */
+  align-items: center; /* vertically center content */
   justify-content: space-between;
   gap: 2rem;
 }
@@ -1128,14 +1132,14 @@ button {
   flex: 1;
 }
 .astrodrive-left {
-  max-width: 650px;   
-  padding: 0 2.5rem;   
+  max-width: 650px;
+  padding: 0 2.5rem;
 }
 .astrodrive-right {
   display: flex;
-  justify-content: center;  
-  align-items: center;      
-  min-height: 100%;        
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
   position: relative;
   padding-right: 2.5rem;
   padding-left: 1rem;
@@ -1150,7 +1154,7 @@ button {
 
 .monitor {
   max-width: 100%;
-  background: #05193a;            /* bezel background */
+  background: #05193a; /* bezel background */
   padding: 1rem;
   border-radius: 14px;
   position: relative;
@@ -1168,7 +1172,7 @@ button {
 .monitor::after {
   content: "";
   position: absolute;
-  bottom: -50px;                   /* places it under the monitor */
+  bottom: -50px; /* places it under the monitor */
   left: 50%;
   transform: translateX(-50%);
   width: 16px;
@@ -1180,16 +1184,15 @@ button {
 .monitor::before {
   content: "";
   position: absolute;
-  bottom: -55px;                   /* below the stem */
+  bottom: -55px; /* below the stem */
   left: 50%;
   transform: translateX(-50%);
   width: 120px;
   height: 15px;
   background: #0a234d;
   border-radius: 4px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
-
 
 .astrodrive-logo {
   margin-bottom: 2rem;
@@ -1608,8 +1611,6 @@ button {
   flex-wrap: wrap; /* Allows wrapping of cards on smaller screens */
 }
 
-
-
 .service-card {
   width: 280px;
   height: 300px;
@@ -1756,6 +1757,7 @@ button {
 
   .service-name h2 {
     font-size: 1.5rem;
+    text-align: center;
   }
 
   .service-description {
@@ -1785,6 +1787,7 @@ button {
 
   .service-name h2 {
     font-size: 1.3rem;
+    text-align: center;
   }
 
   .service-description {
@@ -1814,6 +1817,7 @@ button {
 
   .service-name h2 {
     font-size: 1.1rem;
+    text-align: center;
   }
 
   .service-description {
