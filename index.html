@@ -11,8 +11,10 @@
     <meta property="og:description" content="We build powerful, game-changing applications that disrupt the ordinary." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://yourdomain.com/assets/paradox-logo.png" />
-    <meta property="og:url" content="https://yourdomain.com" /> -->
+    <meta property="og:image" content="assets/paradox-logo-full-bg.png" /> 
+    -->
 
+  <!-- <link rel="icon" type="image/png" href="paradox-logo-32.png"> -->
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Google Fonts (Grouped & Preconnected) -->
@@ -62,14 +64,24 @@
 
         <!-- Landing -->
         <section id="landing" class="section fade-scroll">
-        <br><br>
-          <nav class="nav-buttons">
-            <button onclick="scrollToSection('core1')">The Core</button>
-            <button onclick="scrollToSection('lab')">The Lab</button>
-            <button onclick="scrollToSection('dev-diary')">The Logs</button>
-            <button onclick="scrollToSection('services')">Services</button>
-            <button onclick="scrollToSection('connect')">Connect</button>
-          </nav>
+        <!-- <br><br> -->
+        <nav class="nav-buttons">
+          <button onclick="scrollToSection('core1')">
+            <span class="btn-label">The Core</span> <i class="fa-solid fa-atom"></i>
+          </button>
+          <button onclick="scrollToSection('lab')">
+            <span class="btn-label">The Lab</span> <i class="fa-solid fa-flask"></i>
+          </button>
+          <button onclick="scrollToSection('dev-diary')">
+            <span class="btn-label">The Logs</span> <i class="fa-solid fa-book"></i>
+          </button>
+          <button onclick="scrollToSection('services')">
+            <span class="btn-label">Services</span> <i class="fa-solid fa-cogs"></i>
+          </button>
+          <button onclick="scrollToSection('connect')">
+            <span class="btn-label">Connect</span> <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </nav>
 
           <div class="intro">
             <h1>Welcome to Paradox</h1>
@@ -104,7 +116,7 @@
 
         <section id="core2" class="section core-sec">
           <h2 class="core2-main-title">Core Matrix</h2>
-          <h3 class="core2-note">(Hover over a card to flip it and reveal more)</h3>
+          <h3 class="core2-note">Hover over a card to reveal more!</h3>
 
           <div class="core2-container">
             <div class="core-card" id="card-curiosity">
@@ -159,17 +171,18 @@
           <div class="grid-bg" id="gridBg"></div>
 
           <div class="project-grid">
+
+            
             <div class="project-card">
-              <a href="#" class="project-link-area" data-status="under-construction">
+              <a onclick="scrollToSection('game-vault')" class="project-link-area">
                 <div class="project-image">
-                  <img src="assets/coming-soon.svg" alt="Islamic App Logo">
+                  <img src="assets/game-vault-p.png" alt="GameVault Logo">
                 </div>
                 <div class="project-content">
-                  <h3 class="project-title">Siraway</h3>
-                  <p class="project-description">Guide to Islam</p>
+                  <h3 class="project-title">GameVault</h3>
+                  <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
                   <span class="project-link">View Project</span>
                 </div>
-                <div class="overlay">Coming Soon</div>
               </a>
             </div>
             <div class="project-card">
@@ -187,13 +200,14 @@
             <div class="project-card">
               <a href="#" class="project-link-area" data-status="under-construction">
                 <div class="project-image">
-                  <img src="assets/coming-soon.svg" alt="GameVault Logo">
+                  <img src="assets/coming-soon-p.gif" alt="Islamic App Logo">
                 </div>
                 <div class="project-content">
-                  <h3 class="project-title">GameVault</h3>
-                  <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
+                  <h3 class="project-title">Siraway</h3>
+                  <p class="project-description">Guide to Islam</p>
                   <span class="project-link">View Project</span>
                 </div>
+                <div class="overlay">Coming Soon</div>
               </a>
             </div>
 
@@ -210,8 +224,16 @@
           <div class="twinkling"></div>
           <div class="astrodrive-containers">
 
+            <div class="astrodrive-left">
 
-              <div class="astrodrive-left">
+                <div class="monitor">
+                  <video autoplay loop muted controls controlsList="nodownload" src="assets/AstroDrive-video.mp4"></video>
+                  <div class="led"></div>
+                  <div class="base"></div>
+                </div>
+            </div>
+
+            <div class="astrodrive-right">
                 <div class="astrodrive-logo">
                   <img src="assets/astrodrive-logo.jpg" alt="AstroDrive Logo" class="Astrologo" />
                   <h2 class="tagline">Unleash the Cosmos!</h2>
@@ -245,21 +267,66 @@
             </div>
 
 
-
-            <div class="astrodrive-right">
-
-                <div class="monitor">
-                  <video autoplay loop muted controls controlsList="nodownload" src="assets/AstroDrive-video.mp4"></video>
-                  <div class="led"></div>
-                  <div class="base"></div>
-                </div>
-            </div>
-
           </div>
         </section>
 
         
     </section>
+
+    <!-- Game Vault -->
+    <section id="game-vault" class="section">
+      <div class="vault-grid-bg" id="vaultGrid"></div> 
+
+      <div class="vault-intro">
+        <h1>Our <span>Game Vault</span></h1>
+        <p>A chamber of all the games we’ve built:<br> completed, ongoing, and experimental.</br>
+      </div>
+
+      <div class="vault-projects">
+        <div id="games" class="games">
+
+            <div class="vault-grid">
+              <div class="game-card" data-game-key="iiuc-tension-run">
+                <div class="game-image">
+                  <img src="assets/games/iiuc-tension-run/iiuc-tension-run-logo.png" alt="IIUC Tension Run">
+                </div>
+                <div class="game-content">
+                  <h3>IIUC Tension Run</h3>
+                  <p>Campus-inspired fun runner game.</p>
+                  <span class="game-link">View More</span>
+                </div>
+              </div>
+
+              <div class="game-card" data-game-key="other game">
+                <div class="game-image">
+                  <img src="assets/coming-soon-p.gif" alt="Coming Soon">
+                </div>
+                <div class="game-content">
+                  <h3>New Game</h3>
+                  <p>Coming Soon...</p>
+                  <span class="game-link">View More</span>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+            
+    </section>
+
+    <!-- Game Info Zone (hidden by default) -->
+        <section id="game-info-zone" class="section">
+          <div id="game-details" class="game-details-container">
+            <!-- Dynamic content for each game will be injected here via JS -->
+          </div>
+        </section>
+
+        <!-- Image Popup -->
+        <div id="image-popup" class="image-popup">
+          <span class="close-popup">&times;</span>
+          <img src="" alt="Expanded view" class="popup-img">
+        </div>
+
 
     <!-- DevDiary -->
     <section id="dev-diary" class="section dev-diary">

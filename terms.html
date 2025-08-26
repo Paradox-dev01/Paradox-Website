@@ -4,7 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Terms & Conditions — Paradox</title>
-  <meta name="description" content="Terms and Conditions for using Paradox's website, products and services." />
+
+  <meta name="description" content="Terms and Conditions for using Paradox's website, products and services." />  
+  <meta name="robots" content="index, follow" />
+
+  <!-- <meta property="og:title" content="Terms & Conditions — Paradox" />
+  <meta property="og:description" content="Terms and Conditions for using Paradox's website, products and services." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com/terms" />
+  <meta property="og:image" content="assets/paradox-logo-full-bg.png" /> 
+  -->
+
+
   <style>
     :root {
       --bg: #0b1020;
@@ -17,6 +28,9 @@
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; height: 100%; }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--ink);
@@ -40,16 +54,36 @@
     nav.toc {
       margin: 24px 0 16px; border: 1px solid var(--border);
       background: rgba(18,24,51,.5); border-radius: 16px;
+      overflow-x: auto;
     }
     nav.toc .label { font-weight: 600; padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--muted); }
-    nav.toc ol { margin: 0; padding: 8px 24px 18px; }
+    nav.toc ol { 
+      margin: 0; 
+      padding: 8px 20px 18px 32px; 
+      list-style-position: inside;
+    }
     nav.toc li { margin: 6px 0; }
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    nav.toc a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    a {
+      color: var(--link);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
     main { margin-top: 24px; }
     section {
-      background: rgba(18,24,51,.65); border: 1px solid var(--border);
-      border-radius: 16px; padding: 22px 18px; margin: 16px 0;
+      background: rgba(18,24,51,.65);
+      border: 1px solid rgba(32, 42, 85, 0.6);
+      border-radius: 16px;
+      padding: 28px 22px; /* slightly more padding */
+      margin: 16px 0;
+      line-height: 1.75; /* improved readability */
     }
     section h2 { font-size: 20px; margin: 0 0 8px; }
     section p, section ul { margin: 10px 0; }
@@ -76,35 +110,89 @@
     <nav class="toc" aria-label="Table of contents">
       <div class="label">Quick navigation</div>
       <ol>
-        <li><a href="#acceptance">Acceptance of Terms</a></li>
         <li><a href="#defined-terms">Defined Terms</a></li>
+        <li><a href="#acceptance">Acceptance of Terms</a></li>
+        <li><a href="#eligibility">Eligibility & Use</a></li>
+        <li><a href="#responsibilities">User Responsibilities</a></li>
+        <li><a href="#intellectual-property">Intellectual Property</a></li>
+        <!-- <li><a href="#privacy">Privacy & Data Handling</a></li> -->
+        <li><a href="#liability">Limitation of Liability</a></li>
+        <li><a href="#termination">Termination</a></li>
+        <!-- <li><a href="#law">Governing Law & Disputes</a></li> -->
+        <li><a href="#changes">Changes to Terms</a></li>
         <li><a href="#contact">Contact Us</a></li>
       </ol>
     </nav>
 
+
     <main>
-      <section id="acceptance">
-        <h2>1. Acceptance of Terms</h2>
-        <p>At Paradox, we value your trust and are committed to delivering technology solutions that make a difference. Before you explore our services, we encourage you to read these Terms and Conditions carefully. They are designed to ensure clarity, fairness, and transparency in how we work together.</p>
-        <p>By accessing or using our services, you are entering into a trusted partnership with us. Our goal is to provide you with innovative, reliable, and secure solutions tailored to your needs—while making sure that both your rights and responsibilities are well protected.</p>
-        <p>We’re excited to have you here. Let’s build something extraordinary together.</p>
-      </section>
 
       <section id="defined-terms">
-        <h2>2. Defined Terms</h2>
+        <h2>1. Defined Terms</h2>
         <p class="note">In this Policy, “Paradox,” “we,” “our,” or “us” refers to the Paradox entity responsible for the collection, use, and handling of Personal Data as described in this document. Depending on your jurisdiction, the specific Paradox entity accountable for your Personal Data may vary.</p>
         <p>“Personal Data” refers to any information related to an identified or identifiable individual, which may include information you provide to us, and data we collect about you when you interact with our Services (such as your contact details, project requirements, device information, IP address, etc.).</p>
         <p>“Services” refers to the technology solutions, products, and software-related services that we provide to our clients under our service agreements. These include, but are not limited to: custom software development, technology consultation, web and mobile application development, and other digital services requested through customer orders. We provide these Services directly to clients (“Customers”), who engage us for building, designing, or delivering technology-based solutions.</p>
       </section>
 
+      <section id="acceptance">
+        <h2>2. Acceptance of Terms</h2>
+        <p>By accessing or using our Services, you agree to be bound by these Terms and Conditions. Please read them carefully to understand your rights and responsibilities.</p>
+        <p>We encourage collaboration and innovation, and we’re excited to have you as part of our community.</p>
+      </section>
+
+
+      <section id="eligibility">
+        <h2>3. Eligibility & Use</h2>
+        <p>Our Services are available to users aged 13+ (or your jurisdiction) who can form legally binding contracts. By using our Services, you confirm you meet these requirements.</p>
+      </section>
+
+      <section id="responsibilities">
+        <h2>4. User Responsibilities</h2>
+        <p>Users must not misuse the Services. Prohibited actions include illegal activity, abuse, reverse engineering, or interfering with service operations.</p>
+      </section>
+
+      <section id="intellectual-property">
+        <h2>5. Intellectual Property</h2>
+        <p>All content, logos, software, and materials provided by Paradox remain our intellectual property. Users may not reproduce or redistribute without permission.</p>
+      </section>
+
+      <!-- <section id="privacy">
+        <h2>6. Privacy & Data Handling</h2>
+        <p>Your data is handled according to our <a href="/privacy-policy">Privacy Policy</a>. We collect and use information to provide services securely.</p>
+      </section> -->
+
+      <section id="liability">
+        <h2>6. Limitation of Liability</h2>
+        <p>Paradox is not liable for any damages arising from the use or inability to use our Services, except where prohibited by law.</p>
+      </section>
+
+      <section id="termination">
+        <h2>7. Termination</h2>
+        <p>We reserve the right to suspend or terminate accounts for violations of these Terms or misuse of the Services.</p>
+      </section>
+
+      <!-- <section id="law">
+        <h2>9. Governing Law & Disputes</h2>
+        <p>These Terms are governed by the laws of Bangladesh. Any disputes will be resolved in the courts of [City, Country].</p>
+      </section> -->
+
+      <section id="changes">
+        <h2>8. Changes to Terms</h2>
+        <p>We may update these Terms from time to time. Users are encouraged to review them periodically. Continued use after changes constitutes acceptance.</p>
+      </section>
+
+
       <section id="contact">
         <h2>Contact Us</h2>
-        <p>If you have questions about these Terms, please contact us:</p>
+        <p>If you have questions about these Terms, please contact us. We’re happy to clarify any points or provide assistance.</p>
         <ul>
           <li><strong>Email:</strong> <a href="mailto:paradoxicalparadox.v01@gmail.com">paradoxicalparadox.v01@gmail.com</a></li>
         </ul>
-        <a class="top" href="#top">↑ Back to top</a>
       </section>
+
+      
+        <a class="top" href="#top">↑ Back to top</a>
+
     </main>
 
     <footer>

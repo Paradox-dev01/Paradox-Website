@@ -46,8 +46,9 @@ document.addEventListener("mouseup", () => {
   cursor.classList.remove("clicked");
 });
 
-// Hovering clickable items
-document.querySelectorAll('.logo, a, button, .enter-button, .nav-arrow, #astronaut').forEach(el => {
+// =============================================Hovering clickable items
+
+document.querySelectorAll('.logo, a, button, .enter-button, .nav-arrow, #astronaut, .game-card, .carousel img').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.classList.add('hover');
   });
@@ -56,21 +57,27 @@ document.querySelectorAll('.logo, a, button, .enter-button, .nav-arrow, #astrona
   });
 });
 
-// Scroll Animation Observer
-// const sections = document.querySelectorAll('.section');
-// const observer = new IntersectionObserver(entries => {
-//   entries.forEach(entry => {
-//     if (entry.isIntersecting) {
-//       entry.target.classList.add('visible');
-//     } else {
-//       entry.target.classList.remove('visible');
-//     }
-//   });
-// }, {
-//   threshold: 0.3
+// document.addEventListener("mouseover", (e) => {
+//   if (e.target.closest("a, button, input, textarea, select, [role='button'], [onclick], [data-clickable]")) {
+//     cursor.classList.add("hover");
+//   }
+// });
+// document.addEventListener("mouseout", (e) => {
+//   if (e.target.closest("a, button, input, textarea, select, [role='button'], [onclick], [data-clickable]")) {
+//     cursor.classList.remove("hover");
+//   }
 // });
 
-// sections.forEach(section => observer.observe(section));
+// document.addEventListener("mouseover", (e) => {
+//   if (window.getComputedStyle(e.target).cursor === "pointer") {
+//     cursor.classList.add("hover");
+//   }
+// });
+// document.addEventListener("mouseout", () => {
+//   cursor.classList.remove("hover");
+// });
+
+
 
 // Scroll Progress Bar
 window.addEventListener("scroll", () => {
@@ -556,76 +563,252 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ---------------------------------------------- ASTRO DRIVE
-document.addEventListener("DOMContentLoaded", function () {
-  // Add animation classes with delays
-  const elementsToAnimate = [
-    { element: document.querySelector(".content h1"), delay: 0 },
-    { element: document.querySelector(".intro-line"), delay: 0.3 },
-    {
-      element: document.querySelectorAll(".content p:not(.intro-line)")[0],
-      delay: 0.6,
-    },
-    {
-      element: document.querySelectorAll(".content p:not(.intro-line)")[1],
-      delay: 0.9,
-    },
-    { element: document.querySelector(".social-links"), delay: 1.2 },
-  ];
 
-  elementsToAnimate.forEach((item) => {
-    if (item.element) {
-      item.element.classList.add("fade-in");
-      item.element.style.animationDelay = `${item.delay}s`;
-    }
-  });
 
-  // Add hover effects for social links
-  const socialLinks = document.querySelectorAll(".social-link");
-  socialLinks.forEach((link) => {
-    link.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-5px)";
-      this.style.textShadow = "0 0 15px rgba(100, 149, 237, 0.8)";
-    });
 
-    link.addEventListener("mouseleave", function () {
-      this.style.transform = "";
-      this.style.textShadow = "";
-    });
-  });
 
-  // Handle window resize
-  function handleResize() {
-    // Any responsive JS adjustments would go here
+//  ---------------------------------------------- GAME VAULT ----------------------------------------------
+//  ----------------------------------------------GAME INFO ZONE-----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+
+const gameData = {
+  "iiuc-tension-run": {
+    title: "IIUC Tension Run",
+    description: `
+      <p><strong>Genre:</strong> Endless Runner</p> </br>
+      <p>Campus-inspired runner game where players dodge exams, chase deadlines, and collect knowledge points.</p>
+      </br>
+      <p><strong>Status:</strong> Completed</p>
+    `,
+    image: "assets/games/iiuc-tension-run/iiuc-tension-run-logo.png",
+    trailer: "assets/games/iiuc-tension-run/iiuc-tension-run-trailer.mp4",
+    images: [
+      "assets/games/iiuc-tension-run/1.png",
+      "assets/games/iiuc-tension-run/2.png",
+      "assets/games/iiuc-tension-run/3.png"
+    ]
+  }
+};
+
+function getImagesForGame(folderPath) {
+  const images = [];
+  let index = 1;
+
+  while (true) {
+    const imgPath = `${folderPath}/${index}.jpg`;
+    const img = new Image();
+    img.src = imgPath;
+
+    if (img.complete && img.naturalWidth !== 0) {
+      images.push(imgPath);
+      index++;
+    } else break;
   }
 
-  // Debounce resize events
-  let resizeTimer;
-  window.addEventListener("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(handleResize, 250);
+  return images;
+}
+
+// DOM elements
+const gameCards = document.querySelectorAll(".game-card");
+const gameInfoZone = document.getElementById("game-info-zone");
+const gameDetails = document.getElementById("game-details");
+
+// ------------------ Show Game Details ------------------
+function showGameDetails(gameKey) {
+  const data = gameData[gameKey];
+  if (!data) return;
+
+  // const folder = `assets/games/${gameKey}`;
+  // const images = getImagesForGame(folder);
+  // const imagesHTML = images.map(img => `<img src="${img}" alt="">`).join("");
+
+  // Build image carousel slides
+  const imagesHTML = data.images ? data.images.map(img => `<img src="${img}" alt="">`).join("") : "";
+
+  gameDetails.innerHTML = `
+    <div class="game-detail-container">
+      <div class="game-detail-left">
+        <div class="game-logo-title">
+          <img src="${data.image}" alt="${data.title}" class="game-detail-logo">
+          <h2>${data.title}</h2>
+        </div>
+        <div class="game-description">${data.description}</div>
+      </div>
+      <div class="game-detail-right">
+        ${data.trailer ? `<video autoplay loop muted controls src="${data.trailer}" class="game-detail-video"></video>` : `<p class="no-trailer">No trailer available yet.</p>`}
+        ${data.images ? `
+          <div class="carousel">
+            <button class="carousel-arrow left">&#8249;</button>
+            <div class="carousel-track">${imagesHTML}</div>
+            <button class="carousel-arrow right">&#8250;</button>
+          </div>` : ""}
+      </div>
+    </div>
+  `;
+
+  
+  gameInfoZone.classList.add("active");
+
+  // Animate in
+  gsap.fromTo(gameInfoZone, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" });
+  gameInfoZone.scrollIntoView({ behavior: "smooth" });
+
+  // Carousel logic
+  const track = gameDetails.querySelector(".carousel-track");
+  const leftBtn = gameDetails.querySelector(".carousel-arrow.left");
+  const rightBtn = gameDetails.querySelector(".carousel-arrow.right");
+
+  if (track && leftBtn && rightBtn) {
+    initCarousel(track, leftBtn, rightBtn);
+    enableImagePopup();
+  }
+}
+
+function initCarousel(track, leftBtn, rightBtn) {
+  // const slides = Array.from(track.children);
+  // let index = 0;
+
+  // function updateCarousel() {
+  //   const offset = -index * (slides[0].offsetWidth + 8); // 8px = gap
+  //   track.style.transform = `translateX(${offset}px)`;
+  // }
+
+  // leftBtn.addEventListener("click", () => {
+  //   index = (index - 1 + slides.length) % slides.length;
+  //   updateCarousel();
+  // });
+
+  // rightBtn.addEventListener("click", () => {
+  //   index = (index + 1) % slides.length;
+  //   updateCarousel();
+  // });
+
+  // updateCarousel();
+
+  const slides = track.children;
+  const total = slides.length;
+  let index = 0;
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${index * 110}px)`;
+  }
+
+  leftBtn.addEventListener("click", () => {
+    index = (index - 1 + total) % total; // loop
+    updateCarousel();
+  });
+
+  rightBtn.addEventListener("click", () => {
+    index = (index + 1) % total; // loop
+    updateCarousel();
+  });
+
+  updateCarousel();
+}
+
+
+// ------------------ Attach Click Events ------------------
+gameCards.forEach(card => {
+  card.addEventListener("click", () => {
+    const key = card.getAttribute("data-game-key");
+    showGameDetails(key);
+  });
+
+  // Hover animation with GSAP
+  card.addEventListener("mouseenter", () => {
+    gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+  });
+  card.addEventListener("mouseleave", () => {
+    gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
   });
 });
 
-ScrollTrigger.create({
-  trigger: "#astro",
-  start: "top top",
-  endTrigger: "#dev-diary",    // fade as DevDiary approaches
-  end: "top top",               // let it end when DevDiary reaches top
-  pin: true,
-  pinSpacing: true,             // reserve space so DevDiary doesn't overlap
-  scrub: true                  // smooth scroll connection
+//------------------- Auto Hide on Scroll Down -----------------
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+  if (!gameInfoZone || gameInfoZone.offsetTop === 0) return;
+
+  if (window.scrollY > lastScrollY) { 
+    // Scrolling down
+    const rect = gameInfoZone.getBoundingClientRect();
+    if (rect.top < -200) { // user scrolled past section
+      gsap.to(gameInfoZone, { opacity: 0, y: 50, duration: 0.5 });
+      setTimeout(() => {
+        gameDetails.innerHTML = "";
+        gameInfoZone.classList.remove("active"); // <— hide it fully
+      }, 600);
+    }
+  }
+  lastScrollY = window.scrollY;
 });
 
-// Fade out AstroDrive content as user scrolls to DevDiary
-gsap.to("#astro", {
-  scrollTrigger: {
-    trigger: "#dev-diary",     // when DevDiary is coming up
-    start: "top bottom",       // starts fading when DevDiary top hits bottom of viewport
-    end: "top top",            // fully faded when DevDiary top hits top of viewport
-    scrub: true
-  },
-  opacity: 0
+// ------------------ Image Popup Logic ------------------
+const imagePopup = document.getElementById("image-popup");
+const popupImg = document.querySelector(".popup-img");
+const closePopup = document.querySelector(".close-popup");
+
+function enableImagePopup() {
+  const images = document.querySelectorAll(".carousel-track img");
+  images.forEach(img => {
+    img.addEventListener("click", () => {
+      popupImg.src = img.src;
+      imagePopup.classList.add("active");
+
+      gsap.fromTo(popupImg, 
+        { scale: 0.7, opacity: 0 }, 
+        { scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" }
+      );
+    });
+  });
+}
+
+// Close popup
+closePopup.addEventListener("click", () => {
+  gsap.to(imagePopup, { opacity: 0, scale: 0.9, duration: 0.3, onComplete: () => {
+    imagePopup.classList.remove("active");
+    imagePopup.style.opacity = "1"; // reset
+    popupImg.src = "";
+  }});
 });
+
+// Optional: click outside to close
+imagePopup.addEventListener("click", (e) => {
+  if (e.target === imagePopup) {
+    closePopup.click();
+  }
+});
+
+
+// ------------------ Add Lab-style stars & grid to Game Vault ------------------
+const vaultStarsContainer = document.createElement("div");
+vaultStarsContainer.classList.add("lab-stars");
+document.getElementById("game-vault").prepend(vaultStarsContainer);
+
+const starCount = 120;
+for (let i = 0; i < starCount; i++) {
+  const star = document.createElement("div");
+  star.classList.add("lab-star");
+  const size = Math.random() * 2 + 1;
+  star.style.width = `${size}px`;
+  star.style.height = `${size}px`;
+  star.style.top = `${Math.random() * 100}%`;
+  star.style.left = `${Math.random() * 100}%`;
+  vaultStarsContainer.appendChild(star);
+
+  gsap.to(star, {
+    opacity: Math.random() * 0.6 + 0.2,
+    duration: Math.random() * 2 + 1,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+    delay: Math.random() * 3,
+  });
+}
+
+
+
+
 
 
 // ---------------------------------------------- DEV DIARY ----------------------------------------------
