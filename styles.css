@@ -13,7 +13,6 @@
   font-family: monospace, "Merriweather", serif;
 }
 
-/* === Headings === */
 h1 {
   font-family: "Orbitron", "Space Mono", monospace;
   font-size: clamp(2.5rem, 6vw, 5rem);
@@ -21,7 +20,6 @@ h1 {
   margin: 0;
   color: #fcf2ff;
 }
-
 h2 {
   font-family: "Orbitron", "Chakra Petch", "Inter", "Space Mono",
     "Share Tech Mono", monospace;
@@ -29,21 +27,19 @@ h2 {
   text-align: center;
   letter-spacing: 0.3rem;
   margin: 0.5rem 0;
-  color: #d2f0ff;
+  color: #dbf1fc;
 }
-
 h3 {
   font-family: "Orbitron", "Inter", "Space Mono", "Share Tech Mono", monospace;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
-  color: #a0a0a0;
+  color: #bababa;
   margin-top: 1rem;
 }
-
 h4 {
   font-family: "Orbitron", "Courier New", "Lora", "Playfair Display",
     "Merriweather", serif;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
-  color: #a0a0a0;
+  color: #bababa;
   margin-top: 1rem;
 }
 
@@ -595,7 +591,6 @@ button {
   position: relative;
   transform: none !important;
 }
-
 .core1-title {
   font-size: 3rem;
   background: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
@@ -604,17 +599,22 @@ button {
     background-clip: text;
     color: transparent;  
 }
-
 .core1-text {
   font-size: 1.5rem;
   line-height: 1;
   letter-spacing: 0.03em;
   white-space: pre-line;
+  width: 60%;
+  margin: 0 auto;
+}
+.highlight {
+  color: #ff00ff; /* bright accent color */
+  font-weight: bold;
 }
 
 
 /* ==================================================
-   RESPONSIVENESS — GAME INFO ZONE
+   RESPONSIVENESS — CORE 1
    ================================================== */
 
 /* Desktop 1025px - 1439px */
@@ -826,7 +826,7 @@ button {
 }
 
 /* ==================================================
-   RESPONSIVENESS — GAME INFO ZONE
+   RESPONSIVENESS — CORE 2
    ================================================== */
 /* Desktop 1025px - 1439px */
 @media (max-width: 1439px) {
@@ -1074,7 +1074,7 @@ button {
 
 
 /* ==================================================
-   RESPONSIVENESS — GAME INFO ZONE
+   RESPONSIVENESS — THE LAB
    ================================================== */
 
 /* Tablet ≤1024px */
@@ -1160,37 +1160,6 @@ button {
   align-items: center;
   position: relative;
   padding: 20px;
-}
-
-.stars,
-.twinkling {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-}
-
-.stars {
-  background: #0a0a1a url("https://i.imgur.com/YKY28eT.png") repeat top center;
-}
-
-.twinkling {
-  background: transparent url("https://i.imgur.com/XYMF4ca.png") repeat top
-    center;
-  animation: twinkling 200s linear infinite;
-  z-index: -1;
-}
-
-@keyframes twinkling {
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: -10000px 5000px;
-  }
 }
 
 .astrodrive-containers {
@@ -1364,7 +1333,7 @@ button {
 
 
 /* ==================================================
-   RESPONSIVENESS — GAME INFO ZONE
+   RESPONSIVENESS — ASTRODRIVE
    ================================================== */
 /* Tablet & below (max-width: 768px) */
 @media (max-width: 768px) {
@@ -1473,13 +1442,12 @@ button {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; /* ensure it covers full section */
-  background-image: url('assets/lab-grid.png'); 
-  background-size: cover; /* make sure it scales */
-  background-repeat: no-repeat; /* optional */
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
   opacity: 0.05;
-  pointer-events: none; /* so it doesn’t block clicks */
-  z-index: 1; /* just below content */
+  pointer-events: none; 
+  z-index: 1;
 }
 
 #game-vault {
@@ -2179,7 +2147,7 @@ button {
 
 
 /* ==================================================
-   RESPONSIVENESS — GAME INFO ZONE
+   RESPONSIVENESS — DEV DIARY
    ================================================== */
 
 /* Tablet (<=1024px) */
@@ -2408,7 +2376,7 @@ button {
 }
 
 /* ==================================================
-   RESPONSIVENESS — GAME INFO ZONE
+   RESPONSIVENESS — SERVICES
    ================================================== */
 
 /* Tablet (<=1024px) */

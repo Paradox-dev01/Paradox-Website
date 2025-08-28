@@ -79,7 +79,7 @@ document.querySelectorAll('.logo, a, button, .enter-button, .nav-arrow, #astrona
 
 
 
-// Scroll Progress Bar
+// =============================================Scroll Progress Bar
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
@@ -89,7 +89,7 @@ window.addEventListener("scroll", () => {
   ).style.width = `${scrollPercent}%`;
 });
 
-// Navigation Arrow Scroll
+// =============================================Navigation Arrow Scroll
 const sections = document.querySelectorAll(".section");
 function scrollToNextSection() {
   const visibleSections = Array.from(sections).filter(
@@ -129,7 +129,29 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(MotionPathPlugin);
 
 
+// =============================================snap-scroll
 
+gsap.utils.toArray(".snap-section").forEach((el) => {
+  ScrollTrigger.create({
+    trigger: el,
+    start: "top bottom",   // when top of section enters viewport
+    end: "bottom bottom",  // when bottom of section hits bottom
+    snap: {
+      snapTo: 1,           // snap to the **end** of section (bottom aligned)
+      duration: 0.05,       // faster snap
+      ease: "power3.inOut" // snappier easing
+    },
+    markers: false,        // set true to debug
+    scrub: 0,              // no smoothing, instant snap
+  });
+});
+
+
+
+
+//  ==========================INTRO+CORE BACKGROUND=====================  //
+// ----------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
 
 const canvas = document.getElementById("sci-fi-bg");
 const ctx = canvas.getContext("2d");
@@ -262,6 +284,8 @@ landingCore.addEventListener("mouseleave", () => {
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
+  console.log("landing - Script loaded!");
+
 // === SELECT DOM ELEMENTS ===
 const bgBottom = document.querySelector(".bg-bottom");
 const astronaut = document.getElementById("astronaut");
@@ -360,6 +384,8 @@ window.addEventListener("scroll", () => {
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
+  console.log("core - Script loaded!");
+
 //1
 const core1 = document.getElementById("core1");
 const coreObserver = new IntersectionObserver(
@@ -439,7 +465,8 @@ ScrollTrigger.create({
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Script loaded!");
+
+  console.log("lab - Script loaded!");
 
   document.querySelectorAll(".project-link-area").forEach((link) => {
     link.addEventListener("click", function (e) {
@@ -527,9 +554,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
   });
 
-  gsap.from(".labs-title", {
+  gsap.from(".project-title", {
     scrollTrigger: {
-      trigger: ".labs-title",
+      trigger: ".project-title",
       start: "top 80%",
     },
     y: 30,
@@ -565,11 +592,17 @@ document.addEventListener("DOMContentLoaded", () => {
 // ---------------------------------------------- ASTRO DRIVE
 
 
+  console.log("astrodrive - Script loaded!");
+
+
 
 
 //  ---------------------------------------------- GAME VAULT ----------------------------------------------
 //  ----------------------------------------------GAME INFO ZONE-----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
+
+
+  console.log("game-vault - Script loaded!");
 
 const gameData = {
   "iiuc-tension-run": {
@@ -815,6 +848,9 @@ for (let i = 0; i < starCount; i++) {
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
+
+  console.log("dev-diary - Script loaded!");
+
   // Create stars
   const galaxyGrid = document.querySelector(".galaxy-grid");
   for (let i = 0; i < 100; i++) {
@@ -851,6 +887,9 @@ document.addEventListener("DOMContentLoaded", function () {
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
+  
+  console.log("services - Script loaded!");
+
   const spaceBg = document.getElementById("spaceBg");
   document.addEventListener("DOMContentLoaded", () => {
     // Select the services section and swirl container
@@ -1009,38 +1048,52 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Animate service cards on scroll into view
-  const serviceCards = document.querySelectorAll(".service-card");
+//==================== Animate elements
 
+  // Animate cards into view
+  const serviceCards = document.querySelectorAll(".service-card");
   serviceCards.forEach((card, index) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: "top 80%",
-        toggleActions: "play none none none",
+    ScrollTrigger.create({
+      trigger: card,
+      start: "top 80%",
+      onEnter: () => {
+        gsap.fromTo(
+          card,
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, ease: "sine.inOut", delay: index * 0.1 }
+        );
       },
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      delay: index * 0.1,
-      ease: "back.out(1.7)",
+      onEnterBack: () => {
+        gsap.fromTo(
+          card,
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, ease: "sine.inOut", delay: index * 0.1 }
+        );
+      },
     });
   });
 
-  // Animate contact button
-  gsap.from(".contact-btn", {
-    scrollTrigger: {
-      trigger: ".contact-btn",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
+  // Animate contact button into view
+  ScrollTrigger.create({
+    trigger: ".contact-btn",
+    start: "top 100%",
+    onEnter: () => {
+      gsap.fromTo(
+        ".contact-btn",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.5, ease: "sine.inOut" }
+      );
+    }, 
+    onEnterBack: () => {
+      gsap.fromTo(
+        ".contact-btn",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.5, ease: "sine.inOut" }
+      );
+    }, 
   });
 
-
+  // contact button shines when hovering over cards
   const contactBtn = document.querySelector(".contact-btn");
   const cards = document.querySelectorAll(".service-card");
 
@@ -1054,6 +1107,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
+
 });
 
 //  ---------------------------------------------- CONNECT ----------------------------------------------
@@ -1061,6 +1116,9 @@ document.addEventListener("DOMContentLoaded", function () {
 //  ----------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  console.log("connect - Script loaded!");
+
   // Create swirling effect
   const swirlContainer = document.getElementById("swirl-container");
   const swirlCount = 15;
@@ -1282,8 +1340,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Handle window resize
-  window.addEventListener("resize", function () {
-    // You could add responsive adjustments here if needed
-  });
 });
