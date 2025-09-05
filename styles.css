@@ -1,8 +1,12 @@
 /* #FF0090 #E37CF5 #DC7AF5 #601CB8 #4449A3 #85A0E0 #413484 */
 :root {
+  --logo-top: clamp(1rem, 2.5vw, 2.5rem);
+  --logo-size: clamp(5rem, 12vw, 12rem);
   --intro-bg: #000000;
   --showcase-bg: #0a0a1a;
   --last-impression-bg: #280332;
+
+  
 }
 
 * {
@@ -14,15 +18,14 @@
 }
 
 h1 {
-  font-family: "Orbitron", "Space Mono", monospace;
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-family: "Orbitron", "Inter", "Space Mono", "Share Tech Mono", monospace;
+  font-size: clamp(0.5rem, 6vw, 5rem);
   text-align: center;
   margin: 0;
   color: #fcf2ff;
 }
 h2 {
-  font-family: "Orbitron", "Chakra Petch", "Inter", "Space Mono",
-    "Share Tech Mono", monospace;
+  font-family: "Orbitron", "Inter", "Space Mono", "Share Tech Mono", monospace;
   font-size: clamp(1.25rem, 3vw, 2.5rem);
   text-align: center;
   letter-spacing: 0.3rem;
@@ -36,15 +39,13 @@ h3 {
   margin-top: 1rem;
 }
 h4 {
-  font-family: "Orbitron", "Courier New", "Lora", "Playfair Display",
-    "Merriweather", serif;
+  font-family: "Orbitron", "Inter", "Space Mono", "Share Tech Mono", monospace;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
   color: #bababa;
   margin-top: 1rem;
 }
 
 p {
-  font-family: monospace, "Merriweather", serif;
   font-size: clamp(0.9rem, 1vw + 0.5rem, 1.1rem);
   color: #d7dce4;
   line-height: 1.6;
@@ -122,15 +123,14 @@ button {
 /* Sticky Logo */
 .logo {
   position: fixed;
-  top: 0;
-  left: 0;
-  margin: 2.5rem;
+  top: var(--logo-top);
+  left: var(--logo-top);
   z-index: 100000;
 }
 .logo img {
-  height: clamp(40px, 2vw, 35px);
-  width: auto;
-  max-width: 100%;
+  width: var(--logo-size);
+  height: auto; 
+  /* min-width: 100%; */
 }
 
 /* Scroll Progress Bar */
@@ -147,7 +147,6 @@ button {
 
 /* Section Styling */
 .section {
-  /* height: 100vh; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,6 +161,13 @@ button {
   opacity: 1;
   transform: translateY(0);
 }
+.full-section {
+  height: 100vh;
+}
+.section-top {
+  padding-top: calc(var(--logo-top) + var(--logo-size));
+}
+
 
 /* Navigation Arrow */
 .nav-arrow {
@@ -215,89 +221,6 @@ button {
   }
 }
 
-/* ==================================================
-   RESPONSIVENESS — BASE
-   ================================================== */
-
-/* -------- Desktop / Large -------- */
-@media (min-width: 1440px) {
-  h1 { font-size: clamp(3rem, 5vw, 6rem); }
-  h2 { font-size: clamp(1.5rem, 2.5vw, 3rem); }
-  .logo img { height: clamp(50px, 2vw, 50px); }
-  .nav-arrow { bottom: 50px; right: 50px; border-top: 30px solid #a825f4c2; }
-  .nav-arrow::after { border-top: 20px solid #a825f4c2; }
-}
-
-/* -------- Desktop 1025px - 1439px -------- */
-@media (max-width: 1439px) {
-  h1 { font-size: clamp(2.5rem, 4.5vw, 5rem); }
-  h2 { font-size: clamp(1.25rem, 3vw, 2.5rem); }
-  .logo img { height: clamp(45px, 2vw, 45px); }
-  .nav-arrow { bottom: 45px; right: 45px; border-top: 28px solid #a825f4c2; }
-  .nav-arrow::after { border-top: 18px solid #a825f4c2; }
-}
-
-/* -------- Tablet <= 1024px -------- */
-@media (max-width: 1024px) {
-  .section { padding: 1rem 2rem; }
-  h1 { font-size: clamp(2rem, 5vw, 4rem); }
-  h2 { font-size: clamp(1.1rem, 2.5vw, 2rem); }
-  p { font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); }
-  .logo img { height: clamp(40px, 2vw, 40px); margin: 1.5rem; }
-  .nav-arrow {
-    bottom: 25px; right: 25px;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 22px solid #a825f4c2;
-  }
-  .nav-arrow::after {
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-    border-top: 16px solid #a825f4c2;
-  }
-}
-
-/* -------- Mobile <= 768px -------- */
-@media (max-width: 768px) {
-  .section { padding: 1rem; }
-  h1 { font-size: clamp(1.8rem, 5vw, 3rem); }
-  h2 { font-size: clamp(1rem, 3vw, 1.8rem); }
-  .enter-button { font-size: 0.9rem; padding: 0.6rem 1.2rem; }
-  .logo img { height: clamp(35px, 3vw, 35px); margin: 1rem; }
-  .nav-arrow {
-    bottom: 20px; right: 20px;
-    border-left: 13px solid transparent;
-    border-right: 13px solid transparent;
-    border-top: 20px solid #a825f4c2;
-  }
-  .nav-arrow::after {
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 14px solid #a825f4c2;
-  }
-}
-
-/* -------- Small Mobile <= 480px -------- */
-@media (max-width: 480px) {
-  .section { padding: 0.8rem; }
-  h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
-  h2 { font-size: clamp(0.9rem, 4vw, 1.5rem); }
-  .enter-button { font-size: 0.85rem; padding: 0.5rem 1rem; }
-  .logo img { height: clamp(30px, 4vw, 30px); margin: 0.8rem; }
-  .nav-arrow {
-    bottom: 15px; right: 15px;
-    border-left: 11px solid transparent;
-    border-right: 11px solid transparent;
-    border-top: 16px solid #a825f4c2;
-  }
-  .nav-arrow::after {
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 12px solid #a825f4c2;
-  }
-  .custom-cursor { display: none; }
-}
-
 
 
 
@@ -322,46 +245,40 @@ button {
 /* ================================================== LANDING PAGE ================================================== */
 #landing {
   position: relative;
-  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  text-align: center;
   flex-direction: column;
   z-index: 2;
-  /* padding: 1rem; */
-  /* margin-bottom: 3rem; */
-  box-sizing: border-box;
+  padding: var(--logo-top);
   overflow: hidden;
 }
 
-/* Nav buttons */
-.nav-buttons {
-  position: absolute;
-  top: clamp(10px, 2vw, 25px);
-  left: 50%;
-  transform: translateX(-50%);
+/* Navigation buttons */
+.nav-buttons {  
+  position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  align-items: center;
   gap: clamp(0.5rem, 2vw, 2rem);
+  
   z-index: 10;
-  max-width: 95vw;
 }
 
 .nav-buttons button {
   background-color: rgba(5, 171, 208, 0.15);
   border: none;
   color: #d749a5;
-  padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.8rem, 3vw, 2rem);
+  padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.1rem, 3vw, 2rem);
   text-wrap: nowrap;
-  /*cursor: pointer;*/
   transition: background 0.3s, color 0.3s;
   border-radius: 30px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem; /* space between label and icon */
+  /* gap: 0.5rem; */
 
   font-size: clamp(0.5rem, 1.3vw, 2rem);
   font-weight: bold;
@@ -377,14 +294,16 @@ button {
   background-color: rgba(162, 238, 255, 0.15);
 }
 
-/* Intro + astronaut */
+
 .intro {
   position: relative;
   width: max-content;
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
-  margin-top: 5rem;
+  justify-content: center;
+  /* margin-top: 5rem; */
   gap: 1.5rem;
   text-align: center;
   z-index: 5;
@@ -392,7 +311,7 @@ button {
 }
 
 .intro h1 {
-  margin: 0;
+  font-size: clamp(1.5rem, 6vw, 4rem);
 
   background: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
     -webkit-background-clip: text;
@@ -402,24 +321,23 @@ button {
 }
 
 .intro h2 {
-  margin: 0.5rem 0 3rem 0;         /* top right bottom left */
-  font-size: clamp(1rem, 4vw, 2rem);
+  font-size: clamp(1rem, 3vw, 2rem);
+  margin-bottom: clamp(1rem, 3vw, 2rem);
   white-space: nowrap;
-  max-width: none;
+  /* max-width: none; */
   color: #f3f1f4;
-  margin-bottom: 3rem;
 }
 
 .astronaut-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: clamp(1rem, 5vh, 3rem);
 }
 
 #astronaut {
-  /* position: relative; */
-  width: 200px;
-  max-width: 40vw;
+  width: clamp(6rem, 20vw, 12rem);
+  height: auto;
   transition: transform 0.8s ease-out, opacity 0.4s ease-out;
 }
 
@@ -437,6 +355,11 @@ button {
   }
 }
 
+/* ===========================================
+-======================================================
+===========================================================
+-======================================================
+                                            NEEDS ATTENTION */
 .fade-scroll {
   position: relative;
   z-index: 1;
@@ -448,120 +371,7 @@ button {
   will-change: opacity;
 }
 
-/* ==================================================
-   RESPONSIVENESS — INTRO
-   ================================================== */
 
-
-/* Desktop 1025px - 1439px */
-@media (max-width: 1439px) {
-  .intro h1 { font-size: clamp(2.5rem, 4.5vw, 5rem); }
-  .intro h2 { font-size: clamp(1.25rem, 3vw, 2.5rem); }
-  #astronaut { width: 200px; max-width: 35vw; }
-  .nav-buttons {
-    position: absolute;
-    top: 2.5rem;
-    left: calc(2.5rem + 90px);
-    transform: none;
-    flex-direction: row;
-    gap: clamp(1rem, 2vw, 2.5rem);
-  }
-}
-
-/* Tablet <= 1024px */
-@media (max-width: 1024px) {
-  .nav-buttons {
-    position: absolute;
-    top: 5rem; /* push below logo */
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: row;
-    flex-wrap: wrap; /* allow wrapping */
-    justify-content: center;
-    gap: 1rem 2rem; /* row-gap column-gap */
-    max-width: 90%;
-  }
-  .nav-buttons button {
-    font-size: clamp(0.8rem, 1.2vw, 1.5rem);
-    padding: 0.4rem 1.5rem;
-  }
-  .intro h2 {
-    font-size: 1.5rem;
-    white-space: normal;
-    max-width: 90vw;
-  }
-  #astronaut { width: 120px; max-width: 35vw; }
-}
-
-/* Mobile <= 768px */
-@media (max-width: 768px) {
-  .nav-buttons {
-    top: 5.5rem; /* below logo with some margin */
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem; /* row-gap column-gap */
-  }
-  .nav-buttons button i {
-    display: inline; /* show icon */
-    font-size: 1.2rem;
-  }
-  .nav-buttons button .btn-label {
-    display: none; /* hide label */
-  }
-  .nav-buttons button {
-    width: auto; /* adjust width to fit icon */
-    padding: 0.4rem 0.6rem;
-    justify-content: center;
-  }
-  .intro { margin-top: 5rem;}
-  .intro h1 { font-size: clamp(1.5rem, 5vw, 3rem); }
-  .intro h2 { font-size: 1.2rem; max-width: 80vw; margin-bottom: 1.5rem;}
-  #astronaut { width: 100px; max-width: 90vw; }
-}
-
-/* Small Mobile <= 480px */
-@media (max-width: 480px) {
-  .nav-buttons {
-    top: 6rem;
-    left: 50%;
-    transform: translateX(-50%);
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem 0.5rem;
-  }
-  .nav-buttons button {
-    width: calc(50% - 0.25rem); 
-    font-size: clamp(0.6rem, 3vw, 1rem);
-    padding: 0.4rem 0;
-  }
-  .nav-buttons button i {
-    font-size: 1rem; /* smaller so all buttons fit in one row */
-  }
-  .intro h1 { font-size: clamp(1.2rem, 6vw, 2.5rem); letter-spacing: 0.05rem; }
-  .intro h2 { font-size: 1rem; max-width: 90vw; }
-  #astronaut { width: 90px; max-width: 85vw; }
-}
-
-/* Very Small Phones <= 360px */
-@media (max-width: 360px) {
-  .intro h1 { font-size: clamp(1rem, 5vw, 1.5rem); letter-spacing: 0; }
-  .intro h2 { font-size: 0.9rem; max-width: 95vw; letter-spacing: 0; }
-  #astronaut { width: 80px; max-width: 80vw; }
-  .nav-buttons {
-    top: 6.5rem;
-    flex-direction: column;
-    gap: 0.4rem;
-    width: 90%;
-  }
-  .nav-buttons button {
-    width: 100%;
-    font-size: clamp(0.5rem, 4vw, 0.9rem);
-    padding: 0.3rem 0;
-  }
-}
 
 /* ================================================== CORE ================================================== */
 
@@ -592,7 +402,7 @@ button {
   transform: none !important;
 }
 .core1-title {
-  font-size: 3rem;
+  /* font-size: 3rem; */
   background: linear-gradient(45deg, #e864c5, #d582f1, #8db5f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -613,43 +423,6 @@ button {
 }
 
 
-/* ==================================================
-   RESPONSIVENESS — CORE 1
-   ================================================== */
-
-/* Desktop 1025px - 1439px */
-@media (max-width: 1439px) {
-  .core1-title { font-size: clamp(2.5rem, 4vw, 4.5rem); }
-  .core1-text { font-size: clamp(1.25rem, 2vw, 1.8rem); }
-}
-
-/* Tablet <= 1024px */
-@media (max-width: 1024px) {
-  .core1-content { padding: 1rem 2rem; }
-  .core1-title { font-size: clamp(2rem, 4vw, 3.5rem); }
-  .core1-text { font-size: clamp(1.1rem, 1.5vw, 1.5rem); }
-}
-
-/* Mobile <= 768px */
-@media (max-width: 768px) {
-  #core1 { padding: 1rem; }
-  .core1-title { font-size: clamp(1.5rem, 5vw, 3rem); }
-  .core1-text { font-size: clamp(1rem, 3.5vw, 1.3rem); }
-}
-
-/* Small Mobile <= 480px */
-@media (max-width: 480px) {
-  .core1-title { font-size: clamp(1.2rem, 6vw, 2.5rem); }
-  .core1-text { font-size: clamp(0.9rem, 4vw, 1.1rem); }
-  .core1-content { padding: 0.5rem 1rem; }
-}
-
-/* Very Small Phones <= 360px */
-@media (max-width: 360px) {
-  .core1-title { font-size: clamp(1rem, 5vw, 1.8rem); }
-  .core1-text { font-size: clamp(0.8rem, 4.5vw, 1rem); }
-  .core1-content { padding: 0.5rem 0.8rem; }
-}
 
 /*-------------------------------------------------------------------/* CORE 2 */
 /* === Floating Keyframe Animation === */
@@ -684,7 +457,6 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   text-align: center;
   padding: 2rem;
   overflow: hidden;
@@ -825,62 +597,7 @@ button {
   font-size: 1.2rem;
 }
 
-/* ==================================================
-   RESPONSIVENESS — CORE 2
-   ================================================== */
-/* Desktop 1025px - 1439px */
-@media (max-width: 1439px) {
-  .core2-main-title { font-size: clamp(3.5rem, 2.5vw, 4.5rem); }
-  .core2-note { font-size: 0.95rem; }
-  .core2-container { gap: 4rem; }
-  .core-card { width: 280px; height: 280px; padding: 1.8rem; }
-  .core2-title { font-size: 1.3rem; }
-  .core2-text { font-size: 0.9rem; }
-}
 
-/* Tablet <= 1024px */
-@media (max-width: 1024px) {
-  #core2 { padding: 1.5rem; }
-  .core2-main-title { font-size: clamp(3rem, 3vw, 4rem); margin-top: 3rem; }
-  .core2-note { font-size: 0.9rem; }
-  .core2-container { gap: 3rem; padding: 1rem; flex-wrap: wrap; justify-content: center; }
-  .core-card { width: 220px; height: 220px; padding: 1.5rem; }
-  .core2-title { font-size: 1rem; }
-  .core2-text { font-size: 0.75rem; }
-}
-
-/* Mobile <= 768px */
-@media (max-width: 768px) {
-  #core2 { padding: 1rem; }
-  .core2-main-title { font-size: clamp(2.2rem, 5vw, 3rem); margin-top: 2rem; }
-  .core2-note { font-size: 0.85rem; }
-  .core2-container { gap: 2rem; flex-wrap: wrap; justify-content: center; }
-  .core-card { width: 180px; height: 180px; padding: 1rem; }
-  .core2-title { font-size: 0.9rem; }
-  .core2-text { font-size: 0.75rem; }
-}
-
-/* Small Mobile <= 480px */
-@media (max-width: 480px) {
-  #core2 { padding: 0.8rem; }
-  .core2-main-title { font-size: clamp(1.8rem, 6vw, 2.5rem); margin-top: 1.5rem; }
-  .core2-note { font-size: 0.8rem; }
-  .core2-container { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-  .core-card { width: 140px; height: 140px; padding: 0.8rem; }
-  .core2-title { font-size: 0.7rem; }
-  .core2-text { font-size: 0.65rem; }
-}
-
-/* Very Small Phones <= 360px */
-@media (max-width: 360px) {
-  #core2 { padding: 0.5rem; }
-  .core2-main-title { font-size: clamp(1.5rem, 5vw, 2rem); margin-top: 1rem; }
-  .core2-note { font-size: 0.75rem; }
-  .core2-container { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-  .core-card { width: 120px; height: 120px; padding: 0.6rem; }
-  .core2-title { font-size: 0.7rem; }
-  .core2-text { font-size: 0.5rem; }
-}
 
 
 /* ================================================== THE LAB ================================================== */
@@ -1073,76 +790,6 @@ button {
 
 
 
-/* ==================================================
-   RESPONSIVENESS — THE LAB
-   ================================================== */
-
-/* Tablet ≤1024px */
-@media (max-width:1024px) {
-  .lab-content h1   { font-size: 3rem; }
-  .lab-content p    { font-size: 1.2rem; }
-
-  .project-grid     { gap: 1.2rem; padding: 1rem; }
-  .project-card     { height: 380px; }
-
-  .project-title    { font-size: 1.2rem; }
-  .project-description { font-size: 0.95rem; }
-  .project-link     { font-size: 0.85rem; }
-}
-
-/* Mobile ≤768px */
-@media (max-width:768px) {
-  #lab               { padding: 1rem 0.5rem; }
-  .lab-content h1    { font-size: 2.3rem; margin-bottom: 1.5rem; }
-  .lab-content p     { font-size: 1rem; }
-
-  .project-grid      { gap: 1rem; }
-  .project-card      { height: 320px; }
-
-  .project-title     { font-size: 1rem; }
-  .project-description { font-size: 0.85rem; }
-  .project-link      { font-size: 0.75rem; }
-}
-
-/* Small Mobile ≤480px */
-@media (max-width:480px) {
-  #lab { padding: 2rem 0.5rem 1.5; }        /* add top space before title */
-
-  .lab-content h1    { 
-    font-size: 1.6rem;                  /* smaller title */
-    margin-top: 2rem;                   /* extra space above the title itself */
-  }
-
-  .lab-content p     { font-size: 0.8rem; }
-
-  .project-grid      { gap: 0.6rem; }
-  .project-card      { flex: 0 0 220px; height: 250px; }
-
-  .project-title     { font-size: 0.85rem; }
-  .project-description { font-size: 0.7rem; }
-  .project-link      { font-size: 0.65rem; }
-}
-
-/* Very Small Phones ≤360px */
-@media (max-width:360px) {
-  #lab { padding: 3rem 0.3rem 2; }       /* even more top space */
-
-  .lab-content h1    { 
-    font-size: 1.25rem;
-    margin-top: 2.5rem;
-  }
-  .lab-content p     { font-size: 0.7rem; }
-
-  .project-card      { flex: 0 0 170px; height: 200px; }
-
-  .project-title     { font-size: 0.7rem; }
-  .project-description { font-size: 0.6rem; }
-  .project-link      { font-size: 0.55rem; }
-}
-
-
-
-
 /* ================================================== EPC ================================================== */
 
 
@@ -1153,7 +800,6 @@ button {
   background-color:  var(--showcase-bg);
   color: #fff;
   overflow-x: hidden;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1581,121 +1227,6 @@ button {
   margin-top: 0.5rem;
 }
 
-/* ==================================================
-   RESPONSIVENESS — GAME VAULT
-   ================================================== */
-
-/* Tablet (<=1024px) */
-@media (max-width: 1024px) {
-  .vault-intro h1 {
-    font-size: 2.8rem;
-  }
-
-  .vault-intro p {
-    font-size: 1.2rem;
-  }
-
-  .vault-grid {
-    gap: 1rem;
-    padding: 0.75rem;
-  }
-
-  .game-card {
-    flex: 0 0 240px;
-    height: 340px;
-  }
-
-  .game-content h3 {
-    font-size: 1.2rem;
-  }
-
-  .game-content p {
-    font-size: 0.95rem;
-  }
-}
-
-/* Mobile (<=768px) */
-@media (max-width: 768px) {
-  #game-vault {
-    padding: 60px 15px;
-  }
-
-  .vault-intro h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .vault-intro p {
-    font-size: 1rem;
-  }
-
-  .game-card {
-    flex: 0 0 200px;
-    height: 300px;
-  }
-
-  .game-content h3 {
-    font-size: 1rem;
-  }
-
-  .game-content p {
-    font-size: 0.85rem;
-  }
-}
-
-/* Small Mobile (<=480px) */
-@media (max-width: 480px) {
-  .vault-intro h1 {
-    font-size: 1.8rem;
-  }
-
-  .vault-intro p {
-    font-size: 0.9rem;
-  }
-
-  .vault-grid {
-    gap: 0.75rem;
-  }
-
-  .game-card {
-    flex: 0 0 160px;
-    height: 250px;
-    padding: 0.75rem;
-  }
-
-  .game-content h3 {
-    font-size: 0.9rem;
-  }
-
-  .game-content p {
-    font-size: 0.8rem;
-  }
-}
-
-/* Extra Small Phones (<=360px) */
-@media (max-width: 360px) {
-  .vault-intro h1 {
-    font-size: 1.5rem;
-  }
-
-  .vault-intro p {
-    font-size: 0.8rem;
-  }
-
-  .game-card {
-    flex: 0 0 140px;
-    height: 220px;
-  }
-
-  .game-content h3 {
-    font-size: 0.8rem;
-  }
-
-  .game-content p {
-    font-size: 0.7rem;
-  }
-}
-
 
 
 /* ================================================== GAME INFO ZONE(HIDDEN) ================================================== */
@@ -1703,7 +1234,6 @@ button {
 #game-info-zone {
   background-color: #0a0a1a;
   width: 100%;
-  min-height: 100vh; 
   display: none;
   align-items: center;
   justify-content: center;
@@ -2007,7 +1537,6 @@ button {
 .dev-diary {
   display: flex;
   flex-direction: row;
-  height: 100vh;
   padding: 0;
   overflow: hidden;
   background-color: #0f0f1a;
@@ -2154,7 +1683,6 @@ button {
 @media (max-width: 1024px) {
   .dev-diary {
     flex-direction: column; /* stack vertically */
-    height: 100vh; /* use full viewport */
   }
 
   .diary-left {
@@ -2375,53 +1903,6 @@ button {
   z-index: 0;
 }
 
-/* ==================================================
-   RESPONSIVENESS — SERVICES
-   ================================================== */
-
-/* Tablet (<=1024px) */
-@media (max-width: 1024px) {
-  #services { padding: 3rem 0 5rem; }
-  .service-card {
-    width: 45%;   /* 2 per row */
-    height: 260px;
-  }
-  .service-name h2 { font-size: 1.25rem; }
-}
-
-/* Mobile (<=768px) */
-@media (max-width: 768px) {
-  #services { padding: 3rem 0 5rem; }
-  .service-card {
-    width: 45%;  /* 2 per row */
-    height: 240px;
-  }
-  .service-name h2 { font-size: 1.1rem; }
-}
-
-/* Small Mobile (<=480px) */
-@media (max-width: 480px) {
-  #services { padding: 3rem 0 5rem; }
-  .service-card {
-    width: 48%;  /* 2 per row */
-    height: 200px;
-  }
-  .service-name h2 { font-size: 0.95rem; }
-  .service-img img { width: 48px; height: 48px; }
-}
-
-/* Extra Small Phones (<=360px) */
-@media (max-width: 360px) {
-  #services { padding: 3rem 0 5rem; }
-  .service-card {
-    width: 100%; /* stacked */
-    height: 180px;
-  }
-  .service-name h2 { font-size: 0.85rem; }
-  .service-img img { width: 40px; height: 40px; }
-}
-
-
 
 
 /*----------------------------------------- for both dev diary and services */
@@ -2479,7 +1960,6 @@ button {
 
 /* ================================================== CONNECT ================================================== */
 #connect {
-  height: 100vh;
   padding: 0;
   color: white;
   overflow: hidden;
@@ -2795,151 +2275,4 @@ button {
 .footer-text a:hover {
   color: #a4bbffea;
   text-decoration: underline;
-}
-
-
-/* Tablet & below (<=1024px) */
-@media (max-width: 1024px) {
-  .connect-main-content {
-    gap: 2rem;
-  }
-
-  #connect-title {
-    font-size: 2rem; /* smaller title */
-    margin-bottom: 3rem;
-  }
-
-  .social-icons {
-    gap: 4rem; /* reduce spacing */
-  }
-
-  .icon-circle {
-    width: 6rem;
-    height: 6rem;
-  }
-
-  .icon-circle i {
-    font-size: 2.5rem;
-  }
-
-  .message-box {
-    max-width: 400px;
-  }
-
-  .message-input, .send-button {
-    height: 40px;
-    line-height: 40px;
-    font-size: 1rem;
-  }
-}
-/* Mobile (<=768px) */
-@media (max-width: 768px) {
-  #connect-title {
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .social-icons {
-    gap: 3rem;
-    margin-bottom: 2rem; /* decreased spacing to message box */
-  }
-
-  .icon-circle {
-    width: 5.5rem;
-    height: 5.5rem;
-  }
-
-  .icon-circle i {
-    font-size: 2rem;
-  }
-
-  .message-box {
-    max-width: 320px;
-    margin-bottom: 1.5rem; /* smaller spacing below */
-  }
-
-  .message-input, .send-button {
-    height: 34px;
-    line-height: 34px;
-    font-size: 0.9rem;
-  }
-
-  .footer-text {
-    font-size: 0.8rem;
-  }
-}
-
-/* Small Mobile (<=480px) */
-@media (max-width: 480px) {
-  #connect-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .social-icons {
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem; /* closer to message box */
-  }
-
-  .icon-circle {
-    width: 5rem;
-    height: 5rem;
-  }
-
-  .icon-circle i {
-    font-size: 1.8rem;
-  }
-
-  .message-box {
-    max-width: 280px;
-    margin-bottom: 1rem;
-  }
-
-  .message-input, .send-button {
-    height: 30px;
-    line-height: 30px;
-    font-size: 0.85rem;
-  }
-
-  .footer-text {
-    font-size: 0.75rem;
-  }
-}
-
-/* Extra Small Phones (<=360px) */
-@media (max-width: 360px) {
-  #connect-title {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-
-  .social-icons {
-    gap: 1.5rem;
-    margin-bottom: 1rem; /* closer spacing */
-  }
-
-  .icon-circle {
-    width: 4.5rem;
-    height: 4.5rem;
-  }
-
-  .icon-circle i {
-    font-size: 1.5rem;
-  }
-
-  .message-box {
-    max-width: 240px;
-    margin-bottom: 0.8rem;
-  }
-
-  .message-input, .send-button {
-    height: 28px;
-    line-height: 28px;
-    font-size: 0.8rem;
-  }
-
-  .footer-text {
-    font-size: 0.7rem;
-  }
 }

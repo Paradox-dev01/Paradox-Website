@@ -135,7 +135,7 @@ gsap.utils.toArray(".snap-section").forEach((el) => {
   ScrollTrigger.create({
     trigger: el,
     start: "top bottom",   // when top of section enters viewport
-    end: "bottom bottom",  // when bottom of section hits bottom
+    end: "top top",  // when bottom of section hits bottom
     snap: {
       snapTo: 1,           // snap to the **end** of section (bottom aligned)
       duration: 0.05,       // faster snap
@@ -158,7 +158,7 @@ const ctx = canvas.getContext("2d");
 
 let width, height, points;
 
-const POINT_COUNT = 150;
+const POINT_COUNT = 200;
 const MAX_DISTANCE = 100;
 
 // Initialize canvas size
