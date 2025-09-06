@@ -127,7 +127,7 @@
     white-space: normal;
     max-width: 90vw;
   }
-  #astronaut { width: 120px; max-width: 35vw; }
+  /* #astronaut { width: 120px; max-width: 35vw; } */
 }
 
 /* Mobile <= 768px */
@@ -156,7 +156,7 @@
   .intro { margin-top: 5rem;}
   .intro h1 { font-size: clamp(1.5rem, 5vw, 3rem); }
   .intro h2 { font-size: 1.2rem; max-width: 80vw; margin-bottom: 1.5rem;}
-  #astronaut { width: 100px; max-width: 90vw; }
+  /* #astronaut { width: 100px; max-width: 90vw; } */
 }
 
 /* Small Mobile <= 480px */
@@ -179,7 +179,7 @@
   }
   .intro h1 { font-size: clamp(1.2rem, 6vw, 2.5rem); letter-spacing: 0.05rem; }
   .intro h2 { font-size: 1rem; max-width: 90vw; }
-  #astronaut { width: 90px; max-width: 85vw; }
+  /* #astronaut { width: 90px; max-width: 85vw; } */
 }
 
 /* Very Small Phones <= 360px */

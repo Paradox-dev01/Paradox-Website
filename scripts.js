@@ -48,14 +48,18 @@ document.addEventListener("mouseup", () => {
 
 // =============================================Hovering clickable items
 
-document.querySelectorAll('.logo, a, button, .enter-button, .nav-arrow, #astronaut, .game-card, .carousel img').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('hover');
+document
+  .querySelectorAll(
+    ".logo, a, button, .enter-button, .nav-arrow, #astronaut, .game-card, .carousel img"
+  )
+  .forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("hover");
+    });
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("hover");
+    });
   });
-  el.addEventListener("mouseleave", () => {
-    cursor.classList.remove("hover");
-  });
-});
 
 // document.addEventListener("mouseover", (e) => {
 //   if (e.target.closest("a, button, input, textarea, select, [role='button'], [onclick], [data-clickable]")) {
@@ -76,8 +80,6 @@ document.querySelectorAll('.logo, a, button, .enter-button, .nav-arrow, #astrona
 // document.addEventListener("mouseout", () => {
 //   cursor.classList.remove("hover");
 // });
-
-
 
 // =============================================Scroll Progress Bar
 window.addEventListener("scroll", () => {
@@ -120,7 +122,6 @@ function checkNavArrowVisibility() {
 window.addEventListener("scroll", checkNavArrowVisibility);
 window.addEventListener("load", checkNavArrowVisibility);
 
-
 // ================================================================================================
 // ================================================================================================
 // ================================================================================================
@@ -128,26 +129,22 @@ window.addEventListener("load", checkNavArrowVisibility);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(MotionPathPlugin);
 
-
 // =============================================snap-scroll
 
 gsap.utils.toArray(".snap-section").forEach((el) => {
   ScrollTrigger.create({
     trigger: el,
-    start: "top bottom",   // when top of section enters viewport
-    end: "top top",  // when bottom of section hits bottom
+    start: "top bottom", // when top of section enters viewport
+    end: "bottom bottom", // when bottom of section hits bottom
     snap: {
-      snapTo: 1,           // snap to the **end** of section (bottom aligned)
-      duration: 0.05,       // faster snap
-      ease: "power3.inOut" // snappier easing
+      snapTo: 1, // snap to the **end** of section (bottom aligned)
+      duration: 0.05, // faster snap
+      ease: "power3.inOut", // snappier easing
     },
-    markers: false,        // set true to debug
-    scrub: 0,              // no smoothing, instant snap
+    markers: false, // set true to debug
+    scrub: 0, // no smoothing, instant snap
   });
 });
-
-
-
 
 //  ==========================INTRO+CORE BACKGROUND=====================  //
 // ----------------------------------------------------------------------------------------------------------
@@ -278,13 +275,11 @@ landingCore.addEventListener("mouseleave", () => {
   disruptY = null;
 });
 
-
-
 //  ---------------------------------------------- LANDING PAGE ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
-  console.log("landing - Script loaded!");
+console.log("landing - Script loaded!");
 
 // === SELECT DOM ELEMENTS ===
 const bgBottom = document.querySelector(".bg-bottom");
@@ -379,12 +374,59 @@ window.addEventListener("scroll", () => {
   const pct = window.scrollY / window.innerHeight;
   navArrow.classList.toggle("visible", pct > 0.6);
 });
+// nav shuru
 
+// Function to scroll to a section with a smooth animation
+function scrollToSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+    // Hide mobile menu after clicking a link
+    toggleMobileMenu(true);
+  }
+}
+
+// Function to toggle the mobile menu
+function toggleMobileMenu(closeOnly = false) {
+  const mobileMenu = document.getElementById("mobileMenu");
+  if (closeOnly) {
+    mobileMenu.style.display = "none";
+  } else {
+    if (mobileMenu.style.display === "flex") {
+      mobileMenu.style.display = "none";
+    } else {
+      mobileMenu.style.display = "flex";
+    }
+  }
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener("click", function (event) {
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuIcon = document.querySelector(".menu-icon");
+
+  if (
+    mobileMenu.style.display === "flex" &&
+    !mobileMenu.contains(event.target) &&
+    !menuIcon.contains(event.target)
+  ) {
+    mobileMenu.style.display = "none";
+  }
+});
+
+// Close mobile menu on window resize (if resized to desktop view)
+window.addEventListener("resize", function () {
+  const mobileMenu = document.getElementById("mobileMenu");
+  if (window.innerWidth > 768) {
+    mobileMenu.style.display = "none";
+  }
+});
+//nav shesh
 //  ---------------------------------------------- CORE ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
-  console.log("core - Script loaded!");
+console.log("core - Script loaded!");
 
 //1
 const core1 = document.getElementById("core1");
@@ -439,7 +481,7 @@ ScrollTrigger.create({
   pin: true,
   pinSpacing: false, // avoids extra space; keeps canvas & cursor visible
   scrub: true,
-  snap: true
+  snap: true,
 });
 
 ScrollTrigger.create({
@@ -461,11 +503,25 @@ ScrollTrigger.create({
 
 
 
-//  ---------------------------------------------- SHARED ----------------------------------------------
+//  ---------------------------------------------- THE LABS ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("lab - Script loaded!");
+
+  document.querySelectorAll(".project-link-area").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      console.log("Link clicked:", this);
+
+      if (this.dataset.status === "under-construction") {
+        e.preventDefault();
+        alert(
+          "🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive, which is already available."
+        );
+      }
+    });
+  });
 
   // GSAP: Stars
   const starsContainer = document.getElementById("lab-stars");
@@ -574,66 +630,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "back.out(1.7)",
     });
   });
-
-  
-// gameCards.forEach(card => {
-//   // Hover animation with GSAP
-//   card.addEventListener("mouseenter", () => {
-//     gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
-//   });
-//   card.addEventListener("mouseleave", () => {
-//     gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
-//   });
-// });
-
-  
-//   // Entry animation
-//   gsap.from(".lab-content h2", {
-//     y: -40,
-//     opacity: 0,
-//     duration: 1.2,
-//     ease: "power2.out",
-//   });
-
-//   gsap.from(".lab-content p", {
-//     y: 20,
-//     opacity: 0,
-//     duration: 1,
-//     delay: 0.2,
-//     stagger: 0.2,
-//     ease: "power2.out",
-//   });
-
-//   gsap.from(".project-title", {
-//     scrollTrigger: {
-//       trigger: ".project-title",
-//       start: "top 80%",
-//     },
-//     y: 30,
-//     opacity: 0,
-//     duration: 1,
-//     ease: "power2.out",
-//   });
-
-//   gsap.utils.toArray(".project-card").forEach((card, i) => {
-//     gsap.from(card, {
-//       scrollTrigger: {
-//         trigger: card,
-//         start: "top 85%",
-//       },
-//       y: 50,
-//       opacity: 0,
-//       duration: 0.8,
-//       delay: i * 0.1,
-//       ease: "back.out(1.7)",
-//     });
-//   });
-
 });
 
-
-
-//  ---------------------------------------------- THE LABS ----------------------------------------------
+// ---------------------------------------------- EPC ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -655,47 +654,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-
 // ---------------------------------------------- EPC ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
-
-
-
 // ---------------------------------------------- ASTRO DRIVE
 
-
-  console.log("astrodrive - Script loaded!");
-
-
-
+console.log("astrodrive - Script loaded!");
 
 //  ---------------------------------------------- GAME VAULT ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
-
-// ------------------ Attach Click Events ------------------
-
-const gameCards = document.querySelectorAll(".game-card");
-
-gameCards.forEach(card => {
-  card.addEventListener("click", () => {
-    const key = card.getAttribute("data-game-key");
-    showGameDetails(key);
-  });
-});
-
-
-
-
-//  ----------------------------------------------GAME INFO ZONE-----------------------------------------------
-//  ----------------------------------------------------------------------------------------------------------
-//  ----------------------------------------------------------------------------------------------------------
-
-  console.log("game-vault - Script loaded!");
+console.log("game-vault - Script loaded!");
 
 const gameData = {
   "iiuc-tension-run": {
@@ -711,9 +682,9 @@ const gameData = {
     images: [
       "assets/games/iiuc-tension-run/1.png",
       "assets/games/iiuc-tension-run/2.png",
-      "assets/games/iiuc-tension-run/3.png"
-    ]
-  }
+      "assets/games/iiuc-tension-run/3.png",
+    ],
+  },
 };
 
 function getImagesForGame(folderPath) {
@@ -748,7 +719,9 @@ function showGameDetails(gameKey) {
   // const imagesHTML = images.map(img => `<img src="${img}" alt="">`).join("");
 
   // Build image carousel slides
-  const imagesHTML = data.images ? data.images.map(img => `<img src="${img}" alt="">`).join("") : "";
+  const imagesHTML = data.images
+    ? data.images.map((img) => `<img src="${img}" alt="">`).join("")
+    : "";
 
   gameDetails.innerHTML = `
     <div class="game-detail-container">
@@ -760,22 +733,33 @@ function showGameDetails(gameKey) {
         <div class="game-description">${data.description}</div>
       </div>
       <div class="game-detail-right">
-        ${data.trailer ? `<video autoplay loop muted controls src="${data.trailer}" class="game-detail-video"></video>` : `<p class="no-trailer">No trailer available yet.</p>`}
-        ${data.images ? `
+        ${
+          data.trailer
+            ? `<video autoplay loop muted controls src="${data.trailer}" class="game-detail-video"></video>`
+            : `<p class="no-trailer">No trailer available yet.</p>`
+        }
+        ${
+          data.images
+            ? `
           <div class="carousel">
             <button class="carousel-arrow left">&#8249;</button>
             <div class="carousel-track">${imagesHTML}</div>
             <button class="carousel-arrow right">&#8250;</button>
-          </div>` : ""}
+          </div>`
+            : ""
+        }
       </div>
     </div>
   `;
 
-  
-  gameInfoZone.classList.add("active");  
+  gameInfoZone.classList.add("active");
 
   // Animate in
-  gsap.fromTo(gameInfoZone, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" });
+  gsap.fromTo(
+    gameInfoZone,
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+  );
   gameInfoZone.scrollIntoView({ behavior: "smooth" });
 
   // Carousel logic
@@ -831,96 +815,115 @@ function initCarousel(track, leftBtn, rightBtn) {
   updateCarousel();
 }
 
+// ------------------ Attach Click Events ------------------
+gameCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    const key = card.getAttribute("data-game-key");
+    showGameDetails(key);
+  });
+
+  // Hover animation with GSAP
+  card.addEventListener("mouseenter", () => {
+    gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+  });
+  card.addEventListener("mouseleave", () => {
+    gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
+  });
+});
+
 //------------------- Auto Hide on Scroll Down -----------------
 // let lastScrollY = window.scrollY;
 
 // window.addEventListener("scroll", () => {
 //   if (!gameInfoZone || gameInfoZone.offsetTop === 0) return;
 
-//   if (window.scrollY > lastScrollY) { 
+  if (window.scrollY > lastScrollY) {
     // Scrolling down
-//     const rect = gameInfoZone.getBoundingClientRect();
-//     if (rect.top < -200) { // user scrolled past section
-//       gsap.to(gameInfoZone, { opacity: 0, y: 50, duration: 0.5 });
-//       setTimeout(() => {
-//         gameDetails.innerHTML = "";
-//         gameInfoZone.classList.remove("active"); // <— hide it fully
-//       }, 600);
-//     }
-//   }
-//   lastScrollY = window.scrollY;
-// });
-
-
+    const rect = gameInfoZone.getBoundingClientRect();
+    if (rect.top < -200) {
+      // user scrolled past section
+      gsap.to(gameInfoZone, { opacity: 0, y: 50, duration: 0.5 });
+      setTimeout(() => {
+        gameDetails.innerHTML = "";
+        gameInfoZone.classList.remove("active"); // <— hide it fully
+      }, 600);
+    }
+  }
+  lastScrollY = window.scrollY;
+});
 
 // ------------------ Image Popup Logic ------------------
 // const imagePopup = document.getElementById("image-popup");
 // const popupImg = document.querySelector(".popup-img");
 // const closePopup = document.querySelector(".close-popup");
 
-// function enableImagePopup() {
-//   const images = document.querySelectorAll(".carousel-track img");
-//   images.forEach(img => {
-//     img.addEventListener("click", () => {
-//       popupImg.src = img.src;
-//       imagePopup.classList.add("active");
+function enableImagePopup() {
+  const images = document.querySelectorAll(".carousel-track img");
+  images.forEach((img) => {
+    img.addEventListener("click", () => {
+      popupImg.src = img.src;
+      imagePopup.classList.add("active");
 
-//       gsap.fromTo(popupImg, 
-//         { scale: 0.7, opacity: 0 }, 
-//         { scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" }
-//       );
-//     });
-//   });
-// }
-// Close popup
-// closePopup.addEventListener("click", () => {
-//   gsap.to(imagePopup, { opacity: 0, scale: 0.9, duration: 0.3, onComplete: () => {
-//     imagePopup.classList.remove("active");
-//     imagePopup.style.opacity = "1"; // reset
-//     popupImg.src = "";
-//   }});
-// });
-// Optional: click outside to close
-// imagePopup.addEventListener("click", (e) => {
-//   if (e.target === imagePopup) {
-//     closePopup.click();
-//   }
-// });
-
-// ------------------ Image Popup Logic ------------------ temp
-// Select elements
-const popup = document.getElementById("image-popup");
-const popupImg = popup.querySelector(".popup-img");
-const closePopup = popup.querySelector(".close-popup");
-
-// Add click event to all carousel images
-document.querySelectorAll(".carousel img").forEach(img => {
-  img.addEventListener("click", () => {
-    popup.style.display = "flex"; // show popup
-    popupImg.src = img.src;       // set popup image
+      gsap.fromTo(
+        popupImg,
+        { scale: 0.7, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" }
+      );
+    });
   });
-});
+}
 
 // Close popup when clicking X
 closePopup.addEventListener("click", () => {
-  popup.style.display = "none";
+  gsap.to(imagePopup, {
+    opacity: 0,
+    scale: 0.9,
+    duration: 0.3,
+    onComplete: () => {
+      imagePopup.classList.remove("active");
+      imagePopup.style.opacity = "1"; // reset
+      popupImg.src = "";
+    },
+  });
 });
 
-// Optional: close popup when clicking outside the image
-popup.addEventListener("click", e => {
-  if(e.target === popup) popup.style.display = "none";
+// Optional: click outside to close
+imagePopup.addEventListener("click", (e) => {
+  if (e.target === imagePopup) {
+    closePopup.click();
+  }
 });
 
+// ------------------ Add Lab-style stars & grid to Game Vault ------------------
+const vaultStarsContainer = document.createElement("div");
+vaultStarsContainer.classList.add("lab-stars");
+document.getElementById("game-vault").prepend(vaultStarsContainer);
 
+const starCount = 120;
+for (let i = 0; i < starCount; i++) {
+  const star = document.createElement("div");
+  star.classList.add("lab-star");
+  const size = Math.random() * 2 + 1;
+  star.style.width = `${size}px`;
+  star.style.height = `${size}px`;
+  star.style.top = `${Math.random() * 100}%`;
+  star.style.left = `${Math.random() * 100}%`;
+  vaultStarsContainer.appendChild(star);
 
-
-
+  gsap.to(star, {
+    opacity: Math.random() * 0.6 + 0.2,
+    duration: Math.random() * 2 + 1,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+    delay: Math.random() * 3,
+  });
+}
 
 // ---------------------------------------------- DEV DIARY ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
-
   console.log("dev-diary - Script loaded!");
 
   // Create stars
@@ -951,15 +954,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     elements.forEach((el) => observer.observe(el));
   });
-
 });
-
 
 //  ---------------------------------------------- THE SERVICES ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
-  
   console.log("services - Script loaded!");
 
   const spaceBg = document.getElementById("spaceBg");
@@ -1120,7 +1120,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-//==================== Animate elements
+  //==================== Animate elements
 
   // Animate cards into view
   const serviceCards = document.querySelectorAll(".service-card");
@@ -1132,14 +1132,26 @@ document.addEventListener("DOMContentLoaded", function () {
         gsap.fromTo(
           card,
           { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9, ease: "sine.inOut", delay: index * 0.1 }
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: "sine.inOut",
+            delay: index * 0.1,
+          }
         );
       },
       onEnterBack: () => {
         gsap.fromTo(
           card,
           { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9, ease: "sine.inOut", delay: index * 0.1 }
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: "sine.inOut",
+            delay: index * 0.1,
+          }
         );
       },
     });
@@ -1155,14 +1167,14 @@ document.addEventListener("DOMContentLoaded", function () {
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.5, ease: "sine.inOut" }
       );
-    }, 
+    },
     onEnterBack: () => {
       gsap.fromTo(
         ".contact-btn",
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.5, ease: "sine.inOut" }
       );
-    }, 
+    },
   });
 
   // contact button shines when hovering over cards
@@ -1178,9 +1190,6 @@ document.addEventListener("DOMContentLoaded", function () {
       contactBtn.classList.remove("shine");
     });
   });
-
-
-
 });
 
 //  ---------------------------------------------- CONNECT ----------------------------------------------
@@ -1188,7 +1197,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //  ----------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
-
   console.log("connect - Script loaded!");
 
   // Create swirling effect
@@ -1258,7 +1266,7 @@ document.addEventListener("DOMContentLoaded", function () {
   stop1.setAttribute("offset", "0%");
   stop1.setAttribute("stop-color", "#350842ff");
   gradient.appendChild(stop1);
-  
+
   const stop2 = document.createElementNS(svgNS, "stop");
   stop2.setAttribute("offset", "100%");
   stop2.setAttribute("stop-color", "#0f0014");
@@ -1411,5 +1419,4 @@ document.addEventListener("DOMContentLoaded", function () {
       sendMessage();
     }
   });
-
 });
