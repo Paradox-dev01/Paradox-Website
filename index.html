@@ -18,7 +18,10 @@
   <link rel="shortcut icon" type="image/x-icon" href="asset/paradox-logo-32.png">
 
   <link rel="stylesheet" href="styles.css" />
-
+<link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
   <!-- Google Fonts (Grouped & Preconnected) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,23 +68,55 @@
         <!-- Landing -->
         <section id="landing" class="section fade-scroll">
         <!-- <br><br> -->
-        <nav class="nav-buttons">
-          <button onclick="scrollToSection('core1')">
-            <span class="btn-label">The Core</span> <i class="fa-solid fa-atom"></i>
-          </button>
-          <button onclick="scrollToSection('lab')">
-            <span class="btn-label">The Lab</span> <i class="fa-solid fa-flask"></i>
-          </button>
-          <button onclick="scrollToSection('dev-diary')">
-            <span class="btn-label">The Logs</span> <i class="fa-solid fa-book"></i>
-          </button>
-          <button onclick="scrollToSection('services')">
-            <span class="btn-label">Services</span> <i class="fa-solid fa-cogs"></i>
-          </button>
-          <button onclick="scrollToSection('connect')">
-            <span class="btn-label">Connect</span> <i class="fa-solid fa-paper-plane"></i>
-          </button>
+        <nav>
+            <div class="nav-buttons">
+                <button onclick="scrollToSection('core')">
+                    <i class="ri-cpu-line"></i>
+                    <span class="btn-label">The Core</span>
+                </button>
+                <button onclick="scrollToSection('lab')">
+                    <i class="ri-flask-line"></i>
+                    <span class="btn-label">The Lab</span>
+                </button>
+                <button onclick="scrollToSection('dev-diary')">
+                    <i class="ri-book-line"></i>
+                    <span class="btn-label">The Logs</span>
+                </button>
+                <button onclick="scrollToSection('services')">
+                    <i class="ri-customer-service-2-line"></i>
+                    <span class="btn-label">Services</span>
+                </button>
+                <button onclick="scrollToSection('connect')">
+                    <i class="ri-links-line"></i>
+                    <span class="btn-label">Connect</span>
+                </button>
+            </div>
+            <i class="ri-menu-3-line menu-icon" onclick="toggleMobileMenu()"></i>
+            <div class="mobile-menu" id="mobileMenu">
+                <button onclick="scrollToSection('core')">
+                    <i class="ri-cpu-line"></i>
+                    The Core
+                </button>
+                <button onclick="scrollToSection('lab')">
+                    <i class="ri-flask-line"></i>
+                    The Lab
+                </button>
+                <button onclick="scrollToSection('dev-diary')">
+                    <i class="ri-book-line"></i>
+                    The Logs
+                </button>
+                <button onclick="scrollToSection('services')">
+                    <i class="ri-customer-service-2-line"></i>
+                    Services
+                </button>
+                <button onclick="scrollToSection('connect')">
+                    <i class="ri-links-line"></i>
+                    Connect
+                </button>
+            </div>
         </nav>
+
+
 
           <div class="intro">
             <h1>Welcome to Paradox</h1>
