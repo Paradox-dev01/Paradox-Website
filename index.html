@@ -100,23 +100,23 @@
         <!-- Core -->
         <section id="core1" class="section section-top core-sec">
           <div class="core1-content">
-            <h2  class="core1-title">
+            <h2  class="core1-title gradient-text section-title" data-text="Mission & Vision of Paradox">
               Mission & Vision of Paradox
             </h2>
               <p class="core1-text"><br>At Paradox, we <strong>spark innovation</strong> without limits. 
-                <br><br>
+                <br>
                 From <em>next-generation, trailblazing web & mobile apps</em> to <em>harmless, fun, and educational games</em>, we code experiences that excite, inspire curiosity, and disrupt the ordinary. 
-                <br><br>
+                <br>
                 Our <span class="highlight">mission</span>? To redefine what’s possible and fuel the future of digital creation. 
                 Our <span class="highlight">vision</span>? To shatter boundaries, challenge the ordinary, and make technology that truly matters. 
                 <br><br>
-                Think beyond the unthinkable, <br> because at Paradox, boundaries don’t exist! <br>
+                <span class="highlight2">Think beyond the unthinkable, <br> because at Paradox, boundaries don’t exist!</span> <br>
                 </p>
           </div>
         </section>
 
         <section id="core2" class="section full-section section-top core-sec">
-          <h2 class="core2-main-title">Core Matrix</h2>
+          <h2 class="core2-title gradient-text section-title" data-text="Core Matrix">Core Matrix</h2>
           <p class="core2-note">Hover over a card to reveal more!</p>
 
           <div class="core2-container">
@@ -124,7 +124,7 @@
               <div class="card-inner">
                 <div class="card-front"> </div>
                 <div class="card-back">
-                  <h3 class="core2-title">Curiosity</h3>
+                  <h3 class="core2-card-title">Curiosity</h3>
                   <p class="core2-text">We question the norm.</p>
                 </div>
               </div>
@@ -133,7 +133,7 @@
               <div class="card-inner">
                 <div class="card-front"> </div>
                 <div class="card-back">
-                  <h3 class="core2-title">Creation</h3>
+                  <h3 class="core2-card-title">Creation</h3>
                   <p class="core2-text">We design for both<br />logic and chaos.</p>
                 </div>
               </div>
@@ -142,7 +142,7 @@
               <div class="card-inner">
                 <div class="card-front"> </div>
                 <div class="card-back">
-                  <h3 class="core2-title">Connection</h3>
+                  <h3 class="core2-card-title">Connection</h3>
                   <p class="core2-text">We make things<br />people feel.</p>
                 </div>
               </div>
@@ -155,24 +155,83 @@
 
 
     <!-- Lab -->
-    <section id="lab" class="section full-section section-top">
+    <section class="showcase-section section " id="lab">
+      <div id="lab-stars" class="lab-stars"></div>
+      <div class="grid"></div>
+      <div class="neon-circle"></div>
+      <div class="showcase-bg"></div>
+      <div class="showcase-decor"></div>
+
+      <div class="showcase-header section-top">
+        <h2 class="showcase-title section-title">Welcome to <span>The Lab</span></h2>
+        <p class="showcase-subtext section-subtext">A place for Paradox's prototypes and projects with a pulse.<br>Visions of the future.</p>
+      </div>
+
+      <div class="showcase-cards-wrapper">
+        
+        <div class="showcase-card-grid">
+          <div class="showcase-card">
+            <a class="showcase-card-link-area" onclick="scrollToSection('game-vault')" class="project-link-area">
+              <div class="showcase-card-image">
+                <img src="assets/game-vault-p.png" alt="GameVault">
+              </div>
+              <div class="showcase-card-content">
+                <h3 class="showcase-card-title">GameVault</h3>
+                <p class="showcase-card-description">Cloud gaming platform with seamless multiplayer integration.</p>
+                <span class="showcase-card-link">View Project</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="showcase-card">
+            <a class="showcase-card-link-area" onclick="scrollToSection('astro')" class="project-link-area">
+              <div class="showcase-card-image">
+                <img src="assets/astrodrive-logo.jpg" alt="AstroDrive">
+              </div>
+              <div class="showcase-card-content">
+                <h3 class="showcase-card-title">AstroDrive</h3>
+                <p class="showcase-card-description">Stay updated with the latest space news, cosmic discoveries, and celestial wonders.</p>
+                <span class="showcase-card-link">View Project</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="showcase-card">
+            <a class="showcase-card-link-area" class="project-link-area" data-status="under-construction">
+              <div class="showcase-card-image">
+                <img src="assets/coming-soon-p.gif" alt="GameVault">
+              </div>
+              <div class="showcase-card-content">
+                <h3 class="showcase-card-title">Noor'An</h3>
+                <p class="showcase-card-description">Your Guide to Islam</p>
+                <span class="showcase-card-link">View Project</span>
+              </div>
+            </a>
+          </div>
+          <!-- more cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- <section id="lab" class="section full-section">
       <div class="lab-stars" id="lab-stars"></div>
       <div class="grid"></div>
       <div class="neon-circle"></div>
 
-      <div class="lab-content">
-        <h2>Welcome to <span>The Lab</span></h2>
-        <p>A place for Paradox's prototypes and projects with a pulse.</p>
-        <p>Some call them "ideas". We call them visions of the future.</p>
+      <div class="lab-content section-top">
+        <h2 class="section-title">Welcome to <span>The Lab</span></h2>
+        <p class="section-subtext">
+          A place for Paradox's prototypes and projects with a pulse.
+          <br>
+          Some call them "ideas". We call them visions of the future.
+        </p>
       </div>
 
-      <div class="our-projects">
+      <div class="projects-wrapper">
         <div id="projects" class="projects">
           <div class="grid-bg" id="gridBg"></div>
-
           <div class="project-grid">
 
-            
             <div class="project-card">
               <a onclick="scrollToSection('game-vault')" class="project-link-area">
                 <div class="project-image">
@@ -213,13 +272,13 @@
 
         </div>
       </div>
-    </section>
+    </section> -->
 
 
     <section id="extnd-projects-carousal">
         
         <!-- AstroDrive -->
-        <section id="astro" class="section full-section section-top">
+        <section id="astro" class="section full-section">
 
           <div class="astrodrive-containers">
 
@@ -294,23 +353,66 @@
     </section>
 
     <!-- Game Vault -->
-    <section id="game-vault" class="section full-section section-top">
-      <!-- <div class="vault-grid-bg" id="vaultGrid"></div>  -->
-      
+    <section class="showcase-section section " id="game-vault">
+      <div id="game-vault-stars" class="lab-stars"></div>
+      <div class="grid"></div>
+      <div class="neon-circle"></div>
+      <div class="showcase-bg"></div>
+      <div class="showcase-decor"></div>
+
+      <div class="showcase-header section-top">
+        <h2 class="showcase-title section-title">Our <span>Game Vault</span></h2>
+        <p class="showcase-subtext section-subtext">A chamber of all the games we’ve built:<br>completed, ongoing, and experimental.</p>
+      </div>
+
+      <div class="showcase-cards-wrapper">
+        <div class="showcase-card-grid">
+          <div class="showcase-card">
+            
+            <!-- <div class="showcase-card-content game-card" data-game-key="iiuc-tension-run"> -->
+            <div class="showcase-card-image game-card" onclick="scrollToNextSection()">
+              <img src="assets/games/iiuc-tension-run/iiuc-tension-run-logo.png" alt="IIUC Tension Run">
+            </div>
+            <div class="showcase-card-content>
+              <h3 class="showcase-card-title">IIUC Tension Run</h3>
+              <p class="showcase-card-description">Campus-inspired fun runner game.</p>
+              <span class="showcase-card-link">Click to View More</span>
+            </div>
+          </div>
+
+          <div class="showcase-card game-card" data-game-key="other game">
+            <div class="showcase-card-image">
+              <img src="assets/coming-soon-p.gif" alt="Coming Soon">
+            </div>
+            <div class="showcase-card-content">
+              <h3 class="showcase-card-title">New Game</h3>
+              <p class="showcase-card-description">Coming Soon...</p>
+              <span class="showcase-card-link">Click to View More</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section id="game-vault" class="section full-section section-top">
       <div class="lab-stars" id="lab-stars"></div>
       <div class="grid"></div>
       <div class="neon-circle"></div>
 
       <div class="vault-intro">
-        <h1>Our <span>Game Vault</span></h1>
-        <p>A chamber of all the games we’ve built:<br> completed, ongoing, and experimental.</br>
+        <h2 class="section-title">Our <span>Game Vault</span></h2>
+        <p class="section-subtext">
+          A chamber of all the games we’ve built:
+          <br> completed, ongoing, and experimental.
+        </p>
       </div>
 
       <div class="vault-projects">
         <div id="games" class="games">
 
-            <div class="vault-grid">
-              <div class="game-card" data-game-key="iiuc-tension-run">
+            <div class="vault-grid"> -->
+              <!-- ----<div class="game-card" data-game-key="iiuc-tension-run"> -->
+              <!-- <div class="game-card" onclick="scrollToNextSection()">
                 <div class="game-image">
                   <img src="assets/games/iiuc-tension-run/iiuc-tension-run-logo.png" alt="IIUC Tension Run">
                 </div>
@@ -333,23 +435,71 @@
               </div>
             </div>
 
-        </div>
+        </div> 
       </div>
             
-    </section>
+    </section>-->
 
     <!-- Game Info Zone (hidden by default) -->
-        <section id="game-info-zone" class="section full-section section-top">
+        <!-- <section id="game-info-zone" class="section full-section ">
           <div id="game-details" class="game-details-container">
-            <!-- Dynamic content for each game will be injected here via JS -->
+            // Dynamic content for each game will be injected here via JS 
+          </div>
+        </section> -->
+
+        <!-- Image Popup  -->
+        <!-- <div id="image-popup" class="image-popup">
+          <span class="close-popup">&times;</span>
+          <img src="" alt="Expanded view" class="popup-img">
+        </div> -->
+
+        <section id="game-info-zone" class="section full-section">
+          <div class="game-detail-container">
+            
+            <!-- Left side: logo + title + description -->
+            <div class="game-detail-left">
+              <div class="game-logo-title">
+                <img src="assets/games/iiuc-tension-run/iiuc-tension-run-logo.png" alt="IIUC Tension Run" class="game-detail-logo">
+                <h2>IIUC Tension Run</h2>
+                <span class="game-prize-badge">🎁 Play and Win!</span>
+              </div>
+              <div class="game-description">
+                <p><strong>Genre:</strong> Endless Runner</p>
+                <br>
+                <p><strong>description:</strong> Campus-inspired runner game where players dodge exams, chase deadlines, and collect knowledge points.</p>
+                <br>
+                <p><strong>Status:</strong> Completed</p>
+              </div>
+            </div>
+
+            <!-- Right side: trailer video + image carousel -->
+            <div class="game-detail-right">
+              <video autoplay loop muted controls class="game-detail-video">
+                <source src="assets/games/iiuc-tension-run/iiuc-tension-run-trailer.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+
+              <!-- Carousel -->
+              <div class="carousel">
+                <button class="carousel-arrow left">&#8249;</button>
+                <div class="carousel-track">
+                  <img src="assets/games/iiuc-tension-run/1.png" alt="Screenshot 1">
+                  <img src="assets/games/iiuc-tension-run/2.png" alt="Screenshot 2">
+                  <img src="assets/games/iiuc-tension-run/3.png" alt="Screenshot 3">
+                </div>
+                <button class="carousel-arrow right">&#8250;</button>
+              </div>
+            </div>
+
           </div>
         </section>
 
-        <!-- Image Popup -->
-        <div id="image-popup" class="image-popup">
+        <!-- Image Popup (only for clicked image) -->
+        <div id="image-popup" class="image-popup" style="display:none;">
           <span class="close-popup">&times;</span>
           <img src="" alt="Expanded view" class="popup-img">
         </div>
+
 
 
     <!-- DevDiary -->
@@ -358,8 +508,8 @@
 
       <div class="diary-left">
         <div class="diary-title-wrapper autoShow">
-          <div class="dev-word"><h1>Dev</h1></div>
-          <div class="diary-word"><h1>Diary</h1></div>
+          <div class="dev-word"><h2>Dev</h2></div>
+          <div class="diary-word"><h2>Diary</h2></div>
         </div>
       </div>
 
@@ -403,8 +553,8 @@
     <section id="services" class="section section-top">
       <div class="space-bg" id="spaceBg"></div>
 
-      <div class="service-title">
-        <h2>Our Services</h2>
+      <div class="service-title glowy-text">
+        <h2 class="section-title">Our Services</h2>
       </div>
 
       <div class="services-container">
@@ -463,7 +613,7 @@
         <div class="connect-content">
 
           <div class="connect-main-content">
-            <h2 id="connect-title">Want to hack into the Paradox?</h2>
+            <h2 id="connect-title" class="section-title">Want to hack into the Paradox?</h2>
 
             <div class="social-icons">
                 <a href="https://discord.gg/NYcyaqbFJp" target="_blank" class="social-icon" 

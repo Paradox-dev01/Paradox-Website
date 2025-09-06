@@ -461,28 +461,19 @@ ScrollTrigger.create({
 
 
 
-//  ---------------------------------------------- THE LABS ----------------------------------------------
+//  ---------------------------------------------- SHARED ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
+
 document.addEventListener("DOMContentLoaded", () => {
-
-  console.log("lab - Script loaded!");
-
-  document.querySelectorAll(".project-link-area").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      console.log("Link clicked:", this);
-
-      if (this.dataset.status === "under-construction") {
-        e.preventDefault();
-        alert(
-          "🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive, which is already available."
-        );
-      }
-    });
-  });
 
   // GSAP: Stars
   const starsContainer = document.getElementById("lab-stars");
+  
+  const vaultStarsContainer = document.createElement("div");
+  vaultStarsContainer.classList.add("lab-stars");
+  document.getElementById("game-vault-cards").prepend(vaultStarsContainer);
+
   const starCount = 120;
 
   for (let i = 0; i < starCount; i++) {
@@ -537,35 +528,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Entry animation
-  gsap.from(".lab-content h1", {
+
+  
+
+  // Select all showcase cards
+  const showcaseCards = document.querySelectorAll(".showcase-card");
+
+  // Hover animation for each card
+  showcaseCards.forEach(card => {
+    card.addEventListener("mouseenter", () => {
+      gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+    });
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
+    });
+  });
+
+  // Entry animation for Lab section header
+  gsap.from(".showcase-header h2", {
     y: -40,
     opacity: 0,
     duration: 1.2,
     ease: "power2.out",
   });
 
-  gsap.from(".lab-content p", {
+  gsap.from(".showcase-header p", {
     y: 20,
     opacity: 0,
     duration: 1,
     delay: 0.2,
-    stagger: 0.2,
     ease: "power2.out",
   });
 
-  gsap.from(".project-title", {
-    scrollTrigger: {
-      trigger: ".project-title",
-      start: "top 80%",
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
-  });
-
-  gsap.utils.toArray(".project-card").forEach((card, i) => {
+  // Animate each card on scroll
+  gsap.utils.toArray(".showcase-card").forEach((card, i) => {
     gsap.from(card, {
       scrollTrigger: {
         trigger: card,
@@ -578,6 +574,85 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "back.out(1.7)",
     });
   });
+
+  
+// gameCards.forEach(card => {
+//   // Hover animation with GSAP
+//   card.addEventListener("mouseenter", () => {
+//     gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+//   });
+//   card.addEventListener("mouseleave", () => {
+//     gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
+//   });
+// });
+
+  
+//   // Entry animation
+//   gsap.from(".lab-content h2", {
+//     y: -40,
+//     opacity: 0,
+//     duration: 1.2,
+//     ease: "power2.out",
+//   });
+
+//   gsap.from(".lab-content p", {
+//     y: 20,
+//     opacity: 0,
+//     duration: 1,
+//     delay: 0.2,
+//     stagger: 0.2,
+//     ease: "power2.out",
+//   });
+
+//   gsap.from(".project-title", {
+//     scrollTrigger: {
+//       trigger: ".project-title",
+//       start: "top 80%",
+//     },
+//     y: 30,
+//     opacity: 0,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+
+//   gsap.utils.toArray(".project-card").forEach((card, i) => {
+//     gsap.from(card, {
+//       scrollTrigger: {
+//         trigger: card,
+//         start: "top 85%",
+//       },
+//       y: 50,
+//       opacity: 0,
+//       duration: 0.8,
+//       delay: i * 0.1,
+//       ease: "back.out(1.7)",
+//     });
+//   });
+
+});
+
+
+
+//  ---------------------------------------------- THE LABS ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+
+  console.log("lab - Script loaded!");
+
+  document.querySelectorAll(".project-link-area").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      console.log("Link clicked:", this);
+
+      if (this.dataset.status === "under-construction") {
+        e.preventDefault();
+        alert(
+          "🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive, which is already available."
+        );
+      }
+    });
+  });
+
 });
 
 
@@ -598,9 +673,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //  ---------------------------------------------- GAME VAULT ----------------------------------------------
-//  ----------------------------------------------GAME INFO ZONE-----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
+
+// ------------------ Attach Click Events ------------------
+
+const gameCards = document.querySelectorAll(".game-card");
+
+gameCards.forEach(card => {
+  card.addEventListener("click", () => {
+    const key = card.getAttribute("data-game-key");
+    showGameDetails(key);
+  });
+});
+
+
+
+
+//  ----------------------------------------------GAME INFO ZONE-----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
 
   console.log("game-vault - Script loaded!");
 
@@ -642,7 +735,6 @@ function getImagesForGame(folderPath) {
 }
 
 // DOM elements
-const gameCards = document.querySelectorAll(".game-card");
 const gameInfoZone = document.getElementById("game-info-zone");
 const gameDetails = document.getElementById("game-details");
 
@@ -680,7 +772,7 @@ function showGameDetails(gameKey) {
   `;
 
   
-  gameInfoZone.classList.add("active");
+  gameInfoZone.classList.add("active");  
 
   // Animate in
   gsap.fromTo(gameInfoZone, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" });
@@ -739,105 +831,85 @@ function initCarousel(track, leftBtn, rightBtn) {
   updateCarousel();
 }
 
-
-// ------------------ Attach Click Events ------------------
-gameCards.forEach(card => {
-  card.addEventListener("click", () => {
-    const key = card.getAttribute("data-game-key");
-    showGameDetails(key);
-  });
-
-  // Hover animation with GSAP
-  card.addEventListener("mouseenter", () => {
-    gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
-  });
-  card.addEventListener("mouseleave", () => {
-    gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
-  });
-});
-
 //------------------- Auto Hide on Scroll Down -----------------
-let lastScrollY = window.scrollY;
+// let lastScrollY = window.scrollY;
 
-window.addEventListener("scroll", () => {
-  if (!gameInfoZone || gameInfoZone.offsetTop === 0) return;
+// window.addEventListener("scroll", () => {
+//   if (!gameInfoZone || gameInfoZone.offsetTop === 0) return;
 
-  if (window.scrollY > lastScrollY) { 
+//   if (window.scrollY > lastScrollY) { 
     // Scrolling down
-    const rect = gameInfoZone.getBoundingClientRect();
-    if (rect.top < -200) { // user scrolled past section
-      gsap.to(gameInfoZone, { opacity: 0, y: 50, duration: 0.5 });
-      setTimeout(() => {
-        gameDetails.innerHTML = "";
-        gameInfoZone.classList.remove("active"); // <— hide it fully
-      }, 600);
-    }
-  }
-  lastScrollY = window.scrollY;
-});
+//     const rect = gameInfoZone.getBoundingClientRect();
+//     if (rect.top < -200) { // user scrolled past section
+//       gsap.to(gameInfoZone, { opacity: 0, y: 50, duration: 0.5 });
+//       setTimeout(() => {
+//         gameDetails.innerHTML = "";
+//         gameInfoZone.classList.remove("active"); // <— hide it fully
+//       }, 600);
+//     }
+//   }
+//   lastScrollY = window.scrollY;
+// });
+
+
 
 // ------------------ Image Popup Logic ------------------
-const imagePopup = document.getElementById("image-popup");
-const popupImg = document.querySelector(".popup-img");
-const closePopup = document.querySelector(".close-popup");
+// const imagePopup = document.getElementById("image-popup");
+// const popupImg = document.querySelector(".popup-img");
+// const closePopup = document.querySelector(".close-popup");
 
-function enableImagePopup() {
-  const images = document.querySelectorAll(".carousel-track img");
-  images.forEach(img => {
-    img.addEventListener("click", () => {
-      popupImg.src = img.src;
-      imagePopup.classList.add("active");
+// function enableImagePopup() {
+//   const images = document.querySelectorAll(".carousel-track img");
+//   images.forEach(img => {
+//     img.addEventListener("click", () => {
+//       popupImg.src = img.src;
+//       imagePopup.classList.add("active");
 
-      gsap.fromTo(popupImg, 
-        { scale: 0.7, opacity: 0 }, 
-        { scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" }
-      );
-    });
-  });
-}
-
+//       gsap.fromTo(popupImg, 
+//         { scale: 0.7, opacity: 0 }, 
+//         { scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" }
+//       );
+//     });
+//   });
+// }
 // Close popup
-closePopup.addEventListener("click", () => {
-  gsap.to(imagePopup, { opacity: 0, scale: 0.9, duration: 0.3, onComplete: () => {
-    imagePopup.classList.remove("active");
-    imagePopup.style.opacity = "1"; // reset
-    popupImg.src = "";
-  }});
-});
-
+// closePopup.addEventListener("click", () => {
+//   gsap.to(imagePopup, { opacity: 0, scale: 0.9, duration: 0.3, onComplete: () => {
+//     imagePopup.classList.remove("active");
+//     imagePopup.style.opacity = "1"; // reset
+//     popupImg.src = "";
+//   }});
+// });
 // Optional: click outside to close
-imagePopup.addEventListener("click", (e) => {
-  if (e.target === imagePopup) {
-    closePopup.click();
-  }
+// imagePopup.addEventListener("click", (e) => {
+//   if (e.target === imagePopup) {
+//     closePopup.click();
+//   }
+// });
+
+// ------------------ Image Popup Logic ------------------ temp
+// Select elements
+const popup = document.getElementById("image-popup");
+const popupImg = popup.querySelector(".popup-img");
+const closePopup = popup.querySelector(".close-popup");
+
+// Add click event to all carousel images
+document.querySelectorAll(".carousel img").forEach(img => {
+  img.addEventListener("click", () => {
+    popup.style.display = "flex"; // show popup
+    popupImg.src = img.src;       // set popup image
+  });
 });
 
+// Close popup when clicking X
+closePopup.addEventListener("click", () => {
+  popup.style.display = "none";
+});
 
-// ------------------ Add Lab-style stars & grid to Game Vault ------------------
-const vaultStarsContainer = document.createElement("div");
-vaultStarsContainer.classList.add("lab-stars");
-document.getElementById("game-vault").prepend(vaultStarsContainer);
-
-const starCount = 120;
-for (let i = 0; i < starCount; i++) {
-  const star = document.createElement("div");
-  star.classList.add("lab-star");
-  const size = Math.random() * 2 + 1;
-  star.style.width = `${size}px`;
-  star.style.height = `${size}px`;
-  star.style.top = `${Math.random() * 100}%`;
-  star.style.left = `${Math.random() * 100}%`;
-  vaultStarsContainer.appendChild(star);
-
-  gsap.to(star, {
-    opacity: Math.random() * 0.6 + 0.2,
-    duration: Math.random() * 2 + 1,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut",
-    delay: Math.random() * 3,
-  });
-}
+// Optional: close popup when clicking outside the image
+popup.addEventListener("click", e => {
+  if(e.target === popup) popup.style.display = "none";
+});
 
 
 
