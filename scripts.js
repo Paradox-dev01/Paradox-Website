@@ -155,7 +155,7 @@ const ctx = canvas.getContext("2d");
 
 let width, height, points;
 
-const POINT_COUNT = 150;
+const POINT_COUNT = 200;
 const MAX_DISTANCE = 100;
 
 // Initialize canvas size
@@ -378,46 +378,48 @@ window.addEventListener("scroll", () => {
 
 // Function to scroll to a section with a smooth animation
 function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-        // Hide mobile menu after clicking a link
-        toggleMobileMenu(true);
-    }
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+    // Hide mobile menu after clicking a link
+    toggleMobileMenu(true);
+  }
 }
 
 // Function to toggle the mobile menu
 function toggleMobileMenu(closeOnly = false) {
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (closeOnly) {
-        mobileMenu.style.display = 'none';
+  const mobileMenu = document.getElementById("mobileMenu");
+  if (closeOnly) {
+    mobileMenu.style.display = "none";
+  } else {
+    if (mobileMenu.style.display === "flex") {
+      mobileMenu.style.display = "none";
     } else {
-        if (mobileMenu.style.display === 'flex') {
-            mobileMenu.style.display = 'none';
-        } else {
-            mobileMenu.style.display = 'flex';
-        }
+      mobileMenu.style.display = "flex";
     }
+  }
 }
 
 // Close mobile menu when clicking outside
-document.addEventListener('click', function(event) {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = document.querySelector('.menu-icon');
-    
-    if (mobileMenu.style.display === 'flex' && 
-        !mobileMenu.contains(event.target) && 
-        !menuIcon.contains(event.target)) {
-        mobileMenu.style.display = 'none';
-    }
+document.addEventListener("click", function (event) {
+  const mobileMenu = document.getElementById("mobileMenu");
+  const menuIcon = document.querySelector(".menu-icon");
+
+  if (
+    mobileMenu.style.display === "flex" &&
+    !mobileMenu.contains(event.target) &&
+    !menuIcon.contains(event.target)
+  ) {
+    mobileMenu.style.display = "none";
+  }
 });
 
 // Close mobile menu on window resize (if resized to desktop view)
-window.addEventListener('resize', function() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (window.innerWidth > 768) {
-        mobileMenu.style.display = 'none';
-    }
+window.addEventListener("resize", function () {
+  const mobileMenu = document.getElementById("mobileMenu");
+  if (window.innerWidth > 768) {
+    mobileMenu.style.display = "none";
+  }
 });
 //nav shesh
 //  ---------------------------------------------- CORE ----------------------------------------------
