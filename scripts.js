@@ -285,7 +285,6 @@ console.log("landing - Script loaded!");
 const bgBottom = document.querySelector(".bg-bottom");
 const astronaut = document.getElementById("astronaut");
 // const landingSection = document.getElementById('landing');
-const landingBg = document.getElementById("landing-background");
 // const navArrow = document.querySelector('.nav-arrow');
 
 // === FLY-AWAY ANIMATION TRIGGER ===
@@ -583,75 +582,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "power3.out",
     });
   });
-
-
-  
-
-  // Select all showcase cards
-  const showcaseCards = document.querySelectorAll(".showcase-card");
-
-  // Hover animation for each card
-  showcaseCards.forEach(card => {
-    card.addEventListener("mouseenter", () => {
-      gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
-    });
-    card.addEventListener("mouseleave", () => {
-      gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
-    });
-  });
-
-  // Entry animation for Lab section header
-  gsap.from(".showcase-header h2", {
-    y: -40,
-    opacity: 0,
-    duration: 1.2,
-    ease: "power2.out",
-  });
-
-  gsap.from(".showcase-header p", {
-    y: 20,
-    opacity: 0,
-    duration: 1,
-    delay: 0.2,
-    ease: "power2.out",
-  });
-
-  // Animate each card on scroll
-  gsap.utils.toArray(".showcase-card").forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: "top 85%",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      delay: i * 0.1,
-      ease: "back.out(1.7)",
-    });
-  });
-});
-
-// ---------------------------------------------- EPC ----------------------------------------------
-//  ----------------------------------------------------------------------------------------------------------
-//  ----------------------------------------------------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-
-  console.log("lab - Script loaded!");
-
-  document.querySelectorAll(".project-link-area").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      console.log("Link clicked:", this);
-
-      if (this.dataset.status === "under-construction") {
-        e.preventDefault();
-        alert(
-          "🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive, which is already available."
-        );
-      }
-    });
-  });
-
 });
 
 // ---------------------------------------------- EPC ----------------------------------------------
@@ -832,10 +762,10 @@ gameCards.forEach((card) => {
 });
 
 //------------------- Auto Hide on Scroll Down -----------------
-// let lastScrollY = window.scrollY;
+let lastScrollY = window.scrollY;
 
-// window.addEventListener("scroll", () => {
-//   if (!gameInfoZone || gameInfoZone.offsetTop === 0) return;
+window.addEventListener("scroll", () => {
+  if (!gameInfoZone || gameInfoZone.offsetTop === 0) return;
 
   if (window.scrollY > lastScrollY) {
     // Scrolling down
