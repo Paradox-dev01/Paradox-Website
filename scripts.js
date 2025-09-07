@@ -332,7 +332,7 @@ const landingClickableItems = [
   ...document.querySelectorAll("#landing .scroll-down-arrow"),
 ];
 
-// Astronaut click: fly away AND scroll to core1
+// Astronaut click: fly away AND scroll to core
 astronaut?.addEventListener("click", triggerFlyAwayAndScroll);
 
 // Other items trigger fly-away
@@ -353,11 +353,6 @@ window.addEventListener("scroll", () => {
   if (bgBottom) {
     const translateY = Math.min(scrollProgress * 50, 50); // Max 50px
     bgBottom.style.transform = `translateY(${translateY}px)`;
-  }
-
-  // Fade out landing background
-  if (landingBg) {
-    landingBg.style.opacity = 1 - scrollProgress;
   }
 
   // Trigger astronaut fly-away after slight scroll
@@ -516,19 +511,22 @@ document.addEventListener("DOMContentLoaded", () => {
       if (this.dataset.status === "under-construction") {
         e.preventDefault();
         alert(
-          "🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive, which is already available."
+          "🚧 This project is currently under construction.\n\nIn the meantime, feel free to explore AstroDrive and IIUC Tension Run, which are already available."
         );
       }
+    });
+
+    // Hover animation with GSAP
+    link.addEventListener("mouseenter", () => {
+      gsap.to(link, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+    });
+    link.addEventListener("mouseleave", () => {
+      gsap.to(link, { scale: 1, duration: 0.3, ease: "power2.out" });
     });
   });
 
   // GSAP: Stars
   const starsContainer = document.getElementById("lab-stars");
-  
-  const vaultStarsContainer = document.createElement("div");
-  vaultStarsContainer.classList.add("lab-stars");
-  document.getElementById("game-vault-cards").prepend(vaultStarsContainer);
-
   const starCount = 120;
 
   for (let i = 0; i < starCount; i++) {
@@ -593,6 +591,47 @@ document.addEventListener("DOMContentLoaded", () => {
 console.log("astrodrive - Script loaded!");
 
 //  ---------------------------------------------- GAME VAULT ----------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+//  ----------------------------------------------------------------------------------------------------------
+
+// ------------------ Add Lab-style stars & grid to Game Vault ------------------
+// const vaultStarsContainer = document.createElement("div");
+// vaultStarsContainer.classList.add("lab-stars");
+// document.getElementById("game-vault").prepend(vaultStarsContainer);
+
+// const starCount = 120;
+// for (let i = 0; i < starCount; i++) {
+//   const star = document.createElement("div");
+//   star.classList.add("lab-star");
+//   const size = Math.random() * 2 + 1;
+//   star.style.width = `${size}px`;
+//   star.style.height = `${size}px`;
+//   star.style.top = `${Math.random() * 100}%`;
+//   star.style.left = `${Math.random() * 100}%`;
+  
+
+//   gsap.to(star, {
+//     opacity: Math.random() * 0.6 + 0.2,
+//     duration: Math.random() * 2 + 1,
+//     repeat: -1,
+//     yoyo: true,
+//     ease: "sine.inOut",
+//     delay: Math.random() * 3,
+//   });
+// }
+
+
+// ------------------ Attach Click Events ------------------
+const gameCards = document.querySelectorAll(".game-card");
+gameCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    const key = card.getAttribute("data-game-key");
+    showGameDetails(key);
+  });
+});
+
+
+//  ---------------------------------------------- GAME INFO ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
@@ -745,22 +784,6 @@ function initCarousel(track, leftBtn, rightBtn) {
   updateCarousel();
 }
 
-// ------------------ Attach Click Events ------------------
-gameCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const key = card.getAttribute("data-game-key");
-    showGameDetails(key);
-  });
-
-  // Hover animation with GSAP
-  card.addEventListener("mouseenter", () => {
-    gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power2.out" });
-  });
-  card.addEventListener("mouseleave", () => {
-    gsap.to(card, { scale: 1, duration: 0.3, ease: "power2.out" });
-  });
-});
-
 //------------------- Auto Hide on Scroll Down -----------------
 let lastScrollY = window.scrollY;
 
@@ -783,9 +806,9 @@ window.addEventListener("scroll", () => {
 });
 
 // ------------------ Image Popup Logic ------------------
-// const imagePopup = document.getElementById("image-popup");
-// const popupImg = document.querySelector(".popup-img");
-// const closePopup = document.querySelector(".close-popup");
+const imagePopup = document.getElementById("image-popup");
+const popupImg = document.querySelector(".popup-img");
+const closePopup = document.querySelector(".close-popup");
 
 function enableImagePopup() {
   const images = document.querySelectorAll(".carousel-track img");
@@ -824,31 +847,6 @@ imagePopup.addEventListener("click", (e) => {
   }
 });
 
-// ------------------ Add Lab-style stars & grid to Game Vault ------------------
-const vaultStarsContainer = document.createElement("div");
-vaultStarsContainer.classList.add("lab-stars");
-document.getElementById("game-vault").prepend(vaultStarsContainer);
-
-const starCount = 120;
-for (let i = 0; i < starCount; i++) {
-  const star = document.createElement("div");
-  star.classList.add("lab-star");
-  const size = Math.random() * 2 + 1;
-  star.style.width = `${size}px`;
-  star.style.height = `${size}px`;
-  star.style.top = `${Math.random() * 100}%`;
-  star.style.left = `${Math.random() * 100}%`;
-  vaultStarsContainer.appendChild(star);
-
-  gsap.to(star, {
-    opacity: Math.random() * 0.6 + 0.2,
-    duration: Math.random() * 2 + 1,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut",
-    delay: Math.random() * 3,
-  });
-}
 
 // ---------------------------------------------- DEV DIARY ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------

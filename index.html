@@ -18,10 +18,13 @@
   <link rel="shortcut icon" type="image/x-icon" href="asset/paradox-logo-32.png">
 
   <link rel="stylesheet" href="styles.css" />
-<link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+  <link rel="stylesheet" href="style-responsive.css" />
+
+  <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+  />
+
   <!-- Google Fonts (Grouped & Preconnected) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,62 +69,60 @@
         <canvas id="sci-fi-bg"></canvas>
 
         <!-- Landing -->
-        <section id="landing" class="section fade-scroll">
-        <!-- <br><br> -->
-        <nav>
-            <div class="nav-buttons">
-                <button onclick="scrollToSection('core1')">
-                    <i class="ri-cpu-line"></i>
-                    <span class="btn-label">The Core</span>
-                </button>
-                <button onclick="scrollToSection('lab')">
-                    <i class="ri-flask-line"></i>
-                    <span class="btn-label">The Lab</span>
-                </button>
-                <button onclick="scrollToSection('dev-diary')">
-                    <i class="ri-book-line"></i>
-                    <span class="btn-label">The Logs</span>
-                </button>
-                <button onclick="scrollToSection('services')">
-                    <i class="ri-customer-service-2-line"></i>
-                    <span class="btn-label">Services</span>
-                </button>
-                <button onclick="scrollToSection('connect')">
-                    <i class="ri-links-line"></i>
-                    <span class="btn-label">Connect</span>
-                </button>
-            </div>
-            <i class="ri-menu-3-line menu-icon" onclick="toggleMobileMenu()"></i>
-            <div class="mobile-menu" id="mobileMenu">
-                <button onclick="scrollToSection('core1')">
-                    <i class="ri-cpu-line"></i>
-                    The Core
-                </button>
-                <button onclick="scrollToSection('lab')">
-                    <i class="ri-flask-line"></i>
-                    The Lab
-                </button>
-                <button onclick="scrollToSection('dev-diary')">
-                    <i class="ri-book-line"></i>
-                    The Logs
-                </button>
-                <button onclick="scrollToSection('services')">
-                    <i class="ri-customer-service-2-line"></i>
-                    Services
-                </button>
-                <button onclick="scrollToSection('connect')">
-                    <i class="ri-links-line"></i>
-                    Connect
-                </button>
-            </div>
-        </nav>
+        <section id="landing" class="section fade-scroll full-section">
+          <nav>
+              <div class="nav-buttons">
+                  <button onclick="scrollToSection('core1')">
+                      <!-- <i class="ri-cpu-line"></i> -->
+                      <span class="btn-label">The Core</span>
+                  </button>
+                  <button onclick="scrollToSection('lab')">
+                      <!-- <i class="ri-flask-line"></i> -->
+                      <span class="btn-label">The Lab</span>
+                  </button>
+                  <button onclick="scrollToSection('dev-diary')">
+                      <!-- <i class="ri-book-line"></i> -->
+                      <span class="btn-label">The Logs</span>
+                  </button>
+                  <button onclick="scrollToSection('services')">
+                      <!-- <i class="ri-customer-service-2-line"></i> -->
+                      <span class="btn-label">Services</span>
+                  </button>
+                  <button onclick="scrollToSection('connect')">
+                      <!-- <i class="ri-links-line"></i> -->
+                      <span class="btn-label">Connect</span>
+                  </button>
+              </div>
+              <i class="ri-menu-3-line menu-icon" onclick="toggleMobileMenu()"></i>
+              <div class="mobile-menu" id="mobileMenu">
+                  <button onclick="scrollToSection('core1')">
+                      <i class="ri-cpu-line"></i>
+                      The Core
+                  </button>
+                  <button onclick="scrollToSection('lab')">
+                      <i class="ri-flask-line"></i>
+                      The Lab
+                  </button>
+                  <button onclick="scrollToSection('dev-diary')">
+                      <i class="ri-book-line"></i>
+                      The Logs
+                  </button>
+                  <button onclick="scrollToSection('services')">
+                      <i class="ri-customer-service-2-line"></i>
+                      Services
+                  </button>
+                  <button onclick="scrollToSection('connect')">
+                      <i class="ri-links-line"></i>
+                      Connect
+                  </button>
+              </div>
+          </nav>
 
 
 
           <div class="intro">
-           <br><br>
             <h1>Welcome to Paradox</h1>
-            <h2>Think Beyond Unthinkable,<br> Build Beyond Boundaries.</h2>
+            <h2>Think Beyond Unthinkable,<span class="mobile-break"></span> Build Beyond Boundaries.</h2>
             
           </div>
           
@@ -190,63 +191,6 @@
 
 
     <!-- Lab -->
-    <!-- <section class="showcase-section section " id="lab">
-      <div id="lab-stars" class="lab-stars"></div>
-      <div class="grid"></div>
-      <div class="neon-circle"></div>
-      <div class="showcase-bg"></div>
-      <div class="showcase-decor"></div>
-
-      <div class="showcase-header section-top">
-        <h2 class="showcase-title section-title">Welcome to <span>The Lab</span></h2>
-        <p class="showcase-subtext section-subtext">A place for Paradox's prototypes and projects with a pulse.<br>Visions of the future.</p>
-      </div>
-
-      <div class="showcase-cards-wrapper">
-        
-        <div class="showcase-card-grid">
-          <div class="showcase-card">
-            <a class="showcase-card-link-area" onclick="scrollToSection('game-vault')" class="project-link-area">
-              <div class="showcase-card-image">
-                <img src="assets/game-vault-p.png" alt="GameVault">
-              </div>
-              <div class="showcase-card-content">
-                <h3 class="showcase-card-title">GameVault</h3>
-                <p class="showcase-card-description">Cloud gaming platform with seamless multiplayer integration.</p>
-                <span class="showcase-card-link">View Project</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="showcase-card">
-            <a class="showcase-card-link-area" onclick="scrollToSection('astro')" class="project-link-area">
-              <div class="showcase-card-image">
-                <img src="assets/astrodrive-logo.jpg" alt="AstroDrive">
-              </div>
-              <div class="showcase-card-content">
-                <h3 class="showcase-card-title">AstroDrive</h3>
-                <p class="showcase-card-description">Stay updated with the latest space news, cosmic discoveries, and celestial wonders.</p>
-                <span class="showcase-card-link">View Project</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="showcase-card">
-            <a class="showcase-card-link-area" class="project-link-area" data-status="under-construction">
-              <div class="showcase-card-image">
-                <img src="assets/coming-soon-p.gif" alt="GameVault">
-              </div>
-              <div class="showcase-card-content">
-                <h3 class="showcase-card-title">Noor'An</h3>
-                <p class="showcase-card-description">Your Guide to Islam</p>
-                <span class="showcase-card-link">View Project</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <section id="lab" class="section full-section">
       <div class="lab-stars" id="lab-stars"></div>
       <div class="grid"></div>
@@ -255,15 +199,14 @@
       <div class="lab-content section-top">
         <h2 class="section-title">Welcome to <span>The Lab</span></h2>
         <p class="section-subtext">
-          A place for Paradox's prototypes and projects with a pulse.
-          <br>
+          A place for Paradox's prototypes and projects with a pulse. <br>
           Some call them "ideas". We call them visions of the future.
         </p>
       </div>
 
       <div class="projects-wrapper">
         <div id="projects" class="projects">
-          <div class="grid-bg" id="gridBg"></div>
+          <!-- <div class="grid-bg" id="gridBg"></div> -->
           <div class="project-grid">
 
             <div class="project-card">
@@ -273,13 +216,13 @@
                 </div>
                 <div class="project-content">
                   <h3 class="project-title">GameVault</h3>
-                  <p class="project-description">Cloud gaming platform with seamless multiplayer integration.</p>
+                  <p class="project-description">Fun begins here! Click to reveal more.</p>
                   <span class="project-link">View Project</span>
                 </div>
               </a>
             </div>
             <div class="project-card">
-              <a onclick="scrollToSection('astro')" class="project-link-area">
+              <a class="project-link-area" onclick="scrollToSection('astro')">
                 <div class="project-image">
                   <img src="assets/astrodrive-logo.jpg" alt="AstroDrive Logo">
                 </div>
@@ -387,53 +330,12 @@
     </section>
 
     <!-- Game Vault -->
-    <!-- <section class="showcase-section section " id="game-vault">
-      <div id="game-vault-stars" class="lab-stars"></div>
-      <div class="grid"></div>
-      <div class="neon-circle"></div>
-      <div class="showcase-bg"></div>
-      <div class="showcase-decor"></div>
-
-      <div class="showcase-header section-top">
-        <h2 class="showcase-title section-title">Our <span>Game Vault</span></h2>
-        <p class="showcase-subtext section-subtext">A chamber of all the games we’ve built:<br>completed, ongoing, and experimental.</p>
-      </div>
-
-      <div class="showcase-cards-wrapper">
-        <div class="showcase-card-grid">
-          <div class="showcase-card">
-            
-            <div class="showcase-card-content game-card" data-game-key="iiuc-tension-run">
-            <div class="showcase-card-image game-card" onclick="scrollToNextSection()">
-              <img src="assets/games/iiuc-tension-run/iiuc-tension-run-logo.png" alt="IIUC Tension Run">
-            </div>
-            <div class="showcase-card-content>
-              <h3 class="showcase-card-title">IIUC Tension Run</h3>
-              <p class="showcase-card-description">Campus-inspired fun runner game.</p>
-              <span class="showcase-card-link">Click to View More</span>
-            </div>
-          </div>
-
-          <div class="showcase-card game-card" data-game-key="other game">
-            <div class="showcase-card-image">
-              <img src="assets/coming-soon-p.gif" alt="Coming Soon">
-            </div>
-            <div class="showcase-card-content">
-              <h3 class="showcase-card-title">New Game</h3>
-              <p class="showcase-card-description">Coming Soon...</p>
-              <span class="showcase-card-link">Click to View More</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <section id="game-vault" class="section full-section section-top">
       <div class="lab-stars" id="lab-stars"></div>
       <div class="grid"></div>
       <div class="neon-circle"></div>
 
-      <div class="vault-intro">
+      <div class="lab-content section-top">
         <h2 class="section-title">Our <span>Game Vault</span></h2>
         <p class="section-subtext">
           A chamber of all the games we’ve built:
@@ -441,33 +343,38 @@
         </p>
       </div>
 
-      <div class="vault-projects">
-        <div id="games" class="games">
+      <div class="projects-wrapper">
+        <div id="projects" class="projects">
+          <!-- <div class="grid-bg" id="gridBg"></div> -->
+          <div class="project-grid">
 
-            <div class="vault-grid">
+            <div class="project-card">
               <!-- <div class="game-card" data-game-key="iiuc-tension-run"> -->
-              <div class="game-card" onclick="scrollToSection('game-info-zone')">
-                <div class="game-image">
+              <a class="game-card project-link-area" onclick="scrollToSection('game-info-zone')">
+                <div class="project-image">
                   <img src="assets/games/iiuc-tension-run/iiuc-tension-run-logo.png" alt="IIUC Tension Run">
                 </div>
-                <div class="game-content">
-                  <h3>IIUC Tension Run</h3>
-                  <p>Campus-inspired fun runner game.</p>
-                  <span class="game-link">Click to View More</span>
+                <div class="project-content">
+                  <h3 class="project-title">IIUC Tension Run</h3>
+                  <p class="project-description">Campus-inspired fun runner game.</p>
+                  <span class="project-link">Click to View More</span>
                 </div>
-              </div>
-
-              <div class="game-card" data-game-key="other game">
-                <div class="game-image">
+              </a>
+            </div>
+            
+            <div class="project-card">
+              <a class="game-card project-link-area" data-status="under-construction">
+                <div class="project-image">
                   <img src="assets/coming-soon-p.gif" alt="Coming Soon">
                 </div>
-                <div class="game-content">
-                  <h3>New Game</h3>
-                  <p>Coming Soon...</p>
-                  <span class="game-link">Click to View More</span>
+                <div class="project-content">
+                  <h3 class="project-title">IIUC Tension Run</h3>
+                  <p class="project-description">Campus-inspired fun runner game.</p>
+                  <span class="project-link">Click to View More</span>
                 </div>
-              </div>
+              </a>
             </div>
+          </div>
 
         </div> 
       </div>
@@ -500,7 +407,7 @@
               <div class="game-description">
                 <p><strong>Genre:</strong> Endless Runner</p>
                 <br>
-                <p><strong>description:</strong> Campus-inspired runner game where players dodge exams, chase deadlines, and collect knowledge points.</p>
+                <p><strong>Description:</strong> Campus-inspired runner game where players dodge exams, chase deadlines, and collect knowledge points.<br><br> <em>Complete simple challenges and get a chance to win valuable real life gifts!</em></p>
                 <br>
                 <p><strong>Status:</strong> Completed</p>
               </div>
