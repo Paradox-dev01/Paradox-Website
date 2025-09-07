@@ -1,7 +1,8 @@
 /* #FF0090 #E37CF5 #DC7AF5 #601CB8 #4449A3 #85A0E0 #413484 */
 :root {
-  --logo-top: clamp(1rem, 2.5vw, 2.5rem);
-  --logo-size: clamp(5rem, 12vw, 12rem);
+  --logo-top: clamp(1.25rem, 2.5vw, 2.5rem);
+  --logo-side: clamp(1rem, 2.5vw, 2.5rem);
+  --logo-size: clamp(5.5rem, 12vw, 12rem);
   --intro-bg: #000000;
   --showcase-bg: #0a0a1a;
   --last-impression-bg: #280332;
@@ -124,7 +125,7 @@ button {
 .logo {
   position: fixed;
   top: var(--logo-top);
-  left: var(--logo-top);
+  left: var(--logo-side);
   z-index: 100000;
 }
 .logo img {
@@ -222,10 +223,16 @@ button {
   padding-top: calc(var(--logo-top) + 1rem);
 }
 .section-title {
-  font-size: clamp(1rem, 3vw, 5rem);
+  font-size: clamp(1.5rem, 2.5vw + 1rem, 3rem);
+  line-height: 1.2;
+  font-weight: 700;
 }
 .section-subtext {
-  font-size: clamp(0.5rem, 1.5vw, 3rem);
+  font-size: clamp(1rem, 1vw + 0.75rem, 1.5rem);
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 65ch; /* keeps text from being too wide */
+  margin: 0 auto;  /* centers inside container */
 }
 
 
@@ -606,10 +613,10 @@ button {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  gap: 5rem;
   flex-wrap: wrap;
-  padding: 2rem;
-  max-width: 1200px;
+  gap: clamp(2rem, 10rem - 5vw, 5rem);  /* gap grows as screen shrinks */
+  padding: clamp(1rem, 5rem - 2vw, 2rem);   /* padding grows as screen shrinks */
+  max-width: clamp(30rem, 80vw, 75rem); /* min 480px, grows with viewport, max 1200px */
   margin: auto;
 }
 
@@ -619,10 +626,10 @@ button {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 2rem;
   border-radius: 12px;
-  width: 300px;
-  height: 300px;
+  padding: clamp(1rem, 2vw, 2rem);
+  width: clamp(12.5rem, 35vw, 18.75rem);
+  height: clamp(12.5rem, 35vw, 18.75rem);
   justify-content: center;
   text-align: center;
   word-wrap: break-word;
@@ -705,7 +712,7 @@ button {
   overflow: hidden;
   /* padding: 1rem 0rem; */
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   align-items: center;
   /* justify-content: flex-start; */
 }
@@ -797,6 +804,8 @@ button {
 /* the container that holds all cards */
 .project-grid {
   display: flex;
+  justify-content: center;  /*might be removed later when more cards*/
+  align-items: center;
   gap: 1.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -818,7 +827,7 @@ button {
   /* display: flex;
   flex-direction: column; 
   padding: 1rem;*/
-  scroll-snap-align: start;
+  /* scroll-snap-align: start;     only for now!! later when more cards are added this will be abled*/
   flex: 0 0 300px;  /* fixed width, no shrinking or growing */
   height: 450px;
   background: rgba(255, 255, 255, 0.05);
@@ -1341,12 +1350,13 @@ button {
 .diary-title-wrapper h2 {
   color: #cf9101;
   font-weight: bold;
-  font-size: 10rem;
+  font-size: clamp(3.5rem, 9vw, 10rem);
 }
 .dev-word h2 {
   line-height: 0.5;
 }
 .diary-word h2 {
+  line-height: 1;
   text-align: center;
 }
 

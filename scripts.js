@@ -497,13 +497,14 @@ ScrollTrigger.create({
 
 
 
-//  ---------------------------------------------- THE LABS ----------------------------------------------
+//  ---------------------------------------------- THE LABS & GAME VAULT bg ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("lab - Script loaded!");
 
+  // Lab's cards logic
   document.querySelectorAll(".project-link-area").forEach((link) => {
     link.addEventListener("click", function (e) {
       console.log("Link clicked:", this);
@@ -524,6 +525,10 @@ document.addEventListener("DOMContentLoaded", () => {
       gsap.to(link, { scale: 1, duration: 0.3, ease: "power2.out" });
     });
   });
+
+
+
+  // bg
 
   // GSAP: Stars
   const starsContainer = document.getElementById("lab-stars");
@@ -593,32 +598,6 @@ console.log("astrodrive - Script loaded!");
 //  ---------------------------------------------- GAME VAULT ----------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
 //  ----------------------------------------------------------------------------------------------------------
-
-// ------------------ Add Lab-style stars & grid to Game Vault ------------------
-// const vaultStarsContainer = document.createElement("div");
-// vaultStarsContainer.classList.add("lab-stars");
-// document.getElementById("game-vault").prepend(vaultStarsContainer);
-
-// const starCount = 120;
-// for (let i = 0; i < starCount; i++) {
-//   const star = document.createElement("div");
-//   star.classList.add("lab-star");
-//   const size = Math.random() * 2 + 1;
-//   star.style.width = `${size}px`;
-//   star.style.height = `${size}px`;
-//   star.style.top = `${Math.random() * 100}%`;
-//   star.style.left = `${Math.random() * 100}%`;
-  
-
-//   gsap.to(star, {
-//     opacity: Math.random() * 0.6 + 0.2,
-//     duration: Math.random() * 2 + 1,
-//     repeat: -1,
-//     yoyo: true,
-//     ease: "sine.inOut",
-//     delay: Math.random() * 3,
-//   });
-// }
 
 
 // ------------------ Attach Click Events ------------------

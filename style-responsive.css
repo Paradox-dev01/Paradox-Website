@@ -339,8 +339,8 @@
 @media (max-width: 1439px) {
   /* .core2-title { font-size: clamp(3.5rem, 2.5vw, 4.5rem); } */
   /* .core2-note { font-size: 0.95rem; } */
-  .core2-container { gap: 4rem; }
-  .core-card { width: 280px; height: 280px; padding: 1.8rem; }
+  /* .core2-container { gap: 4rem; } */
+  /* .core-card { width: 280px; height: 280px; padding: 1.8rem; } */
   .core2-card-title { font-size: 1.3rem; }
   .core2-text { font-size: 0.9rem; }
 }
@@ -350,8 +350,10 @@
   #core2 { padding: 1.5rem; }
   /* .core2-title { font-size: clamp(3rem, 3vw, 4rem); margin-top: 3rem; }
   .core2-note { font-size: 0.9rem; } */
-  .core2-container { gap: 3rem; padding: 1rem; flex-wrap: wrap; justify-content: center; }
-  .core-card { width: 220px; height: 220px; padding: 1.5rem; }
+  .core2-container { 
+    /* gap: 3rem; padding: 1rem;  */
+    flex-wrap: wrap; justify-content: center; }
+  /* .core-card { width: 220px; height: 220px; padding: 1.5rem; } */
   .core2-card-title { font-size: 1rem; }
   .core2-text { font-size: 0.75rem; }
 }
@@ -361,8 +363,16 @@
   #core2 { padding: 1rem; }
   /* .core2-title { font-size: clamp(2.2rem, 5vw, 3rem); margin-top: 2rem; }
   .core2-note { font-size: 0.85rem; } */
-  .core2-container { gap: 2rem; flex-wrap: wrap; justify-content: center; }
-  .core-card { width: 180px; height: 180px; padding: 1rem; }
+  .core2-container { 
+    /* gap: 3rem;  */
+    flex-wrap: wrap; 
+    justify-content: center; 
+  }
+  .core-card { 
+    /* width: 180px; 
+    height: 180px;  */
+    /* padding: 2rem;*/
+  } 
   .core2-card-title { font-size: 0.9rem; }
   .core2-text { font-size: 0.75rem; }
 }
@@ -372,8 +382,16 @@
   #core2 { padding: 0.8rem; }
   /* .core2-title { font-size: clamp(1.8rem, 6vw, 2.5rem); margin-top: 1.5rem; }
   .core2-note { font-size: 0.8rem; } */
-  .core2-container { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-  .core-card { width: 140px; height: 140px; padding: 0.8rem; }
+  .core2-container { 
+    /* gap: 2rem; */
+    flex-wrap: wrap; 
+    justify-content: center; 
+  } 
+  .core-card { 
+    /* width: 140px; 
+    height: 140px;  */
+    /* padding: 1.5rem;  */
+  }
   .core2-card-title { font-size: 0.7rem; }
   .core2-text { font-size: 0.65rem; }
 }
@@ -383,8 +401,16 @@
   #core2 { padding: 0.5rem; }
   /* .core2-title { font-size: clamp(1.5rem, 5vw, 2rem); margin-top: 1rem; }
   .core2-note { font-size: 0.75rem; } */
-  .core2-container { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-  .core-card { width: 120px; height: 120px; padding: 0.6rem; }
+  .core2-container { 
+    /* gap: 1.5rem;  */
+    flex-wrap: wrap; 
+    justify-content: center; 
+  }
+  .core-card { 
+    /* width: 120px; 
+    height: 120px;  */
+    /* padding: 1rem;  */
+  }
   .core2-card-title { font-size: 0.7rem; }
   .core2-text { font-size: 0.5rem; }
 }
@@ -394,7 +420,7 @@
 
 
 /* ======================================================================================================================================================
-   RESPONSIVENESS — THE LAB
+   RESPONSIVENESS — THE LAB & GAME VAULT
    ======================================================================================================================================================
 */
 
@@ -734,8 +760,8 @@
   }
 
   /* Scale down fonts proportionally */
-  .dev-word { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 0.4; }
-  .diary-word { font-size: clamp(3rem, 5vw, 4rem); }
+  /* .dev-word { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 0.4; }
+  .diary-word { font-size: clamp(3rem, 5vw, 4rem); } */
 }
 
 /* Mobile (<=768px) */
@@ -756,8 +782,8 @@
   .diary-left { max-height: 35%; }
   .diary-right { max-height: 65%; }
 
-  .dev-word { font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 0.3; }
-  .diary-word { font-size: clamp(1.5rem, 4.5vw, 2rem); }
+  /* .dev-word { font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 0.3; }
+  .diary-word { font-size: clamp(1.5rem, 4.5vw, 2rem); } */
 
   .log-text { font-size: 0.9rem; }
   .log-entry { padding: 0.75rem 1rem; }
