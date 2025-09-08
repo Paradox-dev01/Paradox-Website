@@ -50,7 +50,7 @@ document.addEventListener("mouseup", () => {
 
 document
   .querySelectorAll(
-    ".logo, a, button, .enter-button, .nav-arrow, #astronaut, .game-card, .carousel img"
+    ".logo, a, button, .enter-button, .nav-arrow, #astronaut, .game-card, .carousel img, .service-card"
   )
   .forEach((el) => {
     el.addEventListener("mouseenter", () => {

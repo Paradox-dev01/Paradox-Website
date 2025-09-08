@@ -820,7 +820,7 @@ button {
   flex-wrap: wrap;
   gap: clamp(0.75rem, 2vw, 1.25rem);
   padding: clamp(0.25rem, 1.5vw, 0.75rem);
-  justify-content: center; /* ✅ centers row content */
+  justify-content: center;
 }
 /* Mobile-first: 1 card per row by default */
 .project-card {
@@ -1319,10 +1319,17 @@ html { scroll-behavior: smooth; }
   flex-direction: column;
   transition: transform 0.3s ease;
 }
-
 .service-card:hover {
   transform: translateY(-8px);
 }
+
+.services-container a {
+  text-decoration: none; /* remove underline */
+  color: inherit;        /* inherit text color from card */
+  display: inline-block; /* ensures proper block behavior */
+}
+
+
 
 /* top part (image) */
 .service-img {
@@ -1347,11 +1354,11 @@ html { scroll-behavior: smooth; }
   box-shadow: 0 10px 20px rgba(106, 13, 173, 0.5);
   margin-top: 1.3rem;
 }
-.service-name h2 {
+.service-name h3 {
   font-size: 1.5rem;
   letter-spacing: 0.2rem;
   font-weight: 700;
-  margin-bottom: 1rem 0 1rem;
+  margin-bottom: 0;
   color: #efd4ff;
 }
 
