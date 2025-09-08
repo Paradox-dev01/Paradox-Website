@@ -529,75 +529,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // bg
+  function initStars(sectionId) {
+    // GSAP: Stars
+    const starsContainer = document.getElementById(sectionId);
+    const starCount = 120;
 
-  // GSAP: Stars
-  const starsContainer = document.getElementById("lab-stars");
-  const starCount = 120;
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement("div");
+      star.classList.add("lab-star");
 
-  for (let i = 0; i < starCount; i++) {
-    const star = document.createElement("div");
-    star.classList.add("lab-star");
+      const size = Math.random() * 2 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
 
-    const size = Math.random() * 2 + 1;
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
-    star.style.top = `${Math.random() * 100}%`;
-    star.style.left = `${Math.random() * 100}%`;
+      starsContainer.appendChild(star);
 
-    starsContainer.appendChild(star);
+      gsap.to(star, {
+        opacity: Math.random() * 0.6 + 0.2,
+        duration: Math.random() * 2 + 1,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: Math.random() * 3,
+      });
+    }
 
-    gsap.to(star, {
-      opacity: Math.random() * 0.6 + 0.2,
-      duration: Math.random() * 2 + 1,
+    // Neon circle animation
+    gsap.to(".neon-circle", {
+      scale: 1,
+      opacity: 0.6,
+      duration: 2,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
-      delay: Math.random() * 3,
+    });
+
+    // Mouse parallax
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * 30;
+
+      gsap.to(".neon-circle", {
+        x,
+        y,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      gsap.to(`#${sectionId}`, {
+        x: x * 0.5,
+        y: y * 0.5,
+        duration: 1,
+        ease: "power3.out",
+      });
     });
   }
+  // Init for both sections
+  initStars("lab-stars");
+  initStars("gamevault-stars");
 
-  // Neon circle animation
-  gsap.to(".neon-circle", {
-    scale: 1.05,
-    opacity: 0.6,
-    duration: 2,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut",
-  });
-
-  // Mouse parallax
-  document.addEventListener("mousemove", (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 30;
-    const y = (e.clientY / window.innerHeight - 0.5) * 30;
-
-    gsap.to(".neon-circle", {
-      x,
-      y,
-      duration: 1,
-      ease: "power3.out",
-    });
-
-    gsap.to(".lab-stars", {
-      x: x * 0.5,
-      y: y * 0.5,
-      duration: 1,
-      ease: "power3.out",
-    });
-  });
 });
-
-// ---------------------------------------------- EPC ----------------------------------------------
-//  ----------------------------------------------------------------------------------------------------------
-//  ----------------------------------------------------------------------------------------------------------
-
-// ---------------------------------------------- ASTRO DRIVE
-
-console.log("astrodrive - Script loaded!");
-
-//  ---------------------------------------------- GAME VAULT ----------------------------------------------
-//  ----------------------------------------------------------------------------------------------------------
-//  ----------------------------------------------------------------------------------------------------------
 
 
 // ------------------ Attach Click Events ------------------
@@ -616,215 +609,129 @@ gameCards.forEach((card) => {
 
 console.log("game-vault - Script loaded!");
 
-const gameData = {
-  "iiuc-tension-run": {
-    title: "IIUC Tension Run",
-    description: `
-      <p><strong>Genre:</strong> Endless Runner</p> </br>
-      <p>Campus-inspired runner game where players dodge exams, chase deadlines, and collect knowledge points.</p>
-      </br>
-      <p><strong>Status:</strong> Completed</p>
-    `,
-    image: "assets/games/iiuc-tension-run/iiuc-tension-run-logo.png",
-    trailer: "assets/games/iiuc-tension-run/iiuc-tension-run-trailer.mp4",
-    images: [
-      "assets/games/iiuc-tension-run/1.png",
-      "assets/games/iiuc-tension-run/2.png",
-      "assets/games/iiuc-tension-run/3.png",
-    ],
-  },
-};
 
-function getImagesForGame(folderPath) {
-  const images = [];
-  let index = 1;
 
-  while (true) {
-    const imgPath = `${folderPath}/${index}.jpg`;
-    const img = new Image();
-    img.src = imgPath;
 
-    if (img.complete && img.naturalWidth !== 0) {
-      images.push(imgPath);
-      index++;
-    } else break;
+
+
+/* ==================================================
+   JS: Cards, Carousel (infinite), Popup, Scrolling, BG stars hook
+   ================================================== */
+(function() {
+  const $ = (sel, ctx=document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+  // Smooth scroll helper for onclick="scrollToSection('id')"
+  window.scrollToSection = function(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 12; // slight offset
+    window.scrollTo({ top, behavior: 'smooth' });
   }
 
-  return images;
-}
-
-// DOM elements
-const gameInfoZone = document.getElementById("game-info-zone");
-const gameDetails = document.getElementById("game-details");
-
-// ------------------ Show Game Details ------------------
-function showGameDetails(gameKey) {
-  const data = gameData[gameKey];
-  if (!data) return;
-
-  // const folder = `assets/games/${gameKey}`;
-  // const images = getImagesForGame(folder);
-  // const imagesHTML = images.map(img => `<img src="${img}" alt="">`).join("");
-
-  // Build image carousel slides
-  const imagesHTML = data.images
-    ? data.images.map((img) => `<img src="${img}" alt="">`).join("")
-    : "";
-
-  gameDetails.innerHTML = `
-    <div class="game-detail-container">
-      <div class="game-detail-left">
-        <div class="game-logo-title">
-          <img src="${data.image}" alt="${data.title}" class="game-detail-logo">
-          <h2>${data.title}</h2>
-        </div>
-        <div class="game-description">${data.description}</div>
-      </div>
-      <div class="game-detail-right">
-        ${
-          data.trailer
-            ? `<video autoplay loop muted controls src="${data.trailer}" class="game-detail-video"></video>`
-            : `<p class="no-trailer">No trailer available yet.</p>`
-        }
-        ${
-          data.images
-            ? `
-          <div class="carousel">
-            <button class="carousel-arrow left">&#8249;</button>
-            <div class="carousel-track">${imagesHTML}</div>
-            <button class="carousel-arrow right">&#8250;</button>
-          </div>`
-            : ""
-        }
-      </div>
-    </div>
-  `;
-
-  gameInfoZone.classList.add("active");
-
-  // Animate in
-  gsap.fromTo(
-    gameInfoZone,
-    { opacity: 0, y: 50 },
-    { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-  );
-  gameInfoZone.scrollIntoView({ behavior: "smooth" });
-
-  // Carousel logic
-  const track = gameDetails.querySelector(".carousel-track");
-  const leftBtn = gameDetails.querySelector(".carousel-arrow.left");
-  const rightBtn = gameDetails.querySelector(".carousel-arrow.right");
-
-  if (track && leftBtn && rightBtn) {
-    initCarousel(track, leftBtn, rightBtn);
-    enableImagePopup();
-  }
-}
-
-function initCarousel(track, leftBtn, rightBtn) {
-  // const slides = Array.from(track.children);
-  // let index = 0;
-
-  // function updateCarousel() {
-  //   const offset = -index * (slides[0].offsetWidth + 8); // 8px = gap
-  //   track.style.transform = `translateX(${offset}px)`;
-  // }
-
-  // leftBtn.addEventListener("click", () => {
-  //   index = (index - 1 + slides.length) % slides.length;
-  //   updateCarousel();
-  // });
-
-  // rightBtn.addEventListener("click", () => {
-  //   index = (index + 1) % slides.length;
-  //   updateCarousel();
-  // });
-
-  // updateCarousel();
-
-  const slides = track.children;
-  const total = slides.length;
-  let index = 0;
-
-  function updateCarousel() {
-    track.style.transform = `translateX(-${index * 110}px)`;
-  }
-
-  leftBtn.addEventListener("click", () => {
-    index = (index - 1 + total) % total; // loop
-    updateCarousel();
-  });
-
-  rightBtn.addEventListener("click", () => {
-    index = (index + 1) % total; // loop
-    updateCarousel();
-  });
-
-  updateCarousel();
-}
-
-//------------------- Auto Hide on Scroll Down -----------------
-let lastScrollY = window.scrollY;
-
-window.addEventListener("scroll", () => {
-  if (!gameInfoZone || gameInfoZone.offsetTop === 0) return;
-
-  if (window.scrollY > lastScrollY) {
-    // Scrolling down
-    const rect = gameInfoZone.getBoundingClientRect();
-    if (rect.top < -200) {
-      // user scrolled past section
-      gsap.to(gameInfoZone, { opacity: 0, y: 50, duration: 0.5 });
-      setTimeout(() => {
-        gameDetails.innerHTML = "";
-        gameInfoZone.classList.remove("active"); // <— hide it fully
-      }, 600);
-    }
-  }
-  lastScrollY = window.scrollY;
-});
-
-// ------------------ Image Popup Logic ------------------
-const imagePopup = document.getElementById("image-popup");
-const popupImg = document.querySelector(".popup-img");
-const closePopup = document.querySelector(".close-popup");
-
-function enableImagePopup() {
-  const images = document.querySelectorAll(".carousel-track img");
-  images.forEach((img) => {
-    img.addEventListener("click", () => {
-      popupImg.src = img.src;
-      imagePopup.classList.add("active");
-
-      gsap.fromTo(
-        popupImg,
-        { scale: 0.7, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" }
-      );
+  document.addEventListener('DOMContentLoaded', () => {
+    // --- Enhance under-construction links (alert already exists in your script) ---
+    $$('.project-link-area[data-status="under-construction"]').forEach(a => {
+      a.addEventListener('click', e => e.preventDefault());
     });
-  });
-}
 
-// Close popup when clicking X
-closePopup.addEventListener("click", () => {
-  gsap.to(imagePopup, {
-    opacity: 0,
-    scale: 0.9,
-    duration: 0.3,
-    onComplete: () => {
-      imagePopup.classList.remove("active");
-      imagePopup.style.opacity = "1"; // reset
-      popupImg.src = "";
-    },
-  });
-});
+    // --- Init carousels (infinite) ---
+    $$('.carousel').forEach(initCarousel);
 
-// Optional: click outside to close
-imagePopup.addEventListener("click", (e) => {
-  if (e.target === imagePopup) {
-    closePopup.click();
+    // --- Init image popup for carousel images ---
+    initImagePopup();
+  });
+
+  function initCarousel(root) {
+    const track = $('.carousel-track', root);
+    const leftBtn = $('.carousel-arrow.left', root);
+    const rightBtn = $('.carousel-arrow.right', root);
+    if (!track) return;
+
+    let slides = Array.from(track.children);
+    if (slides.length === 0) return;
+
+    // Make it loop by cloning edges
+    const first = slides[0].cloneNode(true);
+    const last  = slides[slides.length - 1].cloneNode(true);
+    track.appendChild(first);
+    track.insertBefore(last, slides[0]);
+
+    // Update list to include clones
+    slides = Array.from(track.children);
+    let index = 1; // start at first real slide
+    const updateTransform = () => track.style.transform = `translateX(-${index * 100}%)`;
+
+    // Set widths (each slide is 100%) — CSS already sets flex-basis: 100%
+    updateTransform();
+
+    let isTransitioning = false;
+    const go = (dir) => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      index += dir;
+      track.style.transition = 'transform .35s ease';
+      updateTransform();
+    };
+
+    track.addEventListener('transitionend', () => {
+      track.style.transition = 'none';
+      // If at clones, jump without flash
+      if (index === 0) { index = slides.length - 2; updateTransform(); }
+      if (index === slides.length - 1) { index = 1; updateTransform(); }
+      requestAnimationFrame(() => { // re-enable after next frame
+        track.style.transition = 'transform .35s ease';
+        isTransitioning = false;
+      });
+    });
+
+    leftBtn && leftBtn.addEventListener('click', () => go(-1));
+    rightBtn && rightBtn.addEventListener('click', () => go(1));
+
+    // Optional: swipe on touch
+    let startX = 0, dx = 0; let dragging = false;
+    track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; dragging = true; dx = 0; track.style.transition = 'none'; });
+    track.addEventListener('touchmove', (e) => { if (!dragging) return; dx = e.touches[0].clientX - startX; track.style.transform = `translateX(calc(-${index * 100}% + ${dx}px))`; });
+    track.addEventListener('touchend', () => {
+      dragging = false; track.style.transition = 'transform .35s ease';
+      if (Math.abs(dx) > 40) { go(dx > 0 ? -1 : 1); } else { updateTransform(); }
+    });
   }
-});
+
+  function initImagePopup() {
+    const popup = document.getElementById('image-popup');
+    if (!popup) return;
+
+    // Build an inner wrapper so it’s not full-screen
+    if (!popup.querySelector('.popup-img-wrap')) {
+      const img = popup.querySelector('img');
+      const wrap = document.createElement('div');
+      wrap.className = 'popup-img-wrap';
+      const close = document.createElement('button');
+      close.className = 'close-popup';
+      close.setAttribute('aria-label', 'Close');
+      close.innerHTML = '&times;';
+      popup.appendChild(wrap);
+      wrap.appendChild(close);
+      wrap.appendChild(img);
+    }
+
+    const imgEl = popup.querySelector('img');
+    const open = (src) => { imgEl.src = src; popup.style.display = 'grid'; document.body.style.overflow = 'hidden'; }
+    const close = () => { popup.style.display = 'none'; imgEl.src = ''; document.body.style.overflow = ''; }
+
+    // Open when any carousel image is clicked
+    $$('.carousel-track img').forEach(img => {
+      img.addEventListener('click', () => open(img.getAttribute('src')));
+    });
+
+    // Close interactions
+    popup.addEventListener('click', (e) => { if (e.target === popup) close(); });
+    const closeBtn = popup.querySelector('.close-popup');
+    closeBtn && closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && popup.style.display !== 'none') close(); });
+  }
+})();
 
 
 // ---------------------------------------------- DEV DIARY ----------------------------------------------

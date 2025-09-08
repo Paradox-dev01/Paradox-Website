@@ -118,12 +118,9 @@
               </div>
           </nav>
 
-
-
           <div class="intro">
             <h1>Welcome to Paradox</h1>
             <h2>Think Beyond Unthinkable,<span class="mobile-break"></span> Build Beyond Boundaries.</h2>
-            
           </div>
           
           <div class="astronaut-wrapper">
@@ -153,7 +150,7 @@
 
         <section id="core2" class="section full-section section-top core-sec">
           <h2 class="core2-title gradient-text section-title" data-text="Core Matrix">Core Matrix</h2>
-          <p class="core2-note">Hover over a card to reveal more!</p>
+          <p class="core2-note">Hover over/Click on a card to reveal more!</p>
 
           <div class="core2-container">
             <div class="core-card" id="card-curiosity">
@@ -206,7 +203,6 @@
 
       <div class="projects-wrapper">
         <div id="projects" class="projects">
-          <!-- <div class="grid-bg" id="gridBg"></div> -->
           <div class="project-grid">
 
             <div class="project-card">
@@ -243,7 +239,7 @@
                   <p class="project-description">Guide to Islam</p>
                   <span class="project-link">View Project</span>
                 </div>
-                <div class="overlay">Coming Soon</div>
+                <div class="overlay">...</div>
               </a>
             </div>
 
@@ -252,8 +248,6 @@
     </section>
 
 
-    <section id="extnd-projects-carousal">
-        
         <!-- AstroDrive -->
         <section id="astro" class="section full-section">
 
@@ -271,7 +265,7 @@
               <div class="astrodrive-right">
                   <div class="astrodrive-logo">
                     <img src="assets/astrodrive-logo.jpg" alt="AstroDrive Logo" class="Astrologo" />
-                    <h2 class="tagline">Unleash the Cosmos!</h2>
+                    <h3 class="tagline">Unleash the Cosmos!</h3>
                   </div>
 
                   <div class="content">
@@ -326,12 +320,10 @@
           </div>
         </section>
 
-        
-    </section>
 
     <!-- Game Vault -->
     <section id="game-vault" class="section full-section section-top">
-      <div class="lab-stars" id="lab-stars"></div>
+      <div class="lab-stars" id="gamevault-stars"></div>
       <div class="grid"></div>
       <div class="neon-circle"></div>
 
@@ -344,7 +336,7 @@
       </div>
 
       <div class="projects-wrapper">
-        <div id="projects" class="projects">
+        <div id="gamevault-projects" class="projects">
           <!-- <div class="grid-bg" id="gridBg"></div> -->
           <div class="project-grid">
 
@@ -368,10 +360,11 @@
                   <img src="assets/coming-soon-p.gif" alt="Coming Soon">
                 </div>
                 <div class="project-content">
-                  <h3 class="project-title">IIUC Tension Run</h3>
-                  <p class="project-description">Campus-inspired fun runner game.</p>
+                  <h3 class="project-title">---</h3>
+                  <p class="project-description">Coming to the town soon!</p>
                   <span class="project-link">Click to View More</span>
                 </div>
+                <div class="overlay">. . .</div>
               </a>
             </div>
           </div>
@@ -381,19 +374,7 @@
             
     </section>
 
-    <!-- Game Info Zone (hidden by default) -->
-        <!-- <section id="game-info-zone" class="section full-section ">
-          <div id="game-details" class="game-details-container"> -->
-            <!-- Dynamic content for each game will be injected here via JS  -->
-          <!-- </div>
-        </section> -->
-
-        <!-- Image Popup  -->
-        <!-- <div id="image-popup" class="image-popup">
-          <span class="close-popup">&times;</span>
-          <img src="" alt="Expanded view" class="popup-img">
-        </div> -->
-
+        <!-- Game Info Zone -->
         <section id="game-info-zone" class="section full-section">
           <div class="game-detail-container">
             
@@ -407,7 +388,7 @@
               <div class="game-description">
                 <p><strong>Genre:</strong> Endless Runner</p>
                 <br>
-                <p><strong>Description:</strong> Campus-inspired runner game where players dodge exams, chase deadlines, and collect knowledge points.<br><br> <em>Complete simple challenges and get a chance to win valuable real life gifts!</em></p>
+                <p><strong>Description:</strong> Campus-inspired runner game where players dodge exams, chase deadlines, and collect knowledge points.<br> <em style="color: #967800;">Complete simple challenges and get a chance to win valuable real life gifts!</em></p>
                 <br>
                 <p><strong>Status:</strong> Completed</p>
               </div>
@@ -437,8 +418,10 @@
 
         <!-- Image Popup (only for clicked image) -->
         <div id="image-popup" class="image-popup" style="display:none;">
-          <span class="close-popup">&times;</span>
-          <img src="" alt="Expanded view" class="popup-img">
+          <div class="popup-img-wrap">
+            <button class="close-popup">&times;</button>
+            <img src="" alt="Expanded view" class="popup-img">
+          </div>
         </div>
 
 
