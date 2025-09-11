@@ -835,25 +835,6 @@ button {
   padding: clamp(0.25rem, 1.5vw, 0.75rem);
   justify-content: center;
 }
-/* Mobile-first: 1 card per row by default */
-.project-card {
-  flex: 1 1 100%;
-  max-width: 100%;
-}
-/* Tablet: 2 cards */
-@media (min-width: 640px) {
-  .project-card {
-    flex: 1 1 calc(50% - 1rem); /* two per row */
-    max-width: calc(50% - 1rem);
-  }
-}
-/* Desktop: 3 cards */
-@media (min-width: 1024px) {
-  .project-card {
-    flex: 1 1 calc(33.333% - 1rem); /* three per row */
-    max-width: calc(33.333% - 1rem);
-  }
-}
 
 .project-card {
   position: relative;
@@ -874,6 +855,25 @@ button {
   grid-template-rows: auto 1fr; 
   text-decoration: none; 
   color: inherit; 
+}
+/* Mobile-first: 1 card per row by default */
+.project-card {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+/* Tablet: 2 cards */
+@media (min-width: 640px) {
+  .project-card {
+    flex: 1 1 calc(50% - 1rem); /* two per row */
+    max-width: calc(50% - 1rem);
+  }
+}
+/* Desktop: 3 cards */
+@media (min-width: 1024px) {
+  .project-card {
+    flex: 1 1 calc(33.333% - 1rem); /* three per row */
+    max-width: calc(33.333% - 1rem);
+  }
 }
 
 .project-image { 
