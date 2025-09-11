@@ -338,10 +338,11 @@ button {
 .menu-icon {
   display: none;
   font-size: 24px;
+  background-color: #e7baff48;
   color: #dc7af5;
   cursor: pointer;
   padding: 8px;
-  border-radius: 6px;
+  border-radius: 8.5px 0 0 8.5px;
   transition: all 0.3s ease;
   position: absolute;
   right: 20px;
@@ -373,8 +374,8 @@ button {
 }
 
 .mobile-menu button {
-  background: transparent;
-  color: #e37cf5;
+  background-color: #e7baff30;
+  color: #dc7af5;
   border: none;
   padding: 12px 15px;
   text-align: left;
