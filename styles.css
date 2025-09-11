@@ -226,6 +226,16 @@ button {
   height: 100vh;
   min-height: 100svh;
 }
+.desktop-full-section {
+  height: 100vh;        /* desktop: full viewport */
+  min-height: 100svh;   /* ensures safe viewport height */
+}
+@media (max-width: 768px) {
+  .desktop-full-section {
+    height: auto;       /* mobile: only as tall as content */
+    min-height: auto;   /* reset safe height */
+  }
+}
 .section-top {
   padding-top: calc(var(--logo-top) + 1.5rem);
 }
@@ -769,17 +779,19 @@ button {
   /* justify-content: flex-start; */
 }
 
-#lab .lab-stars, #game-vault .lab-stars {
+#lab .lab-stars, 
+#game-vault .lab-stars {
   position: absolute;
-  background-color: white;
-  border-radius: 50%;
-  opacity: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
-.lab-star {
+.each-lab-star {
   position: absolute;
   background-color: white;
   border-radius: 50%;
-  opacity: 0.5; /* starting opacity */
+  opacity: 0; /* GSAP will animate this */
 }
 
 #lab .grid, #game-vault .grid {
@@ -1284,6 +1296,7 @@ html { scroll-behavior: smooth; }
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   height: auto;
   text-align: center;
   z-index: 1;

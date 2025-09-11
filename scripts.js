@@ -502,7 +502,7 @@ ScrollTrigger.create({
 //  ----------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("lab - Script loaded!");
+  console.log("show-projects-grid-stars - Script loaded!");
 
   // Lab's cards logic
   document.querySelectorAll(".project-link-area").forEach((link) => {
@@ -536,7 +536,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let i = 0; i < starCount; i++) {
       const star = document.createElement("div");
-      star.classList.add("lab-star");
+      star.classList.add("each-lab-star");
 
       const size = Math.random() * 2 + 1;
       star.style.width = `${size}px`;
