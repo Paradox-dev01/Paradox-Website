@@ -823,6 +823,8 @@ button {
 .projects-wrapper { 
   width: 100%; 
   padding: clamp(1rem, 2vw, 2rem); 
+
+  overflow: visible;
 }
 .projects { 
   width: min(1200px, 100%); 
@@ -848,6 +850,8 @@ button {
   
   display: flex;             /* ✨ allow inner stretch */
   flex-direction: column;
+  flex: 1 1 auto;  /* allow it to grow naturally */
+  max-width: 100%; /* responsive */
 }
 .project-card:hover {
   transform: translateY(-4px);
