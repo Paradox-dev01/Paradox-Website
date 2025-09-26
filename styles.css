@@ -745,7 +745,8 @@ button {
 /* Background layers from your snippet (kept), ensure they're behind content */
 #lab, #game-vault { 
   position: relative; 
-  overflow: hidden; }
+  overflow: hidden; 
+}
 #lab .lab-stars, #game-vault .lab-stars,
 #lab .grid, #game-vault .grid,
 #lab .neon-circle, #game-vault .neon-circle { 
