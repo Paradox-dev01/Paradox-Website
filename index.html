@@ -18,7 +18,6 @@
   <link rel="shortcut icon" type="image/x-icon" href="asset/paradox-logo-32.png">
 
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="style-responsive.css" />
 
   <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
@@ -338,55 +337,59 @@
       <div class="grid"></div>
       <div class="neon-circle"></div>
 
-      <div class="lab-content section-top">
-        <h2 class="section-title">Our <span>Game Vault</span></h2>
-        <p class="section-subtext">
-          A chamber of all the games we’ve built:
-          <br> completed, ongoing, and experimental.
-        </p>
-      </div>
-
-      <div class="projects-wrapper">
-        <div id="gamevault-projects" class="projects">
-          <!-- <div class="grid-bg" id="gridBg"></div> -->
-          <div class="project-grid">
-
-            <div class="project-card">
-              <!-- <div class="game-card" data-game-key="iiuc-tension-run"> -->
-              <a class="game-card project-link-area" onclick="scrollToSection('game-info-zone')">
-                <div class="project-image">
-                  <img src="assets/games/iiuc-tension-run/iiuc-tension-run-logo.png" alt="IIUC Tension Run">
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">IIUC Tension Run</h3>
-                  <p class="project-description">Campus-inspired fun runner game.</p>
-                  <span class="project-link">Click to View More</span>
-                </div>
-              </a>
-            </div>
-            
-            <div class="project-card">
-              <a class="game-card project-link-area" data-status="under-construction">
-                <div class="project-image">
-                  <img src="assets/coming-soon-p.gif" alt="Coming Soon">
-                </div>
-                <div class="project-content">
-                  <h3 class="project-title">---</h3>
-                  <p class="project-description">Coming to the town soon!</p>
-                  <span class="project-link">Click to View More</span>
-                </div>
-                <div class="overlay">. . .</div>
-              </a>
-            </div>
+      <div class="top-n-wrapper">
+          
+          <div class="lab-content section-top">
+            <h2 class="section-title">Our <span>Game Vault</span></h2>
+            <p class="section-subtext">
+              A chamber of all the games we’ve built:
+              <br> completed, ongoing, and experimental.
+            </p>
           </div>
 
-        </div> 
+          <div class="projects-wrapper">
+            <div id="gamevault-projects" class="projects">
+              <!-- <div class="grid-bg" id="gridBg"></div> -->
+              <div class="project-grid">
+
+                <div class="project-card">
+                  <!-- <div class="game-card" data-game-key="iiuc-tension-run"> -->
+                  <a class="game-card project-link-area" onclick="scrollToSection('game-info-zone')">
+                    <div class="project-image">
+                      <img src="assets/games/iiuc-tension-run/iiuc-tension-run-logo.png" alt="IIUC Tension Run">
+                    </div>
+                    <div class="project-content">
+                      <h3 class="project-title">IIUC Tension Run</h3>
+                      <p class="project-description">Campus-inspired fun runner game.</p>
+                      <span class="project-link">Click to View More</span>
+                    </div>
+                  </a>
+                </div>
+                
+                <div class="project-card">
+                  <a class="game-card project-link-area" data-status="under-construction">
+                    <div class="project-image">
+                      <img src="assets/coming-soon-p.gif" alt="Coming Soon">
+                    </div>
+                    <div class="project-content">
+                      <h3 class="project-title">---</h3>
+                      <p class="project-description">Coming to the town soon!</p>
+                      <span class="project-link">Click to View More</span>
+                    </div>
+                    <div class="overlay">. . .</div>
+                  </a>
+                </div>
+              </div>
+
+            </div> 
+          </div>
+
       </div>
             
     </section>
 
         <!-- Game Info Zone -->
-        <section id="game-info-zone" class="section full-section">
+        <section id="game-info-zone" class="section">
           <div class="game-detail-container">
             
             <!-- Left side: logo + title + description -->
@@ -434,8 +437,6 @@
             <img src="" alt="Expanded view" class="popup-img">
           </div>
         </div>
-
-
 
     <!-- DevDiary -->
     <section id="dev-diary" class="section full-section section-top dev-diary">
