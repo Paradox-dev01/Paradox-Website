@@ -581,9 +581,6 @@ header {
 /* === Core Card Base Styling === */
 #core2 {
   position: relative;
-  /* background-size: cover;
-  background-position: center;
-  background-attachment: fixed; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -644,7 +641,7 @@ header {
   flex-wrap: wrap;
   gap: clamp(2rem, 10rem - 5vw, 5rem); /* gap grows as screen shrinks */
   padding: clamp(1rem, 5rem - 2vw, 2rem); /* padding grows as screen shrinks */
-  max-width: clamp(30rem, 80vw, 75rem); /* min 480px, grows with viewport, max 1200px */
+  max-width: min(100%, 75rem); /* instead of clamp with 30rem floor */
   margin: auto;
 }
 /* Mobile <= 768px */
@@ -663,8 +660,10 @@ header {
   background-repeat: no-repeat;
   border-radius: 12px;
 
-  width: clamp(10rem, 20vw, 17.5rem);
-  height: clamp(10rem, 20vw, 17.5rem);
+  /* width: clamp(10rem, 20vw, 17.5rem);
+  height: clamp(10rem, 20vw, 17.5rem); */
+  width: clamp(5rem, 40vw, 17.5rem);
+  height: clamp(5rem, 40vw, 17.5rem);
   padding: clamp(1rem, 2vw, 1.8rem); 
 
   justify-content: center;
@@ -673,7 +672,6 @@ header {
   perspective: 1000px;
   /* Needed for 3D flip */
 }
-
 .core-card:hover .card-inner {
   transform: rotateY(180deg);
 }
@@ -784,7 +782,6 @@ header {
   pointer-events: none;
   z-index: 0; 
 }
-
 /* Lift content above bg */
 #lab .projects-wrapper, #game-vault .projects-wrapper { 
   position: relative; 
@@ -859,7 +856,7 @@ header {
   gap: clamp(0.75rem, 2vw, 1.25rem);
   padding: clamp(0.25rem, 1.5vw, 0.75rem);
   justify-content: center;
-  align-items: stretch; /* ✨ make all cards equal height per row */
+  align-items: stretch; /* make all cards equal height per row */
 }
 
 .project-card {
@@ -871,11 +868,10 @@ header {
   overflow: hidden;
   transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
   
-  display: flex;             /* ✨ allow inner stretch */
+  display: flex;             /* allow inner stretch */
   flex-direction: column;
   flex: 1 1 auto;  /* allow it to grow naturally */
   max-width: 100%; /* responsive */
-  
 }
 /* Tablet: 2 cards */
 @media (min-width: 640px) {
@@ -900,7 +896,7 @@ header {
   display: grid; 
   /* grid-template-rows: auto 1fr;  */
   flex-direction: column;
-  flex-grow: 1;              /* ✨ make the link area stretch full height */
+  flex-grow: 1;              /* make the link area stretch full height */
   min-height: 0; /* prevents Flexbox content clipping on mobile */
   text-decoration: none; 
   color: inherit; 
@@ -924,7 +920,7 @@ header {
   gap: .5rem; 
   display: flex;
   flex-direction: column;
-  flex-grow: 1;              /* ✨ ensures text pushes card taller */
+  flex-grow: 1;              /* ensures text pushes card taller */
 }
 .project-title { 
   color: #e9e9ff; 
@@ -935,13 +931,13 @@ header {
   color: #cfd7ff; 
   margin: 0; 
   opacity: .9; 
-  flex-grow: 1;              /* ✨ pushes “View Project” down if text is long */
+  flex-grow: 1;              /* pushes “View Project” down if text is long */
 }
 .project-link { 
   color: var(--accent); 
-  font-size: clamp(0.5rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.7rem, 1.5vw, 1.1rem);
   letter-spacing: .06em; 
-  margin-top: auto;          /* ✨ sticks link to bottom */
+  margin-top: auto;          /* sticks link to bottom */
 }
 
 /* Under construction overlay */
@@ -955,6 +951,60 @@ header {
 .project-link-area[data-status="under-construction"] .overlay { 
   opacity: 1; 
 }
+
+/* ======================================================================================================================================================
+   RESPONSIVENESS — THE LAB & GAME VAULT
+   ======================================================================================================================================================
+*/
+
+/* Tablet ≤1024px */
+@media (max-width:1024px) {
+
+  .project-grid     { gap: 1.2rem; padding: 1rem; }
+  /* .project-card     { height: 380px; } */
+
+  .project-title    { font-size: 1.2rem; }
+  .project-description { font-size: 0.95rem; }
+  .project-link     { font-size: 0.85rem; }
+}
+
+/* Mobile ≤768px */
+@media (max-width:768px) {
+  #lab               { padding: 1rem 0.5rem; } */
+
+  .project-grid      { gap: 1rem; }
+  /* .project-card      { height: 320px; } */
+
+  .project-title     { font-size: 1rem; }
+  .project-description { font-size: 0.85rem; }
+  .project-link      { font-size: 0.75rem; }
+}
+
+/* Small Mobile ≤480px */
+@media (max-width:480px) {
+  #lab { padding: 2rem 0.5rem 1.5; }    
+
+  .project-grid      { gap: 0.6rem; }
+  /* .project-card      { flex: 0 0 220px; height: 250px; } */
+
+  .project-title     { font-size: 0.85rem; }
+  .project-description { font-size: 0.7rem; }
+  .project-link      { font-size: 0.65rem; }
+}
+
+/* Very Small Phones ≤360px */
+@media (max-width:360px) {
+  #lab { padding: 3rem 0.3rem 2; }    
+
+  /* .project-card      { flex: 0 0 170px; height: 200px; } */
+
+  .project-title     { font-size: 0.7rem; }
+  .project-description { font-size: 0.6rem; }
+  .project-link      { font-size: 0.55rem; }
+}
+
+
+
 
 /* ================================================== ASTRODRIVE (two‑column) ================================================== */
 #astro { 
@@ -1153,6 +1203,18 @@ header {
   box-shadow: 0 10px 30px rgba(0,0,0,.35); 
 }
 
+/* Mobile: stack layout */
+@media (max-width: 979px) {
+  .game-detail-left {
+    text-align: center;          /* center all text */
+    justify-items: center;       /* centers grid children inside */
+  }
+
+  .game-logo-title {
+    justify-content: center;     /* center logo + title row */
+  }
+}
+
 /* Carousel */
 .carousel { position: relative; overflow: hidden; border-radius: 14px; border: 1px solid var(--card-bd); background: rgba(255,255,255,.03); }
 .carousel-track { display: flex; will-change: transform; transition: transform .35s ease; }
@@ -1191,15 +1253,8 @@ html { scroll-behavior: smooth; }
 }
 
 
-
-
-
 /* ======================================================================================================================= */
 /* ======================================================================================================================= */
-/* ======================================================================================================================= */
-/* ======================================================================================================================= */
-
-
 
 
 
@@ -1358,8 +1413,6 @@ html { scroll-behavior: smooth; }
 }
 
 .service-title {
-  /* font-size: 2rem; */
-  /* margin-bottom: 2.5rem; */
   background: linear-gradient(90deg, #b987ff 25%, rgb(0, 50, 130) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1371,11 +1424,24 @@ html { scroll-behavior: smooth; }
 }
 
 .services-container {
-  display: flex;
+  display: grid;
   gap: 2rem;
-  justify-content: center;
+  justify-content: center; /* keeps grid centered */
   margin: 5.5rem auto;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(4, 1fr); /* default: 4 cards per row */
+  max-width: 1200px; /* optional: keeps rows from stretching too wide */
+}
+/* Medium screens: 2 per row */
+@media (max-width: 1024px) {
+  .services-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Mobile: 1 per row */
+@media (max-width: 600px) {
+  .services-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .service-card {
@@ -1571,7 +1637,6 @@ html { scroll-behavior: smooth; }
 }
 
 .connect-background {
-  /* background: linear-gradient(to bottom, #1e0030 0%, #0f0014 100%); */
   position: absolute;
   top: 0;
   left: 0;
@@ -1622,7 +1687,6 @@ html { scroll-behavior: smooth; }
 }
 
 #connect-title {
-  /* font-size: 2.5rem; */
   margin-bottom: 5rem;
   opacity: 0;
   text-align: center;
@@ -1892,18 +1956,7 @@ html { scroll-behavior: smooth; }
 
 
 
-
-
-
-
-
 /* RESPONSIVENESS */
-
-
-
-
-
-
 
 
 
@@ -1922,18 +1975,12 @@ html { scroll-behavior: smooth; }
 
 /* -------- Desktop / Large -------- */
 @media (min-width: 1440px) {
-  /* h1 { font-size: clamp(3rem, 5vw, 6rem); }
-  h2 { font-size: clamp(1.5rem, 2.5vw, 3rem); } */
-  /* .logo img { height: clamp(50px, 2vw, 50px); } */
   .nav-arrow { bottom: 50px; right: 50px; border-top: 30px solid #a825f4c2; }
   .nav-arrow::after { border-top: 20px solid #a825f4c2; }
 }
 
 /* -------- Desktop 1025px - 1439px -------- */
 @media (max-width: 1439px) {
-  /* h1 { font-size: clamp(2.5rem, 4.5vw, 5rem); }
-  h2 { font-size: clamp(1.25rem, 3vw, 2.5rem); } */
-  /* .logo img { height: clamp(45px, 2vw, 45px); } */
   .nav-arrow { bottom: 45px; right: 45px; border-top: 28px solid #a825f4c2; }
   .nav-arrow::after { border-top: 18px solid #a825f4c2; }
 }
@@ -1941,10 +1988,6 @@ html { scroll-behavior: smooth; }
 /* -------- Tablet <= 1024px -------- */
 @media (max-width: 1024px) {
   .section { padding: 1rem 2rem; }
-  /* h1 { font-size: clamp(2rem, 5vw, 4rem); }
-  h2 { font-size: clamp(1.1rem, 2.5vw, 2rem); } */
-  /* p { font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); } */
-  /* .logo img { height: clamp(40px, 2vw, 40px); margin: 1.5rem; } */
   .nav-arrow {
     bottom: 25px; right: 25px;
     border-left: 15px solid transparent;
@@ -1961,10 +2004,7 @@ html { scroll-behavior: smooth; }
 /* -------- Mobile <= 768px -------- */
 @media (max-width: 768px) {
   .section { padding: 1rem; }
-  /* h1 { font-size: clamp(1.8rem, 5vw, 3rem); }
-  h2 { font-size: clamp(1rem, 3vw, 1.8rem); } */
   .enter-button { font-size: 0.9rem; padding: 0.6rem 1.2rem; }
-  /* .logo img { height: clamp(35px, 3vw, 35px); margin: 1rem; } */
   .nav-arrow {
     bottom: 20px; right: 20px;
     border-left: 13px solid transparent;
@@ -1981,8 +2021,6 @@ html { scroll-behavior: smooth; }
 /* -------- Small Mobile <= 480px -------- */
 @media (max-width: 480px) {
   .section { padding: 0.8rem; }
-  /* h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
-  h2 { font-size: clamp(0.9rem, 4vw, 1.5rem); } */
   .enter-button { font-size: 0.85rem; padding: 0.5rem 1rem; }
   /* .logo img { height: clamp(30px, 4vw, 30px); margin: 0.8rem; } */
   .nav-arrow {
@@ -2040,59 +2078,6 @@ html { scroll-behavior: smooth; }
 }
 
 
-/* ======================================================================================================================================================
-   RESPONSIVENESS — THE LAB & GAME VAULT
-   ======================================================================================================================================================
-*/
-
-/* Tablet ≤1024px */
-@media (max-width:1024px) {
-
-  .project-grid     { gap: 1.2rem; padding: 1rem; }
-  .project-card     { height: 380px; }
-
-  .project-title    { font-size: 1.2rem; }
-  .project-description { font-size: 0.95rem; }
-  .project-link     { font-size: 0.85rem; }
-}
-
-/* Mobile ≤768px */
-@media (max-width:768px) {
-  #lab               { padding: 1rem 0.5rem; } */
-
-  .project-grid      { gap: 1rem; }
-  .project-card      { height: 320px; }
-
-  .project-title     { font-size: 1rem; }
-  .project-description { font-size: 0.85rem; }
-  .project-link      { font-size: 0.75rem; }
-}
-
-/* Small Mobile ≤480px */
-@media (max-width:480px) {
-  #lab { padding: 2rem 0.5rem 1.5; }    
-
-  .project-grid      { gap: 0.6rem; }
-  .project-card      { flex: 0 0 220px; height: 250px; }
-
-  .project-title     { font-size: 0.85rem; }
-  .project-description { font-size: 0.7rem; }
-  .project-link      { font-size: 0.65rem; }
-}
-
-/* Very Small Phones ≤360px */
-@media (max-width:360px) {
-  #lab { padding: 3rem 0.3rem 2; }    
-
-  .project-card      { flex: 0 0 170px; height: 200px; }
-
-  .project-title     { font-size: 0.7rem; }
-  .project-description { font-size: 0.6rem; }
-  .project-link      { font-size: 0.55rem; }
-}
-
-
-
 
 /* ======================================================================================================================================================
    RESPONSIVENESS — ASTRODRIVE
@@ -2134,7 +2119,6 @@ html { scroll-behavior: smooth; }
     height: auto;
   }
 
-  /* Right section (logo/text) adjustments */
   .Astrologo {
     width: 200px;
   }
@@ -2148,7 +2132,6 @@ html { scroll-behavior: smooth; }
     font-size: clamp(0.85rem, 3vw, 1rem);
   }
 
-  /* Social links slightly smaller */
   .social-link {
     font-size: 1.3rem;
   }
@@ -2159,10 +2142,9 @@ html { scroll-behavior: smooth; }
 @media (max-width:480px) {
   .astrodrive-containers {
     flex-direction: column-reverse;
-    gap: 0.75rem;              /* smaller gap between the two parts */
+    gap: 0.75rem;            
   }
 
-  /* Use the video alone as content (no frame) */
   .monitor {
     background: none;
     padding: 0;
@@ -2171,10 +2153,10 @@ html { scroll-behavior: smooth; }
   }
   .monitor::before,
   .monitor::after {
-    display: none;            /* hide stand + base */
+    display: none;         
   }
   .monitor > video {
-    border-radius: 8px;       /* keep a rounded video edge if you want */
+    border-radius: 8px;      
   }
 
   /* right section (logo/text) */
@@ -2196,141 +2178,6 @@ html { scroll-behavior: smooth; }
     font-size: 1.2rem;
   }
 }
-
-
-
-
-
-
-/* ======================================================================================================================================================
-   RESPONSIVENESS — GAME VAULT
-   ======================================================================================================================================================
-*/
-
-
-/* ======================================================================================================================================================
-   RESPONSIVENESS — GAME INFO ZONE
-   ======================================================================================================================================================
-*/
-
-/* Tablet (<=1024px) */
-@media (max-width: 1024px) {
-  .game-detail-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .game-detail-left {
-    align-items: center;
-  }
-
-  .game-detail-logo {
-    width: 70px;
-    height: 70px;
-  }
-
-  .game-detail-left h2 {
-    font-size: 1.5rem;
-  }
-
-  .game-description {
-    font-size: 0.95rem;
-  }
-
-  .game-detail-video {
-    height: 260px;
-  }
-}
-
-/* Mobile (<=768px) */
-@media (max-width: 768px) {
-  #game-info-zone {
-    padding: 6rem 1rem 2rem;
-  }
-
-  .game-detail-container {
-    gap: 1.5rem;
-  }
-
-  .game-detail-left h2 {
-    font-size: 1.3rem;
-  }
-
-  .game-description {
-    font-size: 0.9rem;
-  }
-
-  .game-detail-video {
-    height: 220px;
-  }
-
-  .carousel {
-    height: 100px;
-  }
-
-  .carousel img {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-/* Small Mobile (<=480px) */
-@media (max-width: 480px) {
-  .game-detail-logo {
-    width: 60px;
-    height: 60px;
-  }
-
-  .game-detail-left h2 {
-    font-size: 1.1rem;
-  }
-
-  .game-description {
-    font-size: 0.85rem;
-  }
-
-  .game-detail-video {
-    height: 180px;
-  }
-
-  .carousel {
-    gap: 0.5rem;
-  }
-
-  .carousel img {
-    width: 70px;
-    height: 70px;
-  }
-}
-
-/* Extra Small Phones (<=360px) */
-@media (max-width: 360px) {
-  .game-detail-logo {
-    width: 50px;
-    height: 50px;
-  }
-
-  .game-detail-left h2 {
-    font-size: 1rem;
-  }
-
-  .game-description {
-    font-size: 0.8rem;
-  }
-
-  .game-detail-video {
-    height: 160px;
-  }
-
-  .carousel img {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-
-
 
 
 /* ======================================================================================================================================================
@@ -2362,10 +2209,6 @@ html { scroll-behavior: smooth; }
     overflow-y: auto;
     padding: 1rem;
   }
-
-  /* Scale down fonts proportionally */
-  /* .dev-word { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 0.4; }
-  .diary-word { font-size: clamp(3rem, 5vw, 4rem); } */
 }
 
 /* Mobile (<=768px) */
@@ -2386,64 +2229,10 @@ html { scroll-behavior: smooth; }
   .diary-left { max-height: 35%; }
   .diary-right { max-height: 65%; }
 
-  /* .dev-word { font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 0.3; }
-  .diary-word { font-size: clamp(1.5rem, 4.5vw, 2rem); } */
-
   .log-text { font-size: 0.9rem; }
   .log-entry { padding: 0.75rem 1rem; }
   .log-container { gap: 1rem; }
 }
-
-
-
-
-/* ======================================================================================================================================================
-   RESPONSIVENESS — SERVICES
-   ======================================================================================================================================================
-*/
-
-/* Tablet (<=1024px) */
-@media (max-width: 1024px) {
-  /* #services { padding: 3rem 0 5rem; }
-  .service-card {
-    width: 45%; 
-    height: 260px;
-  }
-  .service-name h2 { font-size: 1.25rem; } */
-}
-
-/* Mobile (<=768px) */
-@media (max-width: 768px) {
-  /* #services { padding: 3rem 0 5rem; }
-  .service-card {
-    width: 45%;  
-    height: 240px;
-  }
-  .service-name h2 { font-size: 1.1rem; } */
-}
-
-/* Small Mobile (<=480px) */
-@media (max-width: 480px) {
-  /* #services { padding: 3rem 0 5rem; }
-  .service-card {
-    width: 48%;  
-    height: 200px;
-  }
-  .service-name h2 { font-size: 0.95rem; }
-  .service-img img { width: 48px; height: 48px; } */
-}
-
-/* Extra Small Phones (<=360px) */
-@media (max-width: 360px) {
-  /* #services { padding: 3rem 0 5rem; }
-  .service-card {
-    width: 100%;
-    height: 180px;
-  }
-  .service-name h2 { font-size: 0.85rem; }
-  .service-img img { width: 40px; height: 40px; } */
-}
-
 
 
 /* ======================================================================================================================================================
