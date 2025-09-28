@@ -54,13 +54,66 @@
 
 
 <body>
-  <!-- Sticky Logo (top-left) -->
-  <div class="logo clickable" onclick="scrollToSection('landing')">
-    <img src="assets/paradox-logo.png" alt="Paradox" />
-  </div>
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress-bar"></div>
+
+  <header>
+      <!-- Sticky Logo (top-left) -->
+      <div class="logo clickable" onclick="scrollToSection('landing')">
+        <img src="assets/paradox-logo.png" alt="Paradox" />
+      </div>
+
+      <nav>
+          <div class="nav-buttons">
+              <button onclick="scrollToSection('core1')">
+                  <!-- <i class="ri-cpu-line"></i> -->
+                  <span class="btn-label">The Core</span>
+              </button>
+              <button onclick="scrollToSection('lab')">
+                  <!-- <i class="ri-flask-line"></i> -->
+                  <span class="btn-label">The Lab</span>
+              </button>
+              <button onclick="scrollToSection('dev-diary')">
+                  <!-- <i class="ri-book-line"></i> -->
+                  <span class="btn-label">The Logs</span>
+              </button>
+              <button onclick="scrollToSection('services')">
+                  <!-- <i class="ri-customer-service-2-line"></i> -->
+                  <span class="btn-label">Services</span>
+              </button>
+              <button onclick="scrollToSection('connect')">
+                  <!-- <i class="ri-links-line"></i> -->
+                  <span class="btn-label">Connect</span>
+              </button>
+          </div>
+
+          <i class="ri-menu-3-line menu-icon" onclick="toggleMobileMenu()"></i>
+
+          <div class="mobile-menu" id="mobileMenu">
+              <button onclick="scrollToSection('core1')">
+                  <i class="ri-cpu-line"></i>
+                  The Core
+              </button>
+              <button onclick="scrollToSection('lab')">
+                  <i class="ri-flask-line"></i>
+                  The Lab
+              </button>
+              <button onclick="scrollToSection('dev-diary')">
+                  <i class="ri-book-line"></i>
+                  The Logs
+              </button>
+              <button onclick="scrollToSection('services')">
+                  <i class="ri-customer-service-2-line"></i>
+                  Services
+              </button>
+              <button onclick="scrollToSection('connect')">
+                  <i class="ri-links-line"></i>
+                  Connect
+              </button>
+          </div>
+      </nav>
+  </header>
 
   <main>
 
@@ -68,57 +121,9 @@
         <canvas id="sci-fi-bg"></canvas>
 
         <!-- Landing -->
-        <section id="landing" class="section fade-scroll full-section">
-          <nav>
-              <div class="nav-buttons">
-                  <button onclick="scrollToSection('core1')">
-                      <!-- <i class="ri-cpu-line"></i> -->
-                      <span class="btn-label">The Core</span>
-                  </button>
-                  <button onclick="scrollToSection('lab')">
-                      <!-- <i class="ri-flask-line"></i> -->
-                      <span class="btn-label">The Lab</span>
-                  </button>
-                  <button onclick="scrollToSection('dev-diary')">
-                      <!-- <i class="ri-book-line"></i> -->
-                      <span class="btn-label">The Logs</span>
-                  </button>
-                  <button onclick="scrollToSection('services')">
-                      <!-- <i class="ri-customer-service-2-line"></i> -->
-                      <span class="btn-label">Services</span>
-                  </button>
-                  <button onclick="scrollToSection('connect')">
-                      <!-- <i class="ri-links-line"></i> -->
-                      <span class="btn-label">Connect</span>
-                  </button>
-              </div>
-              <i class="ri-menu-3-line menu-icon" onclick="toggleMobileMenu()"></i>
-              <div class="mobile-menu" id="mobileMenu">
-                  <button onclick="scrollToSection('core1')">
-                      <i class="ri-cpu-line"></i>
-                      The Core
-                  </button>
-                  <button onclick="scrollToSection('lab')">
-                      <i class="ri-flask-line"></i>
-                      The Lab
-                  </button>
-                  <button onclick="scrollToSection('dev-diary')">
-                      <i class="ri-book-line"></i>
-                      The Logs
-                  </button>
-                  <button onclick="scrollToSection('services')">
-                      <i class="ri-customer-service-2-line"></i>
-                      Services
-                  </button>
-                  <button onclick="scrollToSection('connect')">
-                      <i class="ri-links-line"></i>
-                      Connect
-                  </button>
-              </div>
-          </nav>
-
+        <section id="landing" class="section fade-scroll">
           <div class="intro">
-            <h1>Welcome to Paradox</h1>
+            <h1>Welcome To Paradox</h1>
             <h2>Think Beyond Unthinkable,<span class="mobile-break"></span> Build Beyond Boundaries.</h2>
           </div>
           
@@ -551,6 +556,10 @@
     </section>
 
 
+
+  </main>
+
+  <footer>
     <!-- Connect -->
     <section id="connect" class="section full-section section-top snap-section">
       <div class="connect-container">
@@ -595,8 +604,6 @@
                   </div>
                 </a>
             </div>
-
-
 
             <div class="message-box" id="message-box">
                 <form id="contactForm" action="https://formsubmit.co/73dd08df673f636e31d600d8f854d182" method="POST">
@@ -643,7 +650,7 @@
       </div>
     </section>
 
-  </main>
+  </footer>
 
   <div class="custom-cursor"></div>
 
