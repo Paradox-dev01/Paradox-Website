@@ -601,7 +601,6 @@ header {
   left: 0;
   width: 100%;
   height: 0;
-  /* background: #000; */
   backdrop-filter: blur(0px);
   transition: height 0.5s, backdrop-filter 0.5s;
   pointer-events: none;
@@ -610,7 +609,7 @@ header {
 
 #core2.blurred::after {
   height: 100%;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(5px);
 }
 
 .core2-title {
@@ -623,11 +622,11 @@ header {
 .core2-note {
   display: block;
   font-size: clamp(0.7em, 2vw, 1.125em);
-  color: rgba(255, 255, 255, 0.484); /* semi-transparent white */
+  color: rgba(255, 255, 255, 0.484);
   margin-top: 0.5rem;
   letter-spacing: 0.07em;
   text-transform: none;
-  padding-bottom: 3rem;
+  padding-bottom: clamp(1rem, 5vh, 3rem);
 }
 .core2-note:hover {
   color: rgba(255, 255, 255, 0.799);
@@ -639,9 +638,10 @@ header {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: clamp(2rem, 10rem - 5vw, 3rem); /* gap grows as screen shrinks */
+  gap: clamp(2rem, 10rem - 5vw, 2.5rem); /* gap grows as screen shrinks */
+
+  max-width: min(100%, 65rem); /* instead of clamp with 30rem floor */
   padding: clamp(1rem, 5rem - 2vw, 2rem); /* padding grows as screen shrinks */
-  max-width: min(100%, 75rem); /* instead of clamp with 30rem floor */
   margin: auto;
 }
 /* Mobile <= 768px */
@@ -662,8 +662,8 @@ header {
 
   /* width: clamp(10rem, 20vw, 17.5rem);
   height: clamp(10rem, 20vw, 17.5rem); */
-  width: clamp(5rem, 40vw, 17.5rem);
-  height: clamp(5rem, 40vw, 17.5rem);
+  width: clamp(3rem, 40vw, 17.5rem);
+  height: clamp(3rem, 40vw, 17.5rem);
   padding: clamp(1rem, 2vw, 1.8rem); 
 
   justify-content: center;

@@ -444,7 +444,7 @@ gsap.utils.toArray(".core-card").forEach((card, index) => {
   gsap.fromTo(
     card,
     {
-      y: index === 1 ? 20 : 60,
+      y: index === 1 ? 15 : 45,
       opacity: 0,
       rotateY: 30,
       scale: 0.8,
@@ -452,14 +452,14 @@ gsap.utils.toArray(".core-card").forEach((card, index) => {
     {
       scrollTrigger: {
         trigger: card,
-        start: "top 85%",
+        start: "top 90%",
         toggleActions: "play none none reset",
       },
       y: 0,
       opacity: 1,
       rotateY: 0,
       scale: 1,
-      duration: 1.2,
+      duration: 0.8,
       ease: "power3.out",
       delay: index * 0.1,
     }
@@ -471,9 +471,9 @@ ScrollTrigger.create({
   trigger: "#core2",
   start: "top top",
   endTrigger: "#lab",
-  end: "top top",
+  end: "top 70%",
   pin: true,
-  pinSpacing: false, // avoids extra space; keeps canvas & cursor visible
+  // pinSpacing: false, // avoids extra space; keeps canvas & cursor visible
   scrub: true,
   snap: true,
 });
