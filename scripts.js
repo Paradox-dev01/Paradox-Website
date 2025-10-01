@@ -1,42 +1,36 @@
 // Cursor
+// ================= Cursor =================
 const cursor = document.querySelector(".custom-cursor");
-let isMoving = false;
-
-// Move cursor with mouse
 let mouseX = 0;
 let mouseY = 0;
 let rafRequested = false;
+let idleTimeout = null;
 
+// Move cursor with mouse and smooth animation
 document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 
+  // Smooth follow using requestAnimationFrame
   if (!rafRequested) {
     requestAnimationFrame(updateCursor);
     rafRequested = true;
   }
 
-  if (!isMoving) {
-    isMoving = true;
-    cursor.classList.remove("idle");
-    setTimeout(() => (isMoving = false), 100);
-  }
-});
-
-function updateCursor() {
-  cursor.style.left = `${mouseX}px`;
-  cursor.style.top = `${mouseY}px`;
-  rafRequested = false;
-}
-
-// Idle animation trigger after no movement for 1.5s
-let idleTimeout;
-document.addEventListener("mousemove", () => {
+  // Idle handling
+  cursor.classList.remove("idle");
   clearTimeout(idleTimeout);
   idleTimeout = setTimeout(() => {
     cursor.classList.add("idle");
   }, 1500);
 });
+
+// Update cursor position
+function updateCursor() {
+  cursor.style.left = `${mouseX}px`;
+  cursor.style.top = `${mouseY}px`;
+  rafRequested = false;
+}
 
 // Click animation
 document.addEventListener("mousedown", () => {

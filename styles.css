@@ -84,6 +84,7 @@ button {
   transform: translate(-50%, -50%);
   z-index: 100005;
   transition: background 0.2s ease, transform 0.15s ease-out;
+  mix-blend-mode:difference;
 }
 /* Idle State */
 .custom-cursor.idle {
@@ -262,6 +263,7 @@ header {
   gap: clamp(0.5rem, 2vw, 2rem);
   width: 100%;
 }
+
 .nav-buttons button {
   background-color: rgba(5, 150, 182, 0.15);
   border: none;
@@ -273,6 +275,9 @@ header {
   font-weight: bold;
   letter-spacing: 0.05em;
   transition: background 0.3s, color 0.3s;
+}
+.nav-buttons button:hover {
+  background-color: rgba(243, 253, 255, 0.237);
 }
 
 /* ====== MENU ICON (hidden by default) ====== */
