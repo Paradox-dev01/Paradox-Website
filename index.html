@@ -271,8 +271,18 @@
               <div class="astrodrive-left">
 
                   <div class="monitor">
-                    <video autoplay loop muted controls controlsList="nodownload" src="assets/AstroDrive-video.mp4"></video>
-                    <div class="led"></div>
+                    <div class="iframe-wrap">
+                      <iframe 
+                        src="https://www.youtube.com/embed/w-_jcpzYA6A??autoplay=1&loop=1&mute=1&playlist=w-_jcpzYA6A"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin">
+                      </iframe>
+                    </div>
+                      
+                    <!-- <video autoplay loop muted controls controlsList="nodownload" src="assets/AstroDrive-video.mp4"></video> -->
                     <div class="base"></div>
                   </div>
               </div>
@@ -419,7 +429,7 @@
 
             <!-- Right side: trailer video + image carousel -->
             <div class="game-detail-right">
-              <video autoplay loop muted controls class="game-detail-video">
+              <video autoplay loop muted controls controlsList="nodownload" class="game-detail-video">
                 <source src="assets/games/iiuc-tension-run/iiuc-tension-run-trailer.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>

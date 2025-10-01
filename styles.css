@@ -1,4 +1,3 @@
-/* #FF0090 #E37CF5 #DC7AF5 #601CB8 #4449A3 #85A0E0 #413484 */
 :root {
   --logo-top: clamp(1.5rem, 2.5vw, 2.5rem);
   --logo-side: clamp(1rem, 2.5vw, 2.5rem);
@@ -79,26 +78,23 @@ button {
   left: 0;
   width: 20px;
   height: 20px;
-  background: #4a22db;
+  background: #426df0c2;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 100005;
   transition: background 0.2s ease, transform 0.15s ease-out;
 }
-
 /* Idle State */
 .custom-cursor.idle {
   animation: pulse 1.5s infinite;
   background: #00698f;
 }
-
 /* Clicked State */
 .custom-cursor.clicked {
   transform: translate(-50%, -50%) scale(1.5);
   background: #92dbff;
 }
-
 /* Hover on clickable */
 .custom-cursor.hover {
   width: 24px;
@@ -107,19 +103,16 @@ button {
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   transition: all 0.2s ease;
 }
-
 /* Idle pulse animation */
 @keyframes pulse {
   0% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.8;
   }
-
   50% {
     transform: translate(-50%, -50%) scale(1.3);
     opacity: 0.4;
   }
-
   100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.8;
@@ -1046,23 +1039,35 @@ header {
   display: grid; 
   gap: .5rem; 
 }
-.monitor video { 
+
+/* wrapper keeps proper 16:9 ratio and clipping for rounded corners */
+.iframe-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: clamp(200px, 40vw, 380px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  border: 1px solid var(--card-bd);
+}
+/* iframe fills the wrapper */
+.iframe-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* .monitor video { 
   width: 100%; 
   height: auto; 
   border-radius: 16px; 
   outline: none; 
   border: 1px solid var(--card-bd); box-shadow: 0 10px 30px rgba(0,0,0,.35); 
-}
-.monitor .led { 
-  width: 12px; 
-  height: 12px; 
-  border-radius: 50%; 
-  background: #3cff7a; 
-  filter: drop-shadow(0 0 6px #3cff7a); 
-  position: absolute; 
-  top: 10px; 
-  left: 10px; 
-}
+} */
 .monitor .base { 
   height: 10px; 
   border-radius: 999px; 
