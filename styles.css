@@ -84,7 +84,7 @@ button {
   transform: translate(-50%, -50%);
   z-index: 100005;
   transition: background 0.2s ease, transform 0.15s ease-out;
-  mix-blend-mode:difference;
+  /* mix-blend-mode:difference; */
 }
 /* Idle State */
 .custom-cursor.idle {
