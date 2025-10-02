@@ -1940,18 +1940,17 @@ html { scroll-behavior: smooth; }
   left: 0;
   width: 100%;
   text-align: center;
-  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  font-size: clamp(0.5rem, 1.5vw, 0.9rem);
+  line-height: 1.3;
   color: #fff;
   pointer-events: auto;
   /* clickable */
   z-index: 9999;
 }
-
 .footer-text a {
   color: #fff;
   text-decoration: none;
 }
-
 .footer-text a:hover {
   color: #a4bbffea;
   text-decoration: underline;
