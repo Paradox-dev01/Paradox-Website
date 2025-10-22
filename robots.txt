@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://paradoxlab.tech/sitemap.xml
